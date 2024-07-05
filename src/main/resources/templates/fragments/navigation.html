@@ -1,26 +1,32 @@
 <nav th:fragment="navigation">
     <a href="/"><img src="/images/car-logo.png" class="logo" alt="logo"></a>
-    <div class="my-ads-and-favorite">
-        <a href="#"><i class="fa-solid fa-user"></i></a>
-        <a href="#"><i class="fa-solid fa-star"></i></a>
-        <a href="#"><i class="fas fa-newspaper"></i></a>
-    </div>
-    <div class="menu">
-        <a href="#">About</a>
-        <div class="dropdown">
-            <a href="#" class="dropbtn">Add <i class="fas fa-caret-down"></i></a>
-            <div class="dropdown-content">
-                <a href="#">Car</a>
-                <a href="#">Motorcycle</a>
-            </div>
+    <th:block sec:authorize="isAuthenticated()">
+        <div class="my-ads-and-favorite">
+            <a th:href="@{/user/profile}"><i class="fa-solid fa-user"></i></a>
+            <a th:href="@{/user/favoriteList}"><i class="fa-solid fa-star"></i></a>
+            <a th:href="@{/user/myList}"><i class="fas fa-newspaper"></i></a>
         </div>
-        <a href="#">Admin</a>
-        <a href="#">Contact</a>
-        <a href="#">Register</a>
-        <a href="#">Login</a>
-        <form method="POST" action="/user/logout">
-            <button type="submit">Logout</button>
-        </form>
+    </th:block>
+    <div class="menu">
+        <a th:href="@{/about}">About</a>
+        <th:block sec:authorize="isAuthenticated()">
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Add <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a th:href="@{/home/cars}">Car</a>
+                    <a th:href="@{/home/motorcycle}">Motorcycle</a>
+                </div>
+            </div>
+            <a th:href="@{/admin}">Admin</a>
+            <a th:href="@{/contacts}">Contact</a>
+        </th:block>
+        <a th:href="@{/user/register}">Register</a>
+        <a th:href="@{/user/login}">Login</a>
+        <th:block sec:authorize="isAuthenticated()">
+            <form method="POST" action="/user/logout">
+                <button type="submit">Logout</button>
+            </form>
+        </th:block>
     </div>
     <div class="flags">
         <a href="#"><img src="/images/en-flag.png" alt="English"></a>
