@@ -20,7 +20,7 @@
             <a th:href="@{/admin}">Admin</a>
             <a th:href="@{/contacts}">Contact</a>
         </th:block>
-        <a th:href="@{/user/register}">Register</a>
+        <a th:href="@{/user/register}">Create Account</a>
         <a th:href="@{/user/login}">Login</a>
         <th:block sec:authorize="isAuthenticated()">
             <form method="POST" action="/user/logout">

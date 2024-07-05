@@ -15,7 +15,9 @@ body{
 .login-page {
     width: 50rem;
     color: #0e62ca;
-    margin-bottom: 8rem;
+    text-align: center;
+    position: relative;
+    bottom: 6rem;
 }
 
 .form {

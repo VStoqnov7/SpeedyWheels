@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link th:include="~{fragments/head :: head}">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+
+<body>
+
+<div>
+    <nav th:replace="~{fragments/navigation}"></nav>
+</div>
+
+<th:block sec:authorize="!isAuthenticated()">
+    <div class="home">
+        <div class="welcome">
+            <h1>Welcome to <span>SpeedyWheels</span></h1>
+            <h2>Find Your Next Car or Motorcycle in Minutes</h2>
+            <p>In three steps you can pick a car or motorcycle, see its price and boom! You're done.</p>
+            <p>To see our services please <a  th:href="@{/user/login}">Login</a> or <a th:href="@{/user/register}">Create Account</a> !</p>
+        </div>
+    </div>
+</th:block>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>
