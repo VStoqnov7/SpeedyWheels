@@ -14,16 +14,116 @@
     <nav th:replace="~{fragments/navigation}"></nav>
 </div>
 
-<th:block sec:authorize="!isAuthenticated()">
-    <div class="home">
-        <div class="welcome">
-            <h1>Welcome to <span>SpeedyWheels</span></h1>
-            <h2>Find Your Next Car or Motorcycle in Minutes</h2>
-            <p>In three steps you can pick a car or motorcycle, see its price and boom! You're done.</p>
-            <p>To see our services please <a  th:href="@{/user/login}">Login</a> or <a th:href="@{/user/register}">Create Account</a> !</p>
+<div class="premium-car">
+    <img src="/images/premium-car-storage.jpeg" alt="">
+    <div class="text-premium-car"><span class="text1">Premium Car</span> <span class="text2">STORAGE</span></div>
+</div>
+
+
+
+<div class="choice-container">
+    <div class="choice">
+        <a href="#"><img src="/images/car-option.jpeg" alt="Car"></a>
+        <h3>Car</h3>
+    </div>
+    <div class="choice">
+        <a href="#"><img src="/images/jeep-option.jpeg" alt="Jeep"></a>
+        <h3>Jeep</h3>
+    </div>
+    <div class="choice">
+        <a href="#"><img src="/images/motorcycle-option.jpeg" alt="Motorcycle"></a>
+        <h3>Motorcycle</h3>
+    </div>
+    <div class="choice">
+        <a href="#"><img src="/images/all-oplions.jpeg" alt="All"></a>
+        <h3>All</h3>
+    </div>
+</div>
+
+
+
+<div class="vehicle-container">
+    <div class="motorcycle">
+        <div class="text-expensive-vehicles">
+            <p>The most expensive Vehicles</p>
+        </div>
+        <img src="/images/test.jpeg" alt="Motorcycle">
+    </div>
+    <div class="vehicle">
+        <img src="/images/test.jpeg" alt="Car">
+        <div class="details">
+            <p>It is a long established fact that a reader will be distracted by thereadable content of a page when
+                looking at its layoupoint of using Lorem Ipsum is that it has a more-or-less nordistribution of
+                letters, as opposed to using 'Content here, content here making it look like readable English.</p>
+        </div>
+        <div class="button-best-car">
+            <a href="#" class="button-find-best-car">Find your best car here</a>
         </div>
     </div>
-</th:block>
+
+</div>
+
+
+
+
+<div class="latest-car">
+    <h2>Fresh Releases</h2>
+    <div class="car-details">
+        <img src="/images/test.jpeg" alt="Car Image">
+        <div class="car-info">
+            <h3>New Audi A6</h3>
+            <div class="items">
+                <div>
+                    <i class="fa-solid fa-times"></i>
+                    <i class="fa-solid fa-check"></i>
+                    <label>Climate Control</label>
+                </div>
+                <div>
+                    <i class="fa-solid fa-times"></i>
+                    <i class="fa-solid fa-check"></i>
+                    <label>GPS Navigation</label>
+                </div>
+                <div>
+                    <i class="fa-solid fa-times"></i>
+                    <i class="fa-solid fa-check"></i>
+                    <label>4x4</label>
+                </div>
+            </div>
+            <a href="#" class="btn">Read More</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-5">
+    <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+            <img src="/images/test.jpeg"
+                 class="w-100 shadow-1-strong rounded mb-4 img-thumbnail img-fluid" alt="Vehicle Image" />
+
+            <img src="/images/test.jpeg"
+                 class="w-100 shadow-1-strong rounded mb-4 img-thumbnail img-fluid"
+                 alt="Vehicle Image" />
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <img src="/images/test.jpeg"
+                 class="w-100 shadow-1-strong rounded mb-4 img-thumbnail img-fluid" alt="Vehicle Image" />
+
+            <img src="/images/test.jpeg"
+                 class="w-100 shadow-1-strong rounded mb-4 img-thumbnail img-fluid" alt="Vehicle Image" />
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <img src="/images/test.jpeg"
+                 class="w-100 shadow-1-strong rounded mb-4 img-thumbnail img-fluid" alt="Vehicle Image" />
+
+            <img src="/images/test.jpeg"
+                 class="w-100 shadow-1-strong rounded mb-4 img-thumbnail img-fluid" alt="Vehicle Image" />
+        </div>
+    </div>
+</div>
+
 
 <footer th:replace="~{fragments/footer}"></footer>
 </body>
