@@ -2,7 +2,7 @@ package com.example.speedywheels.model.enums;
 
 public enum CarCategory {
     VAN("Van"),
-    SUV("SUV"),
+    JEEP("Jeep"),
     STATION_WAGON("Station Wagon"),
     COUPE("Coupe"),
     MINIVAN("Minivan"),

@@ -1,0 +1,92 @@
+.add-car {
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    width: 40rem;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.add-form {
+    color: white;
+    width: 100%;
+    background-color: rgba(46, 45, 45, 0.7);
+    padding: 1rem;
+    border-radius: 0.8rem;
+    box-shadow: 1.3rem 0 1rem rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    text-align: center;
+}
+
+.add-form form .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 100%;
+}
+
+.add-form label {
+    color: white;
+    margin: 0.2rem;
+}
+
+.add-form input,
+.add-form select {
+    display: inline;
+    width: 100%;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 0.6rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.add-form button {
+    display: inline-block;
+    width: 98%;
+    padding: 0.5rem;
+    background-color: #214d7c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-form button:hover {
+    background-color: #962831;
+}
+
+.photos,
+.price {
+    width: 100%;
+}
+
+#photos,
+#price {
+    width: 100%
+}
+
+option {
+    background: rgb(32, 65, 116);
+}
+
+.custom-checkbox .form-check-input {
+    width: 2rem;
+    height: 1rem;
+}
+
+.custom-checkbox .form-check-label {
+    font-size: 0.9rem;
+}
+.form-group>* {
+    width: 40%;
+}
+
+.more-options{
+    padding: 1rem;
+}
