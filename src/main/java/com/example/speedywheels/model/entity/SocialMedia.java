@@ -16,8 +16,17 @@ import lombok.experimental.Accessors;
 public class SocialMedia extends BaseEntity {
 
     @Column
-    private String link;
+    private String github;
 
-    @ManyToOne()
+    @Column
+    private String twitter;
+
+    @Column
+    private String instagram;
+
+    @Column
+    private String facebook;
+
+    @ManyToOne
     private User user;
 }

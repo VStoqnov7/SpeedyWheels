@@ -52,9 +52,8 @@ public class User extends BaseEntity {
     @Column(name = "is_active")
     private boolean isActive;
 
-    @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL)
-    private Set<SocialMedia> socialMedias;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private SocialMedia socialMedias;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Car> myCars;
@@ -72,7 +71,6 @@ public class User extends BaseEntity {
     private Set<UserRole> roles;
 
     public User() {
-        this.socialMedias = new LinkedHashSet<>();
         this.myCars = new LinkedHashSet<>();
         this.myMotorcycles = new LinkedHashSet<>();
         this.favoriteCars = new LinkedHashSet<>();
