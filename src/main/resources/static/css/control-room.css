@@ -21,7 +21,6 @@ body {
 .avatar.sm {
     width: 2.25rem;
     height: 2.25rem;
-    font-size: .818125rem;
 }
 
 .table-nowrap .table td,
@@ -50,3 +49,6 @@ table th {
     vertical-align: middle;
 }
 
+#toggleButton{
+    cursor: pointer;
+}

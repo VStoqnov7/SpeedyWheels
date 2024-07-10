@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link th:include="~{fragments/head :: head}">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+
+
+<body>
+
+<div>
+    <nav th:replace="~{fragments/navigation}"></nav>
+</div>
+
+<div class="about-container">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                <h2 class="mb-4 display-5 text-center text-secondary">About Us</h2>
+                <p class="text-center lead fs-4 text-white container-font">Welcome to our website dedicated to
+                    vehicles!
+                    We are a specialized resource focused on everything
+                    related to the latest models, technologies, and accessories for automobiles and jeeps. Our goal
+                    is to provide a
+                    comprehensive and objective overview of the automotive industry, offering you up-to-date news,
+                    detailed reviews, and
+                    practical advice for purchasing and maintaining your vehicle.</p>
+                <hr class="w-100 border">
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-1">
+        <div class="row gy-4 gy-lg-0 align-items-lg-center">
+            <div class="col-12 col-lg-6">
+                <img class="img-fluid rounded border border-dark" loading="lazy" src="/images/about.jpeg"
+                     alt="About Us">
+            </div>
+            <div class="col-12 col-lg-6 col-xxl-6">
+                <div class="row justify-content-lg-end">
+                    <div class="col-12 col-lg-11">
+                        <div class="about-wrapper">
+                            <p class="lead mb-4 mb-md-5 text-white container-font">In each category, you will find comprehensive
+                                materials on
+                                various models of cars and jeeps, aiming to provide insights
+                                and inspiration for your next automotive adventure. Whether you're new to the
+                                automotive industry or an experienced
+                                enthusiast, here you will find valuable information to help you make informed
+                                decisions when choosing and maintaining
+                                your vehicle..</p>
+                            <div class="row gy-4 mb-4 mb-md-4">
+                                <div class="col-12 col-md-6">
+                                    <div class="card border border-dark">
+                                        <div class="card-body p-3">
+                                            <h3 class="display-5 fw-bold text-primary text-center mb-2">370+</h3>
+                                            <p class="fw-bold text-center m-0">Qualified Experts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-5">
+                                    <div class="card border border-dark">
+                                        <div class="card-body p-3">
+                                            <h3 class="display-5 fw-bold text-primary text-center mb-2">18k+</h3>
+                                            <p class="fw-bold text-center m-0">Satisfied Clients</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/" class="btn btn-primary bsb-btn-2xl">Explore <i
+                                    class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>
