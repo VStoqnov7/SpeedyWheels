@@ -1,0 +1,54 @@
+body {
+    background: url('/images/my-favorite-vehicles.jpg');
+    position: relative;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.media img{
+    width: 15rem;
+    height: 10rem;
+    object-fit: cover;
+    border: 0.2rem solid rgb(59, 59, 59);
+}
+
+.media-body a {
+    text-decoration: none;
+}
+
+/* Line with text */
+.line-with-text {
+    display: flex;
+    align-items: center;
+    padding-top: 5rem;
+}
+
+.line-1 {
+    flex-grow: 1;
+    border-bottom: 0.5rem solid #590649;
+    margin: 0 0 0 2rem;
+    border-radius: 1rem;
+}
+
+.line-2 {
+    flex-grow: 1;
+    border-bottom: 0.5rem solid #a9adad;
+    margin: 0 2rem 0 0;
+    border-radius: 1rem;
+}
+
+.text-line {
+    margin: 0 0.4rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: 0.3rem solid transparent;
+    border-image: linear-gradient(to right, #590649 50%, #a9adad 50%) 1;
+    background-clip: padding-box;
+}
