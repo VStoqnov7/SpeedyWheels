@@ -102,3 +102,206 @@ nav .menu form button {
     font-size: inherit;
     padding: 0;
 }
+
+
+.menu-button{
+    display: none;
+}
+
+.menu-button a i{
+    color: red;
+}
+
+
+@media screen and(max-width: 900px) {
+
+    nav .menu a{
+        margin-top: 0.4rem;
+    }
+
+    .menu-button {
+        display: block;
+        text-align: center;
+        margin-left: 1rem;
+        font-size: 1.3rem;
+    }
+
+    nav {
+        font-size: 1rem;
+        display: block;
+        text-align: center;
+        background-color: black;
+    }
+
+    nav a img {
+        margin: 0 auto;
+        margin-bottom: 0.3rem;
+    }
+
+    nav a .logo {
+        width: 6rem;
+        height: auto;
+    }
+
+    .menu {
+        display: block;
+        flex-direction: column;
+    }
+
+    .flags {
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        margin-left: 0.3rem;
+        margin-top: 0.3rem;
+    }
+
+    nav .flags a {
+        width: 1.5rem;
+        height: auto;
+    }
+
+    nav .menu,
+    .my-ads-and-favorite,
+    nav .flags {
+        display: none;
+    }
+
+    nav .menu.menu-open,
+    .my-ads-and-favorite.menu-open,
+    nav .flags.menu-open {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+
+    nav .menu a{
+        margin-top: 0.4rem;
+    }
+
+    .menu-button {
+        display: block;
+        text-align: center;
+        margin-left: 1rem;
+        font-size: 0.9rem;
+    }
+
+    nav {
+        font-size: 0.7rem;
+        display: block;
+        text-align: center;
+        background-color: black;
+    }
+
+    nav a img {
+        margin: 0 auto;
+        margin-bottom: 0.3rem;
+
+    }
+
+    nav a .logo {
+        width: 5rem;
+        height: auto;
+        padding-left: 1rem;
+    }
+
+    .menu {
+        display: block;
+        flex-direction: column;
+    }
+
+    .flags {
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        margin-left: 0.3rem;
+        margin-top: 0.3rem;
+    }
+
+    nav .flags a {
+        width: 1.5rem;
+        height: auto;
+    }
+
+    nav .menu,
+    .my-ads-and-favorite,
+    nav .flags {
+        display: none;
+    }
+
+    nav .menu.menu-open,
+    .my-ads-and-favorite.menu-open,
+    .flags.menu-open {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+
+    nav .menu a{
+        margin-top: 0.4rem;
+    }
+
+    .menu-button {
+        display: block;
+        text-align: center;
+        margin-left: 1rem;
+        font-size: 0.8rem;
+    }
+
+    nav {
+        font-size: 0.6rem;
+        display: block;
+        text-align: center;
+        background-color: black;
+    }
+
+    nav a img {
+        margin: 0 auto;
+        margin-bottom: 0.3rem;
+    }
+    nav a .logo{
+        width: 4rem;
+        height: auto;
+    }
+
+    .menu {
+        display: block;
+        flex-direction: column;
+    }
+
+    .flags {
+        text-align: center;
+        width: 100%;
+        margin-left: 0.3rem;
+        margin-top: 0.3rem;
+    }
+
+    nav .flags a {
+        width: 1rem;
+        height: auto;
+    }
+
+    nav .menu,
+    .my-ads-and-favorite,
+    nav .flags {
+        display: none;
+    }
+
+    nav .menu.menu-open,
+    .my-ads-and-favorite.menu-open,
+    .flags.menu-open {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
