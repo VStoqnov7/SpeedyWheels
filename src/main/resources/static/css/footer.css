@@ -13,3 +13,25 @@
 footer p {
     margin: 0;
 }
+
+
+@media screen and (max-width: 900px) {
+    .h5{
+        font-size: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    .h5{
+        font-size: 0.9rem;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .h5{
+        font-size: 0.7rem;
+    }
+}
