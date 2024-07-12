@@ -1,10 +1,10 @@
 body {
-    background: url('/images/user-profile.jpg');
+    background: url('/images/user-profile.jpeg');
     position: relative;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: 135%;
+    background-size: cover;
     background-color: black;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -19,7 +19,7 @@ body {
 
 .card {
     background-color: transparent;
-    backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(0.3rem);
     border: 0.1rem solid white;
     color: white;
     overflow: auto;
