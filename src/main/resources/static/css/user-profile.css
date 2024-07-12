@@ -49,6 +49,7 @@ div input {
 .edit-input {
     display: none;
     width: 75%;
+    height: 1.5rem;
 }
 
 .save-button {
