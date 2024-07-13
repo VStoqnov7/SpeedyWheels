@@ -1,5 +1,5 @@
 body {
-    background: url('/images/my-favorite-vehicles.jpg');
+    background: url('/images/my-favorite-vehicless.jpg');
     position: relative;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -51,4 +51,56 @@ body {
     border: 0.3rem solid transparent;
     border-image: linear-gradient(to right, #590649 50%, #a9adad 50%) 1;
     background-clip: padding-box;
+}
+
+
+@media screen and (max-width: 992px) {
+    .media{
+        flex-direction: row !important;
+    }
+
+    .ml-4{
+        margin: 0 1rem 0 0 !important;
+    }
+
+    .media-body{
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .list-group-item{
+        padding: 0 !important;
+    }
+
+    .d-flex{
+        flex-direction: column;
+    }
+
+    .media img{
+        height: 13rem;
+    }
+
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    *{
+        font-size: 0.7rem;
+    }
+
+    .media img{
+        height: 11rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .media-body{
+        margin-top: 0;
+    }
 }

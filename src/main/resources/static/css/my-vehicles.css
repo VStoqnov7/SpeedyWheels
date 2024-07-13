@@ -4,7 +4,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -45,4 +45,44 @@ body {
     border: 0.3rem solid transparent;
     border-image: linear-gradient(to right, #356147, #2f4b68) 1;
     background-clip: padding-box;
+}
+
+@media screen and (max-width: 992px) {
+    .media{
+        flex-direction: row !important;
+    }
+
+    .ml-4{
+        margin: 0 1rem 0 0 !important;
+    }
+
+    .media-body{
+        margin-top: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .list-group-item{
+        padding: 0 !important;
+    }
+
+    .d-flex{
+        flex-direction: column;
+    }
+
+    .media img{
+        height: 11rem;
+    }
+
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    *{
+        font-size: 0.7rem;
+    }
 }
