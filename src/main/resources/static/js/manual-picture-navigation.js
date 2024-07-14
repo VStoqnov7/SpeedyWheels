@@ -1,4 +1,4 @@
-function manualCarouselNavigation(slideIndex) {
+function manualPictureNavigation(slideIndex) {
     $('#big-images').carousel(slideIndex);
 }
 

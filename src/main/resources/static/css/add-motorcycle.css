@@ -27,8 +27,8 @@ body::before {
 .add-motorcycle {
     display: block;
     width: calc(100% - 5rem);
-    height: 50rem;
     padding-top: 4rem;
+    padding-bottom: 2rem;
     margin-left: 5rem;
 }
 
@@ -111,10 +111,6 @@ option {
 }
 
 @media screen and (max-width: 1600px) {
-    *{
-        font-size: 0.8rem;
-    }
-
     .add-motorcycle{
         margin-left: 10rem;
     }
@@ -126,10 +122,6 @@ option {
 
 
 @media screen and (max-width: 1400px) {
-    *{
-        font-size: 0.75rem;
-    }
-
     .add-motorcycle{
         margin-left: 7rem;
     }
@@ -138,17 +130,22 @@ option {
         font-size: 1.4rem;
     }
 
+}
+
+@media screen and (max-width: 1100px) {
+    form{
+        width: 55%;
+    }
 
 }
 
 @media screen and (max-width: 900px) {
-
-    *{
-        font-size: 0.65rem;
-    }
-
     .add-motorcycle{
         padding-top: 8rem;
+    }
+
+    form{
+        width: 70%;
     }
 
     form h2{
@@ -165,7 +162,7 @@ option {
     }
 
     form{
-        width: 60%;
+        width: 90%;
         margin: 0 auto;
     }
 
