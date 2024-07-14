@@ -16,6 +16,8 @@ body {
 }
 
 #map {
+    position: relative;
+    z-index: 1;
     height: 100%;
     width: 100%;
 }
@@ -42,6 +44,10 @@ body {
     color: #d79221;
 }
 
+.text-dar{
+    margin-bottom: 2.5rem;
+}
+
 .button {
     background-color: #d79221;
     color: white;
@@ -54,4 +60,68 @@ body {
 
 .button:hover {
     background-color: #e7ad52;
+}
+
+
+@media screen and (max-width: 900px) {
+
+    *{
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    *{
+        font-size: 0.8rem;
+    }
+
+    .row.no-gutters.mb-4 {
+        flex-direction: column;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    .col-md-7{
+        width: 100%;
+    }
+
+    .row .text-dar{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .icon span{
+        padding: 1rem;
+        width: 3rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    *{
+        font-size: 0.7rem;
+    }
+
+    .contact-us {
+        padding-top: 7rem;
+    }
+
+    #map {
+        height: 200px;
+    }
+
+    .icon span{
+        width: 3rem;
+    }
+
+    .contact-wrap{
+        width: 100% !important;
+        margin: 0 auto;
+    }
+
+    .no-gutters>[class*=col-]{
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
 }
