@@ -78,5 +78,140 @@ li input{
 
 .button-submit{
     text-align: center;
-    margin: 2rem auto 3rem auto;
+    margin: 2rem auto 6rem auto;
+
+}
+
+span{
+    display: inline-block;
+    max-width: 20rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1700px) {
+
+    .profile {
+        margin: 6rem auto 0 auto;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1560px) {
+
+    span{
+        max-width: 18rem;
+    }
+
+}
+
+@media screen and (max-width: 1560px) {
+
+    span{
+        max-width: 13rem;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+    span{
+        max-width: 10rem;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+    .row{
+        flex-direction: column;
+    }
+
+    .row .col-lg-5{
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .row  .col-lg-7{
+        margin-top: 0.5rem;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    span{
+        max-width: 20rem;
+    }
+
+    .list-group-item .row{
+        flex-direction: row;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .profile {
+        margin: 8rem auto 0 auto;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    span{
+        max-width: 13rem;
+    }
+
+    *{
+        font-size: 0.9rem;
+    }
+
+    .list-group-item{
+        margin: 0.5rem;
+        padding: 0.3rem;
+    }
+
+    .row .mb-3{
+        margin-bottom: 0 !important;
+    }
+
+    .info-1{
+        height: 23.5rem;
+    }
+
+    .info-2{
+        height: 18rem;
+        padding: 2rem;
+
+    }
+
+    .p-1{
+        width: 5rem;
+    }
+
+    .button-submit{
+        margin-bottom: 3rem;
+    }
+
+    .col-sm-3{
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    span{
+        max-width: 9rem;
+    }
+
+    *{
+        font-size: 0.8rem;
+    }
+
+    .col-sm-3{
+        width: 30%;
+    }
+
+    .col-sm-9{
+        width: 70%;
+    }
+
 }
