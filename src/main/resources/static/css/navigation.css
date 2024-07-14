@@ -123,7 +123,7 @@ nav .menu form button {
         display: block;
         text-align: center;
         margin-left: 1rem;
-        font-size: 1.3rem;
+        font-size: 1.8rem;
     }
 
     nav {
@@ -140,7 +140,7 @@ nav .menu form button {
     }
 
     nav a .logo {
-        width: 6rem;
+        width: 6.5rem;
         height: auto;
     }
 
@@ -175,6 +175,10 @@ nav .menu form button {
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    .menu-button a i{
+        font-size: 1.5rem;
+    }
 }
 
 
@@ -207,7 +211,7 @@ nav .menu form button {
     }
 
     nav a .logo {
-        width: 5rem;
+        width: 5.9rem;
         height: auto;
         padding-left: 1rem;
     }
@@ -243,6 +247,11 @@ nav .menu form button {
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    .menu-button a i{
+        font-size: 1.1rem;
+        margin-top: 0.7rem;
+    }
 }
 
 
@@ -271,7 +280,7 @@ nav .menu form button {
         margin-bottom: 0.3rem;
     }
     nav a .logo{
-        width: 4rem;
+        width: 5rem;
         height: auto;
     }
 
@@ -304,5 +313,10 @@ nav .menu form button {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .menu-button a i{
+        font-size: 1rem;
+        margin-top: 0.5rem;
     }
 }

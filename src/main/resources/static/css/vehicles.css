@@ -108,3 +108,43 @@ body {
     text-decoration: none;
     color: blue;
 }
+
+
+@media screen and (max-width: 1000px) {
+
+    .container{
+        max-width: 60rem;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .line-with-text{
+        margin-top: 6.5rem;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .container{
+        max-width: 50rem;
+        padding: 1rem;
+    }
+
+    .big-image{
+        width: 50%;
+    }
+
+    .small-images{
+        width: 50%;
+    }
+
+    .col-md-5{
+        width: 50%;
+    }
+
+    .pl-0{
+        display: inline-block;
+        width: 40%;
+    }
+}

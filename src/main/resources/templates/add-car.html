@@ -15,7 +15,6 @@
 </div>
 
 <div class="add-car">
-    <div class="add-form">
         <form th:method="POST" th:action="@{/user/add}">
             <h2>Add Car</h2>
             <div class="form-group">
@@ -109,10 +108,8 @@
             </div>
             <button type="submit">Add Car</button>
         </form>
-    </div>
 </div>
 
 <footer th:replace="~{fragments/footer}"></footer>
-<script src="/js/blinker.js"></script>
 </body>
 </html>

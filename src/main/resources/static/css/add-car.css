@@ -1,42 +1,59 @@
-.add-car {
-    position: absolute;
-    top: 0;
-    left: 6rem;
-    width: 40rem;
-    height: 100vh;
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    background-color: black;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    animation: changeBackground 2s infinite;
 }
 
-.add-form {
+@keyframes changeBackground {
+    0% {
+        background-image: url(/images/car.jpg);
+    }
+    50% {
+        background-image: url(/images/car-light.jpg);
+    }
+    100% {
+        background-image: url(/images/car.jpg);
+    }
+}
+
+.add-car {
+    display: block;
+    width: calc(100% - 5rem);
+    height: 50rem;
+    padding-top: 4rem;
+    margin-left: 5rem;
+}
+
+form{
     color: white;
-    width: 100%;
+    width: 40%;
     background-color: rgba(46, 45, 45, 0.7);
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 0.8rem;
     box-shadow: 1.3rem 0 1rem rgba(0, 0, 0, 0.5);
-    overflow: auto;
     text-align: center;
 }
 
-.add-form form .form-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    max-width: 100%;
+.form-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.3rem;
+
 }
 
-.add-form label {
+.form-group label {
     color: white;
-    margin: 0.2rem;
 }
 
-.add-form input,
-.add-form select {
-    display: inline;
+form input,
+form select {
+    display: block;
     width: 100%;
     padding: 0.4rem;
     border: none;
@@ -45,7 +62,7 @@
     color: white;
 }
 
-.add-form button {
+form button {
     display: inline-block;
     width: 98%;
     padding: 0.5rem;
@@ -57,7 +74,7 @@
     transition: background-color 0.3s;
 }
 
-.add-form button:hover {
+form button:hover {
     background-color: #962831;
 }
 
@@ -84,9 +101,72 @@ option {
     font-size: 0.9rem;
 }
 .form-group>* {
-    width: 40%;
+    width: 100%;
 }
 
 .more-options{
     padding: 1rem;
+}
+
+@media screen and (max-width: 1600px) {
+    *{
+        font-size: 0.8rem;
+    }
+
+    .add-car{
+        margin-left: 10rem;
+    }
+
+    form h2{
+        font-size: 1.7rem;
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    *{
+        font-size: 0.75rem;
+    }
+
+    .add-car{
+        margin-left: 7rem;
+    }
+
+    form h2{
+        font-size: 1.4rem;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+
+    *{
+        font-size: 0.65rem;
+    }
+
+    .add-car{
+        padding-top: 8rem;
+    }
+
+    form h2{
+        font-size: 1.2rem;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    .add-car{
+        padding-top: 7rem;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    form{
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    form h2{
+        font-size: 1rem;
+    }
 }
