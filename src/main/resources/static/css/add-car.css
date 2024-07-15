@@ -12,13 +12,13 @@ body {
 
 @keyframes changeBackground {
     0% {
-        background-image: url(/images/car.jpg);
+        background-image: url(https://res.cloudinary.com/db1rc9fon/image/upload/v1721071096/car_nldaoq.jpg);
     }
     50% {
-        background-image: url(/images/car-light.jpg);
+        background-image: url(https://res.cloudinary.com/db1rc9fon/image/upload/v1721071166/car-light_ciloso.jpg);
     }
     100% {
-        background-image: url(/images/car.jpg);
+        background-image: url(https://res.cloudinary.com/db1rc9fon/image/upload/v1721071096/car_nldaoq.jpg);
     }
 }
 

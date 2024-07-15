@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Pacifico&display=swap');
 
 body {
-    background: url('../images/home-page.jpeg');
+    background: url('https://res.cloudinary.com/db1rc9fon/image/upload/v1720999260/home-page_dqvy06.jpg');
     position: relative;
     background-repeat: no-repeat;
     background-attachment: fixed;

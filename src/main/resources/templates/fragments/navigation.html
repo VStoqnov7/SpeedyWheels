@@ -1,13 +1,13 @@
 <nav th:fragment="navigation" id="nav-bar-scroll">
-    <a href="/"><img src="/images/car-logo.png" class="logo" alt="logo"></a>
+    <a href="/"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999611/car-logo_w1enje.png" class="logo" alt="logo"></a>
     <div class="menu-button">
         <a href=""><i class="fa-solid fa-circle-chevron-down"></i></a>
     </div>
     <th:block sec:authorize="isAuthenticated()">
         <div class="my-ads-and-favorite">
             <a th:href="@{/user/profile}"><i class="fa-solid fa-user"></i></a>
-            <a th:href="@{/user/favoriteList}"><i class="fa-solid fa-star"></i></a>
-            <a th:href="@{/user/myList}"><i class="fas fa-newspaper"></i></a>
+            <a th:href="@{/user/favorite-list}"><i class="fa-solid fa-star"></i></a>
+            <a th:href="@{/user/my-list}"><i class="fas fa-newspaper"></i></a>
         </div>
     </th:block>
     <div class="menu">
@@ -16,23 +16,23 @@
             <div class="dropdown">
                 <a href="#" class="dropbtn">Add <i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-content">
-                    <a th:href="@{/home/cars}">Car</a>
-                    <a th:href="@{/home/motorcycle}">Motorcycle</a>
+                    <a th:href="@{/cars}">Car</a>
+                    <a th:href="@{/motorcycle}">Motorcycle</a>
                 </div>
             </div>
-            <a th:href="@{/admin}">Control room</a>
-            <a th:href="@{/contacts}">Contact</a>
+            <a th:href="@{/control-room}">Control room</a>
         </th:block>
+        <a th:href="@{/contact-us}">Contact</a>
         <a th:href="@{/user/register}">Create Account</a>
         <a th:href="@{/user/login}">Login</a>
         <th:block sec:authorize="isAuthenticated()">
-            <form method="POST" action="/user/logout">
+            <form method="POST" th:action="/user/logout">
                 <button type="submit">Logout</button>
             </form>
         </th:block>
     </div>
     <div class="flags">
-        <a href="#"><img src="/images/en-flag.png" alt="English"></a>
-        <a href="#"><img src="/images/bg-flag.png" alt="Bulgarian"></a>
+        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999767/en-flag_nwclyn.png" alt="English"></a>
+        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999722/bg-flag_rftlfl.png" alt="Bulgarian"></a>
     </div>
 </nav>

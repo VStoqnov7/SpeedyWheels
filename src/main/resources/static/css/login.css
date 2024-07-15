@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 body{
-    background: url('../images/login-page.jpeg');
+    background: url('https://res.cloudinary.com/db1rc9fon/image/upload/v1721000489/login-page_wrv9jb.jpg');
     position: relative;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -116,7 +116,7 @@ body{
 
 body,
 .acrylic::before {
-    background: url('../images/login-page.jpeg');
+    background: url('https://res.cloudinary.com/db1rc9fon/image/upload/v1721000489/login-page_wrv9jb.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;

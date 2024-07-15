@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Pacifico&display=swap');
 
 body {
-    background: url('/images/about-background.jpg');
+    background: url('https://res.cloudinary.com/db1rc9fon/image/upload/v1721001180/about-background_r1qdjn.jpg');
     position: relative;
     background-repeat: no-repeat;
     background-attachment: fixed;
