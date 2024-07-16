@@ -6,6 +6,11 @@ spring:
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:1122}
 
+# Multipart settings
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
 
   # JPA Properties
   jpa:

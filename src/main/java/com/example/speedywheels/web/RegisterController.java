@@ -34,7 +34,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public ModelAndView processRegistrationForm(ModelAndView model,
-                                     @Valid UserRegisterDTO userRegistrationDTO,
+                                     @Valid UserRegisterDTO userRegisterDTO,
                                      BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -42,7 +42,7 @@ public class RegisterController {
             return model;
         }
 
-        this.userService.saveUser(userRegistrationDTO);
+        this.userService.saveUser(userRegisterDTO);
 
         model.setViewName("redirect:/");
         return model;

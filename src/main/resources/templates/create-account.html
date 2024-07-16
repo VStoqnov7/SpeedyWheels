@@ -17,11 +17,15 @@
     <form method="POST" th:action="@{/user/register}" th:object="${userRegisterDTO}" enctype="multipart/form-data">
         <div class="register">
             <div>
-                <label class="picture" for="file"><i class="fa fa-camera fa-2x"></i></label>
+                <label class="picture" for="file">
+                    <i class="fa fa-camera fa-2x"></i>
+                    <img src="#" alt="User Picture" class="user-picture" id="userPicturePreview">
+                </label>
                 <input type="file"
                        id="file"
                        style="display: none;"
                        accept="image/*"
+                       onchange="previewUserPicture(this)"
                        name="picture"
                        th:field="*{picture}">
             </div>
@@ -46,7 +50,6 @@
             <div class="element" th:style="${#fields.hasErrors('email')} ? 'margin-bottom: 0;' : ''">
                 <label for="email"><i class="fa fa-envelope"></i></label>
                 <input id="email"
-                       type="email"
                        placeholder="Your Email Address"
                        name="email"
                        th:field="*{email}"/>
@@ -127,5 +130,7 @@
 </div>
 
 <footer th:replace="~{fragments/footer}"></footer>
+
+<script src="/js/change-user-picture.js"></script>
 </body>
 </html>
