@@ -1,5 +1,6 @@
 <nav th:fragment="navigation" id="nav-bar-scroll">
-    <a href="/"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999611/car-logo_w1enje.png" class="logo" alt="logo"></a>
+    <a href="/"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999611/car-logo_w1enje.png"
+                     class="logo" alt="logo"></a>
     <div class="menu-button">
         <a href=""><i class="fa-solid fa-circle-chevron-down"></i></a>
     </div>
@@ -23,16 +24,20 @@
             <a th:href="@{/control-room}">Control room</a>
         </th:block>
         <a th:href="@{/contact-us}">Contact</a>
-        <a th:href="@{/user/register}">Create Account</a>
-        <a th:href="@{/user/login}">Login</a>
+        <th:block sec:authorize="!isAuthenticated()">
+            <a th:href="@{/user/register}">Create Account</a>
+            <a th:href="@{/user/login}">Login</a>
+        </th:block>
         <th:block sec:authorize="isAuthenticated()">
-            <form method="POST" th:action="/user/logout">
+            <form method="POST" th:action="@{/user/logout}">
                 <button type="submit">Logout</button>
             </form>
         </th:block>
     </div>
     <div class="flags">
-        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999767/en-flag_nwclyn.png" alt="English"></a>
-        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999722/bg-flag_rftlfl.png" alt="Bulgarian"></a>
+        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999767/en-flag_nwclyn.png"
+                         alt="English"></a>
+        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999722/bg-flag_rftlfl.png"
+                         alt="Bulgarian"></a>
     </div>
 </nav>
