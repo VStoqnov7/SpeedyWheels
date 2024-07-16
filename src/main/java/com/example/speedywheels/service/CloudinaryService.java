@@ -2,6 +2,7 @@ package com.example.speedywheels.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,11 +17,13 @@ public class CloudinaryService {
 
     private final Cloudinary cloudinary;
 
-    public CloudinaryService() {
+    public CloudinaryService(@Value("${cloudinary.name}") String cloudName,
+                             @Value("${cloudinary.api-key}") String apiKey,
+                             @Value("${cloudinary.api-secret}") String apiSecret) {
         this.cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "db1rc9fon",
-                "api_key", "243925638474447",
-                "api_secret", "tUEAVL6gWzGlllgMDLfHzDZFoH0",
+                "cloud_name", cloudName,
+                "api_key", apiKey,
+                "api_secret", apiSecret,
                 "secure", true));
     }
 
