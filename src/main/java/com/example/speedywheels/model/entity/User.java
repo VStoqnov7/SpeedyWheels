@@ -67,7 +67,7 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Motorcycle> favoriteMotorcycle;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
 
     public User() {
