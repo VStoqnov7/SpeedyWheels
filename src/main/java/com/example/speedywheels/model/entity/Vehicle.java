@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -30,7 +30,7 @@ public abstract class Vehicle extends BaseEntity {
     private int mileage;
 
     @Column(nullable = false, name = "production_date")
-    private LocalDate productionDate;
+    private LocalDateTime productionDate;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -40,10 +40,10 @@ public abstract class Vehicle extends BaseEntity {
     private String location;
 
     @Column(nullable = false, name = "registered_on")
-    private LocalDate registeredOn;
+    private LocalDateTime registeredOn;
 
     @Column
-    private LocalDate modified;
+    private LocalDateTime modified;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

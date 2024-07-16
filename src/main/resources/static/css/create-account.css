@@ -61,7 +61,7 @@ body {
 }
 
 .element input:focus {
-    border-bottom: 2px solid #ec0a0a;
+    border-bottom: 2px solid yellowgreen;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -85,6 +85,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 button:hover {
     background-color: #9ea39e;
+}
+
+.element small {
+    position: relative;
+    display: block;
+    max-width: 80%;
+    left: 13%;
+    margin-top: 0.2rem;
 }
 
 @media screen and (max-width: 1550px) {

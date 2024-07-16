@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -34,7 +34,7 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private int age;
 
-    @Column(name = "picture_profile_url")
+    @Column(nullable = false, name = "picture_profile_url")
     private String profilePictureUrl;
 
     @Column(name = "is_banned")
@@ -44,10 +44,10 @@ public class User extends BaseEntity {
     private String city;
 
     @Column(nullable = false, name = "registered_on")
-    private LocalDate registeredOn;
+    private LocalDateTime registeredOn;
 
     @Column
-    private LocalDate modified;
+    private LocalDateTime modified;
 
     @Column(name = "is_active")
     private boolean isActive;
