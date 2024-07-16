@@ -13,19 +13,21 @@
     <nav th:replace="~{fragments/navigation}"></nav>
 </div>
 
-<th:block sec:authorize="!isAuthenticated()">
     <div class="login-page">
         <div class="form">
             <form class="login-form acrylic" method="POST" th:action="@{/user/login}">
+
+                <p class="bg-danger text-white pt-2 pb-2 pr-4 pl-4" th:if="${bad_credentials}">
+                    Invalid username or password.
+                </p>
                 <span>Login to your account</span>
-                <input type="text" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button class="login"><strong>LOGIN</strong></button>
-                <p class="message"><a href="#">Create Account </a></p>
+                <input id="username" name="username" type="text" placeholder="Username" />
+                <input id="password" name="password" type="password" placeholder="Password" />
+                <button class="login" type="submit"><strong>LOGIN</strong></button>
+                <p class="message"><a th:href="@{/user/register}">Create Account</a></p>
             </form>
         </div>
     </div>
-</th:block>
 
 <footer th:replace="~{fragments/footer}"></footer>
 </body>
