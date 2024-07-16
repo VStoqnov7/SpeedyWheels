@@ -12,6 +12,7 @@ spring:
       max-file-size: 2MB
       max-request-size: 2MB
 
+
   # JPA Properties
   jpa:
     properties:
@@ -31,3 +32,8 @@ logging:
         SQL: DEBUG
       nodeValue: WARN
     blog: WARN
+
+cloudinary:
+  name: ${CLOUDINARY_NAME:db1rc9fon}
+  api-key: ${CLOUDINARY_API_KEY:243925638474447}
+  api-secret: ${CLOUDINARY_API_SECRET:tUEAVL6gWzGlllgMDLfHzDZFoH0}
