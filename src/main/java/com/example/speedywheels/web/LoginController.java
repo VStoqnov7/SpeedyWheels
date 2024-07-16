@@ -2,6 +2,7 @@ package com.example.speedywheels.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,4 +15,13 @@ public class LoginController {
         model.setViewName("login");
         return model;
     }
+
+    @PostMapping("/login-error")
+    public ModelAndView onLoginFailure(ModelAndView modelAndView) {
+
+        modelAndView.addObject("bad_credentials", true);
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
 }
