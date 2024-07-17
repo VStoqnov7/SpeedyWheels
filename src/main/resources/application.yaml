@@ -37,3 +37,14 @@ cloudinary:
   name: ${CLOUDINARY_NAME:db1rc9fon}
   api-key: ${CLOUDINARY_API_KEY:243925638474447}
   api-secret: ${CLOUDINARY_API_SECRET:tUEAVL6gWzGlllgMDLfHzDZFoH0}
+
+admin:
+  username: ${ADMIN_USERNAME:venci777}
+  password: ${ADMIN_PASSWORD:sssss}
+  first-name: ${ADMIN_FIRST_NAME:Ventsialav}
+  last-name: ${ADMIN_LAST_NAME:Stoyanov}
+  email: ${ADMIN_EMAIL:admin@example.com}
+  age: ${ADMIN_AGE:28}
+  city: ${ADMIN_CITY:Sofia}
+  phone-number: ${ADMIN_PHONE_NUMBER:1234567890}
+  profile-picture: ${ADMIN_PROFILE_PICTURE:https://res.cloudinary.com/db1rc9fon/image/upload/v1721171947/IMG_2073_jrmc8n.jpg}

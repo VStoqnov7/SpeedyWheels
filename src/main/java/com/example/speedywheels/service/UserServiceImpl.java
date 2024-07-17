@@ -1,5 +1,6 @@
 package com.example.speedywheels.service;
 
+import com.example.speedywheels.config.AdminConfig;
 import com.example.speedywheels.model.dtos.UserRegisterDTO;
 import com.example.speedywheels.model.entity.Contact;
 import com.example.speedywheels.model.entity.User;
@@ -14,9 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private final AdminConfig adminConfig;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
@@ -24,7 +30,8 @@ public class UserServiceImpl implements UserService {
     private final UserRoleService userRoleService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, CloudinaryService cloudinaryService, UserRoleService userRoleService) {
+    public UserServiceImpl(AdminConfig adminConfig, UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, CloudinaryService cloudinaryService, UserRoleService userRoleService) {
+        this.adminConfig = adminConfig;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
@@ -42,5 +49,27 @@ public class UserServiceImpl implements UserService {
         user.setContact(new Contact()
                 .setEmail(userRegisterDTO.getEmail()));
         this.userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public void dbInitAdmin() {
+        if (this.userRepository.count() == 0) {
+            Set<UserRole> roles = new HashSet<>();
+            roles.add(this.userRoleService.findByRole(Role.ADMIN));
+            roles.add(this.userRoleService.findByRole(Role.USER));
+
+            User user = new User()
+                    .setUsername(adminConfig.getUsername())
+                    .setPassword(passwordEncoder.encode(adminConfig.getPassword()))
+                    .setFirstName(adminConfig.getFirstName())
+                    .setLastName(adminConfig.getLastName())
+                    .setContact(new Contact().setEmail(adminConfig.getEmail()).setPhone(adminConfig.getPhoneNumber()))
+                    .setAge(adminConfig.getAge())
+                    .setProfilePictureUrl(adminConfig.getProfilePicture())
+                    .setCity(adminConfig.getCity())
+                    .setRegisteredOn(LocalDateTime.now())
+                    .setRoles(roles);
+            this.userRepository.save(user);
+        }
     }
 }
