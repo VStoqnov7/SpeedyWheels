@@ -2,7 +2,7 @@ package com.example.speedywheels.model.dtos;
 
 import com.example.speedywheels.validation.confirmPassword.ConfirmPasswordForm;
 import com.example.speedywheels.validation.email.UniqueEmail;
-import com.example.speedywheels.validation.pictureValidator.ValidPicture;
+import com.example.speedywheels.validation.profilePictureValidator.ValidPicture;
 import com.example.speedywheels.validation.uniqueUsername.UniqueUsername;
 import jakarta.validation.constraints.*;
 import lombok.Getter;

@@ -108,6 +108,10 @@ option {
     padding: 1rem;
 }
 
+.rounded{
+    border-radius: 0.5rem !important;
+}
+
 @media screen and (max-width: 1600px) {
     .add-car{
         margin-left: 10rem;

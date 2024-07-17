@@ -18,7 +18,7 @@ public class Car extends Vehicle {
     private CarCategory category;
 
     @Column(nullable = false)
-    private boolean is4x4;
+    private boolean has4x4;
 
     @Column(nullable = false)
     private boolean hasAirConditioner;

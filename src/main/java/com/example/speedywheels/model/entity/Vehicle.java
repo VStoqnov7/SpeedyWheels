@@ -65,15 +65,13 @@ public abstract class Vehicle extends BaseEntity {
     private BigDecimal price;
 
     @ElementCollection
-    @CollectionTable(name = "vehicle_photos", joinColumns = @JoinColumn(name = "vehicle_id"))
-    @Column(name = "photo_url")
-    private List<String> photosUrl;
+    private List<String> photosUrls;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Comment> comments;
 
     public Vehicle() {
         this.comments = new LinkedHashSet<>();
-        this.photosUrl = new ArrayList<>();
+        this.photosUrls = new ArrayList<>();
     }
 }

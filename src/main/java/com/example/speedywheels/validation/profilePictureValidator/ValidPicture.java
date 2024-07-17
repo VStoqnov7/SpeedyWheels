@@ -1,4 +1,4 @@
-package com.example.speedywheels.validation.pictureValidator;
+package com.example.speedywheels.validation.profilePictureValidator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
