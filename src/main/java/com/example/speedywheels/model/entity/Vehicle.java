@@ -8,7 +8,9 @@ import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -62,13 +64,16 @@ public abstract class Vehicle extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal price;
 
+    @ElementCollection
+    @CollectionTable(name = "vehicle_photos", joinColumns = @JoinColumn(name = "vehicle_id"))
+    @Column(name = "photo_url")
+    private List<String> photosUrl;
+
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Comment> comments;
 
-    @ManyToOne
-    private User user;
-
     public Vehicle() {
         this.comments = new LinkedHashSet<>();
+        this.photosUrl = new ArrayList<>();
     }
 }

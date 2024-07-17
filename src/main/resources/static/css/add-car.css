@@ -30,7 +30,7 @@ body {
     margin-left: 5rem;
 }
 
-form{
+.add-car form{
     color: white;
     width: 40%;
     background-color: rgba(46, 45, 45, 0.7);
@@ -62,7 +62,7 @@ form select {
     color: white;
 }
 
-form button {
+.add-car form button {
     display: inline-block;
     width: 98%;
     padding: 0.5rem;
@@ -74,7 +74,7 @@ form button {
     transition: background-color 0.3s;
 }
 
-form button:hover {
+.add-car form button:hover {
     background-color: #962831;
 }
 
@@ -113,7 +113,7 @@ option {
         margin-left: 10rem;
     }
 
-    form h2{
+    .add-car form h2{
         font-size: 1.7rem;
     }
 }
@@ -124,14 +124,14 @@ option {
         margin-left: 7rem;
     }
 
-    form h2{
+    .add-car form h2{
         font-size: 1.4rem;
     }
 
 }
 
 @media screen and (max-width: 1100px) {
-    form{
+    .add-car form{
         width: 55%;
     }
 
@@ -140,13 +140,16 @@ option {
 @media screen and (max-width: 900px) {
     .add-car{
         padding-top: 8rem;
+        margin-left: 0;
+        width: 100%;
     }
 
-    form{
+    .add-car form{
         width: 70%;
+        margin: 0 auto;
     }
 
-    form h2{
+    .add-car form h2{
         font-size: 1.2rem;
     }
 
@@ -159,12 +162,12 @@ option {
         width: 100%;
     }
 
-    form{
+    .add-car form{
         width: 90%;
         margin: 0 auto;
     }
 
-    form h2{
+    .add-car form h2{
         font-size: 1rem;
     }
 }

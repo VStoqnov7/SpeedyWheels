@@ -143,11 +143,9 @@ body {
 }
 
 .button-find-best-car:hover {
-    background-color: #007bff
+    background-color: #007bff;
+    color: #4bfaf1;
 }
-
-
-
 
 /* Fresh Releases */
 .latest-car {
@@ -230,6 +228,7 @@ body {
 
 .btn:hover {
     background-color: #fb33a0;
+    color: #4bfaf1;
 }
 
 

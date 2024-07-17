@@ -8,7 +8,6 @@ import lombok.experimental.Accessors;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 @Getter
 @Setter
 @Accessors(chain = true)
@@ -55,17 +54,37 @@ public class User extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     private SocialMedia socialMedias;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "my_cars",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "car_id")
+    )
     private Set<Car> myCars;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "my_motorcycles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "motorcycle_id")
+    )
     private Set<Motorcycle> myMotorcycles;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "favorite_cars",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "car_id")
+    )
     private Set<Car> favoriteCars;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Motorcycle> favoriteMotorcycle;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "favorite_motorcycles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "motorcycle_id")
+    )
+    private Set<Motorcycle> favoriteMotorcycles;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
@@ -74,7 +93,7 @@ public class User extends BaseEntity {
         this.myCars = new LinkedHashSet<>();
         this.myMotorcycles = new LinkedHashSet<>();
         this.favoriteCars = new LinkedHashSet<>();
-        this.favoriteMotorcycle = new LinkedHashSet<>();
+        this.favoriteMotorcycles = new LinkedHashSet<>();
         this.roles = new LinkedHashSet<>();
     }
 }

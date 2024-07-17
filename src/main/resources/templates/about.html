@@ -35,14 +35,16 @@
     <div class="container text-1">
         <div class="row gy-4 gy-lg-0 align-items-lg-center">
             <div class="col-12 col-lg-6">
-                <img class="img-fluid rounded border border-dark" loading="lazy" src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721000977/about_nvjedc.jpg"
+                <img class="img-fluid rounded border border-dark" loading="lazy"
+                     src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721000977/about_nvjedc.jpg"
                      alt="About Us">
             </div>
             <div class="col-12 col-lg-6 col-xxl-6">
                 <div class="row justify-content-lg-end">
                     <div class="col-12 col-lg-11">
                         <div class="about-wrapper">
-                            <p class="lead mb-4 mb-md-5 text-white container-font">In each category, you will find comprehensive
+                            <p class="lead mb-4 mb-md-5 text-white container-font">In each category, you will find
+                                comprehensive
                                 materials on
                                 various models of cars and jeeps, aiming to provide insights
                                 and inspiration for your next automotive adventure. Whether you're new to the
@@ -68,9 +70,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/" class="btn btn-primary bsb-btn-2xl">Explore <i
-                                    class="fa-solid fa-arrow-right"></i>
-                            </a>
+                            <th:block sec:authorize="isAuthenticated()">
+                                <a th:href="@{/home}" class="btn btn-primary bsb-btn-2xl">Explore <i
+                                        class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </th:block>
+                            <th:block sec:authorize="isAnonymous()">
+                                <a th:href="@{/}"class="btn btn-primary bsb-btn-2xl">Explore <i
+                                        class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </th:block>
                         </div>
                     </div>
                 </div>

@@ -38,12 +38,6 @@ body {
     margin-bottom: 4rem;
 }
 
-@media screen and (max-width: 1140px) {
-
-    *{
-        font-size: 0.9rem;
-    }
-}
 
 @media screen and (max-width: 900px) {
 
