@@ -206,7 +206,7 @@ body {
     margin-right: 0.5rem;
 }
 .items i.fa-solid.fa-times {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: rgb(243, 83, 83);
     margin-right: 0.5rem;
 }
@@ -214,6 +214,7 @@ body {
 .items label {
     font-size: 1rem;
     color: white;
+    margin-bottom: 0;
 }
 
 .btn {
@@ -256,6 +257,11 @@ body {
 
 .card{
     width: 18rem;
+}
+
+.card img{
+    object-fit: cover;
+    height: 15rem;
 }
 
 
