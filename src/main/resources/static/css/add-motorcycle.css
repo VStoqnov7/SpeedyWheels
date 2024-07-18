@@ -26,7 +26,6 @@ body::before {
 
 .add-motorcycle {
     display: block;
-    width: calc(100% - 5rem);
     padding-top: 4rem;
     padding-bottom: 2rem;
     margin-left: 5rem;

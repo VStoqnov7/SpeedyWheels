@@ -52,6 +52,7 @@ public abstract class Vehicle extends BaseEntity {
     private TransmissionType transmission;
 
     @Column(nullable = false, name = "euro_standard")
+    @Enumerated(EnumType.STRING)
     private EuroStandard euroStandard;
 
     @Column(nullable = false, name = "cubic_capacity")
