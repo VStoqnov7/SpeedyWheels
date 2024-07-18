@@ -6,6 +6,7 @@ import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class CarServiceImpl implements CarService {
     private final UserService userService;
     private final CloudinaryService cloudinaryService;
 
+    @Autowired
     public CarServiceImpl(ModelMapper modelMapper, UserService userService, CloudinaryService cloudinaryService) {
         this.modelMapper = modelMapper;
         this.userService = userService;
@@ -38,8 +40,6 @@ public class CarServiceImpl implements CarService {
         car.setRegisteredOn(LocalDateTime.now());
         User user = this.userService.findByUsername(userDetails.getUsername()).get();
         user.getMyCars().add(car);
-        System.out.println();
         this.userService.saveCurrentUser(user);
-
     }
 }

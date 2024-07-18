@@ -90,7 +90,7 @@
                         name="color"
                         th:field="*{color}">
                     <option value="">- Select color -</option>
-                    <option th:each="color : ${colors}" th:value="${color}" th:text="${color}">Color</option>
+                    <option th:each="color : ${colors}" th:value="${color}" th:text="${color.getName()}">Color</option>
                 </select>
             </div>
             <div>
@@ -116,7 +116,7 @@
                         name="transmission"
                         th:field="*{transmission}">
                     <option value="">- Select transmission -</option>
-                    <option th:each="transmission : ${transmissions}" th:value="${transmission}" th:text="${transmission}">Transmission</option>
+                    <option th:each="transmission : ${transmissions}" th:value="${transmission}" th:text="${transmission.getName()}">Transmission</option>
                 </select>
             </div>
             <div>
@@ -130,7 +130,7 @@
                         name="category"
                         th:field="*{category}">
                     <option value="">- Select category -</option>
-                    <option th:each="category : ${categories}" th:value="${category}" th:text="${category}">Category</option>
+                    <option th:each="category : ${categories}" th:value="${category}" th:text="${category.getName()}">Category</option>
                 </select>
             </div>
             <div>
@@ -144,7 +144,7 @@
                         name="euroStandard"
                         th:field="*{euroStandard}">
                     <option value="">- Select euro standard -</option>
-                    <option th:each="euroStandard : ${euroStandards}" th:value="${euroStandard}" th:text="${euroStandard}">Euro Standard</option>
+                    <option th:each="euroStandard : ${euroStandards}" th:value="${euroStandard}" th:text="${euroStandard.getName()}">Euro Standard</option>
 
                 </select>
             </div>
@@ -171,7 +171,7 @@
                         name="engineType"
                         th:field="*{engineType}">
                     <option value="">- Select engine type -</option>
-                    <option th:each="engineType : ${engineTypes}" th:value="${engineType}" th:text="${engineType}">Engine Type:</option>
+                    <option th:each="engineType : ${engineTypes}" th:value="${engineType}" th:text="${engineType.getName()}">Engine Type:</option>
                 </select>
             </div>
         </div>

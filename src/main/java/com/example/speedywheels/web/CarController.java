@@ -3,6 +3,7 @@ package com.example.speedywheels.web;
 import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.enums.*;
 import com.example.speedywheels.service.interfaces.CarService;
+import com.example.speedywheels.util.ModelAttributeUtil;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,30 +32,23 @@ public class CarController {
 
     @GetMapping("/add-car")
     public ModelAndView showAddCarForm(ModelAndView model){
-        model.addObject("colors", Color.values());
-        model.addObject("transmissions", TransmissionType.values());
-        model.addObject("categories", CarCategory.values());
-        model.addObject("euroStandards", EuroStandard.values());
-        model.addObject("engineTypes", EngineType.values());
+        ModelAttributeUtil.addEnumsToCarModel(model);
         model.setViewName("add-car");
         return model;
     }
 
 
     @PostMapping("/add-car")
-    public ModelAndView addOffers(ModelAndView model,
+    public ModelAndView processAddCarsForm(ModelAndView model,
                                   @Valid CarAddDTO carAddDTO,
                                   BindingResult bindingResult,
                                   @AuthenticationPrincipal UserDetails userDetails){
         if (bindingResult.hasErrors()){
-            model.addObject("colors", Color.values());
-            model.addObject("transmissions", TransmissionType.values());
-            model.addObject("categories", CarCategory.values());
-            model.addObject("euroStandards", EuroStandard.values());
-            model.addObject("engineTypes", EngineType.values());
+            ModelAttributeUtil.addEnumsToCarModel(model);
             model.setViewName("add-car");
             return model;
         }
+
         this.carService.saveCar(carAddDTO,userDetails);
         model.setViewName("redirect:/home");
         return model;
