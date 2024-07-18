@@ -9,7 +9,9 @@ public enum MotorcycleCategory {
     CROSS("Cross"),
     SCOOTER("Scooter"),
     TOURER("Tourer"),
-    CHOPPER("Chopper");
+    CHOPPER("Chopper"),
+    SPORT("Sport"),
+    TRIKE("Trike");;
 
     private final String name;
 
