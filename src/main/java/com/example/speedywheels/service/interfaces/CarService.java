@@ -1,6 +1,7 @@
 package com.example.speedywheels.service.interfaces;
 
 import com.example.speedywheels.model.dtos.CarAddDTO;
+import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.view.LatestEightVehiclesView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
@@ -17,4 +18,5 @@ public interface CarService {
 
     List<LatestEightVehiclesView> findLatestCars();
 
+    Car findById(Long vehicleId);
 }

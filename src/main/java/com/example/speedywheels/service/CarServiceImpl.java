@@ -76,9 +76,15 @@ public class CarServiceImpl implements CarService {
                 .map(car -> {
                     LatestEightVehiclesView view = modelMapper.map(car, LatestEightVehiclesView.class);
                     view.setProductionDate(car.getProductionDate().format(formatter));
+                    view.setType("car");
                     return view;
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Car findById(Long vehicleId) {
+        return this.carRepository.findById(vehicleId).orElse(null);
     }
 
 }

@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -14,7 +15,7 @@ import java.util.List;
 @Accessors(chain = true)
 public class LatestEightVehiclesView {
 
-    private String id;
+    private Long id;
 
     private String brand;
 
@@ -22,7 +23,11 @@ public class LatestEightVehiclesView {
 
     private String location;
 
+    private LocalDateTime registeredOn;
+
     private BigDecimal price;
+
+    private String type;
 
     private List<String> photosUrls;
 }

@@ -66,8 +66,14 @@ public class MotorcycleServiceImpl implements MotorcycleService {
                 .map(motorcycle -> {
                     LatestEightVehiclesView view = modelMapper.map(motorcycle, LatestEightVehiclesView.class);
                     view.setProductionDate(motorcycle.getProductionDate().format(formatter));
+                    view.setType("motorcycle");
                     return view;
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Motorcycle findById(Long vehicleId) {
+        return this.motorcycleRepository.findById(vehicleId).orElse(null);
     }
 }
