@@ -42,7 +42,7 @@ public class HomeController {
         List<LatestEightVehiclesView> latestEightVehicles = Stream.concat(
                         latestEightCars.stream(),
                         latestEightMotorcycles.stream())
-                .sorted(Comparator.comparing(LatestEightVehiclesView::getProductionDate).reversed())
+                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
                 .limit(8)
                 .collect(Collectors.toList());
 
