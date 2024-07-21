@@ -22,19 +22,19 @@
 
 <div class="choice-container">
     <div class="choice">
-        <a th:href="@{/cars/car}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040014/car-option_z3m3b4.jpg" alt="Car"></a>
+        <a th:href="@{/vehicles/car}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040014/car-option_z3m3b4.jpg" alt="Car"></a>
         <h3>Car</h3>
     </div>
     <div class="choice">
-        <a th:href="@{/cars/jeep}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040092/jeep-option_kvbook.jpg" alt="Jeep"></a>
+        <a th:href="@{/vehicles/jeep}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040092/jeep-option_kvbook.jpg" alt="Jeep"></a>
         <h3>Jeep</h3>
     </div>
     <div class="choice">
-        <a th:href="@{/motorcycles/all}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040065/motorcycle-option_pljrrq.jpg" alt="Motorcycle"></a>
+        <a th:href="@{/vehicles/all}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040065/motorcycle-option_pljrrq.jpg" alt="Motorcycle"></a>
         <h3>Motorcycle</h3>
     </div>
     <div class="choice">
-        <a th:href="@{/cars/all}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040116/all-options_g528ci.jpg" alt="All"></a>
+        <a th:href="@{/vehicles/all}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040116/all-options_g528ci.jpg" alt="All"></a>
         <h3>All</h3>
     </div>
 </div>
@@ -56,7 +56,7 @@
                 letters, as opposed to using 'Content here, content here making it look like readable English.</p>
         </div>
         <div class="button-best-car">
-            <a th:href="@{/cars/all}" class="button-find-best-car">Find your best vehicle here</a>
+            <a th:href="@{/vehicles/all}" class="button-find-best-car">Find your best vehicle here</a>
         </div>
     </div>
 
@@ -88,7 +88,7 @@
                     <label>4x4</label>
                 </div>
             </div>
-            <a th:href="'/cars/vehicle-profile/' + ${theMostPowerfulCarView.id}" class="btn">Read More</a>
+            <a th:href="'/vehicles/vehicle-profile/car/' + ${theMostPowerfulCarView.id}" class="btn">Read More</a>
         </div>
     </div>
 </div>
@@ -110,7 +110,7 @@
                 <li class="list-group-item" th:text="'Price: ' + ${vehicle.price} + ' lv.'">Price: 7200 lv.</li>
             </ul>
             <div class="card-body">
-                <a th:href="'/cars/vehicle-profile/' + ${vehicle.id}"  class="card-link">ALL PRODUCT REVIEWS >></a>
+                <a th:href="'/vehicles/vehicle-profile/' + ${vehicle.type} + '/' + ${vehicle.id}"  class="card-link">ALL PRODUCT REVIEWS >></a>
             </div>
         </div>
     </div>
