@@ -71,6 +71,10 @@ public abstract class Vehicle extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Comment> comments;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     public Vehicle() {
         this.comments = new LinkedHashSet<>();
         this.photosUrls = new ArrayList<>();

@@ -2,6 +2,8 @@ package com.example.speedywheels.service.interfaces;
 
 import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.entity.Car;
+import com.example.speedywheels.model.entity.User;
+import com.example.speedywheels.model.entity.Vehicle;
 import com.example.speedywheels.model.view.LatestEightVehiclesView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
@@ -19,4 +21,14 @@ public interface CarService {
     List<LatestEightVehiclesView> findLatestCars();
 
     Car findById(Long vehicleId);
+
+    User findCarOwner(Long carId);
+
+    boolean availableCars();
+
+    void deleteCar(Long vehicleId);
+
+    void removeCarFromFavorites(Car car);
+
+    void saveVehicle(Vehicle vehicle);
 }

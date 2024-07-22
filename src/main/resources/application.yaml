@@ -13,7 +13,7 @@ spring:
       max-request-size: 2MB
 
 
-  # JPA Properties
+# JPA Properties
   jpa:
     properties:
       hibernate:
@@ -21,6 +21,12 @@ spring:
         format_sql: 'TRUE'
     hibernate:
       ddl-auto: update
+
+# MVC Properties
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
 
 # Logging Levels
 logging:

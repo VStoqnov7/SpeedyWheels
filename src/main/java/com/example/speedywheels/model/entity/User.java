@@ -62,7 +62,7 @@ public class User extends BaseEntity {
     )
     private Set<Car> myCars;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "my_motorcycles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -70,7 +70,7 @@ public class User extends BaseEntity {
     )
     private Set<Motorcycle> myMotorcycles;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "favorite_cars",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -78,7 +78,7 @@ public class User extends BaseEntity {
     )
     private Set<Car> favoriteCars;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "favorite_motorcycles",
             joinColumns = @JoinColumn(name = "user_id"),

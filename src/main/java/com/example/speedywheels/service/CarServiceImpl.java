@@ -3,12 +3,14 @@ package com.example.speedywheels.service;
 import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.User;
+import com.example.speedywheels.model.entity.Vehicle;
 import com.example.speedywheels.model.view.LatestEightVehiclesView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
 import com.example.speedywheels.repository.CarRepository;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.UserService;
+import com.example.speedywheels.util.ModelAttributeUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +24,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class CarServiceImpl implements CarService {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final ModelMapper modelMapper;
     private final UserService userService;
     private final CloudinaryService cloudinaryService;
@@ -47,6 +48,7 @@ public class CarServiceImpl implements CarService {
 
         car.setRegisteredOn(LocalDateTime.now());
         User user = this.userService.findByUsername(userDetails.getUsername()).get();
+        car.setOwner(user);
         user.getMyCars().add(car);
         this.userService.saveCurrentUser(user);
     }
@@ -75,7 +77,7 @@ public class CarServiceImpl implements CarService {
                 .stream()
                 .map(car -> {
                     LatestEightVehiclesView view = modelMapper.map(car, LatestEightVehiclesView.class);
-                    view.setProductionDate(car.getProductionDate().format(formatter));
+                    view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
                     view.setType("car");
                     return view;
                 })
@@ -87,4 +89,42 @@ public class CarServiceImpl implements CarService {
         return this.carRepository.findById(vehicleId).orElse(null);
     }
 
+    @Override
+    public User findCarOwner(Long carId) {
+        Car car = carRepository.findById(carId).orElse(null);
+        return car != null ? car.getOwner() : null;
+    }
+
+    @Override
+    public boolean availableCars() {
+        return this.carRepository.count() > 0;
+    }
+
+    @Override
+    public void deleteCar(Long vehicleId) {
+        this.carRepository.deleteById(vehicleId);
+    }
+
+    @Override
+    public void removeCarFromFavorites(Car car) {
+        boolean isFavorite = userService.findAll().stream()
+                .anyMatch(u -> u.getFavoriteCars().contains(car));
+
+        if (isFavorite) {
+            List<User> users = userService.findAll();
+
+            users.forEach(user -> {
+                if (user.getFavoriteCars().contains(car)) {
+                    user.getFavoriteCars().remove(car);
+                    userService.saveCurrentUser(user);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void saveVehicle(Vehicle vehicle) {
+        Car car = modelMapper.map(vehicle,Car.class);
+        this.carRepository.save(car);
+    }
 }

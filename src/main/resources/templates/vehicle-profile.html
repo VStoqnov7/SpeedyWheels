@@ -15,21 +15,18 @@
 </div>
 
 
-
 <div class="container mt-4 mb-5">
     <div class="line-with-text">
         <div class="line-1"></div>
-        <div class="text-line">...Brand and Model..</div>
+        <div class="text-line" th:text="${vehicle.brand} + ' ' + ${vehicle.model}">...Brand and Model..</div>
         <div class="line-2"></div>
     </div>
 
     <div id="big-images" class="carousel slide mt-4">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/images/test.jpeg" class="d-block w-100" alt="Image">
-            </div>
-            <div class="carousel-item">
-                <img src="/images/test.jpeg" class="d-block w-100" alt="Image">
+            <div th:each="photo, iterStat : ${vehicle.photosUrls}"
+                 th:class="${iterStat.index == 0} ? 'carousel-item active' : 'carousel-item'">
+                <img th:src="@{${photo}}" class="d-block w-100" alt="Image">
             </div>
         </div>
         <a class="carousel-control-prev" href="#big-images" role="button" data-slide="prev">
@@ -43,10 +40,8 @@
     </div>
 
     <div class="small-images justify-content-center mt-3">
-        <!-- TODO: index  -->
-        <img src="/images/test.jpeg" alt="Image 1" onclick="manualPictureNavigation(0)">
-        <img src="/images/test.jpeg" alt="Image 2" onclick="manualPictureNavigation(1)">
-
+        <img th:each="photo, iterStat : ${vehicle.photosUrls}" th:src="@{${photo}}" alt="Image"
+             th:onclick="'manualPictureNavigation(' + ${iterStat.index} + ')'" class="d-block w-100">
     </div>
 
     <div class="description text-center mt-4">
@@ -67,61 +62,68 @@
                 <p><span class="description-text">Price: </span></p>
             </div>
             <div>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>...</span></p>
-                <p><span>... BGN</span></p>
+                <p><span th:text="${vehicle.power}">...</span></p>
+                <p><span th:text="${vehicle.mileage}">...</span></p>
+                <p><span th:text="${vehicle.productionDate}">...</span></p>
+                <p><span th:text="${vehicle.color.getName()}">...</span></p>
+                <p><span th:text="${vehicle.location}">...</span></p>
+                <p><span th:text="${vehicle.registeredOn}">...</span></p>
+                <p><span th:text="${vehicle.transmission.getName()}">...</span></p>
+                <p><span th:text="${vehicle.euroStandard.getName()}">...</span></p>
+                <p><span th:text="${vehicle.cubicCapacity}">...</span></p>
+                <p><span th:text="${vehicle.engineType.getName()}">...</span></p>
+                <p><span th:text="${vehicle.category.getName()}">...</span></p>
+                <p><span th:text="${vehicle.price} + ' BGN'">... BGN</span></p>
             </div>
         </div>
         <div class="items">
-            <div>
-                <i class="fa-solid fa-times"></i>
-                <i class="fa-solid fa-check"></i>
-                <label>4x4</label>
-            </div>
-            <div>
-                <i class="fa-solid fa-times"></i>
-                <i class="fa-solid fa-check"></i>
-                <label>Climate Control</label>
-            </div>
-            <div>
-                <i class="fa-solid fa-times"></i>
-                <i class="fa-solid fa-check"></i>
-                <label>GPS Navigation</label>
-            </div>
-            <div>
-                <i class="fa-solid fa-times"></i>
-                <i class="fa-solid fa-check"></i>
-                <label>Luggage Case</label>
-            </div>
-            <div>
-                <i class="fa-solid fa-times"></i>
-                <i class="fa-solid fa-check"></i>
-                <label>Sidecar</label>
-            </div>
-            <div>
-                <i class="fa-solid fa-times"></i>
-                <i class="fa-solid fa-check"></i>
-                <label>Stability Control</label>
-            </div>
+            <th:block th:if="${vehicleType == 'car'}">
+                <div>
+                    <i class="fa-solid fa-check" th:if="${vehicle.has4x4}"></i>
+                    <i class="fa-solid fa-times" th:unless="${vehicle.has4x4}"></i>
+                    <label>4x4</label>
+                </div>
+                <div>
+                    <i class="fa-solid fa-check" th:if="${vehicle.hasAirConditioner}"></i>
+                    <i class="fa-solid fa-times" th:unless="${vehicle.hasAirConditioner}"></i>
+                    <label>Climate Control</label>
+                </div>
+                <div>
+                    <i class="fa-solid fa-check" th:if="${vehicle.hasGPS}"></i>
+                    <i class="fa-solid fa-times" th:unless="${vehicle.hasGPS}"></i>
+                    <label>GPS Navigation</label>
+                </div>
+            </th:block>
+            <th:block th:if="${vehicleType == 'motorcycle'}">
+                <div>
+                    <i class="fa-solid fa-check" th:if="${vehicle.hasLuggageCase}"></i>
+                    <i class="fa-solid fa-times" th:unless="${vehicle.hasLuggageCase}"></i>
+                    <label>Luggage Case</label>
+                </div>
+                <div>
+                    <i class="fa-solid fa-check" th:if="${vehicle.hasSidecar}"></i>
+                    <i class="fa-solid fa-times" th:unless="${vehicle.hasSidecar}"></i>
+                    <label>Sidecar</label>
+                </div>
+                <div>
+                    <i class="fa-solid fa-check" th:if="${vehicle.hasStabilityControl}"></i>
+                    <i class="fa-solid fa-times" th:unless="${vehicle.hasStabilityControl}"></i>
+                    <label>Stability Control</label>
+                </div>
+            </th:block>
         </div>
-        <form action="..." method="POST">
-            <button type="submit" class="btn btn-danger bg-success"><i class="fa-solid fa-thumbs-up"></i></button>
+        <form th:action="'/vehicles/add/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST" th:if="${!isFavorite} and !${isOwner}">
+            <button type="submit" class="btn btn-danger bg-success"><i class="fa-regular fa-star"></i></button>
         </form>
-        <form action="..." method="POST">
-            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-thumbs-down"></i></button>
+        <form th:action="'/vehicles/delete/' + ${vehicleType} + '/' + ${vehicle.id}"  method="POST" th:if="${isFavorite}">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-star"></i></button>
         </form>
 
 
-        <form action="...." method="POST">
+        <form th:action="'/vehicles/delete-vehicle/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST"
+              th:if="${isAdmin or isOwner}">
+            <input type="hidden" name="_method" value="DELETE"/>
             <button type="submit" class="btn btn-danger btn-sm mt-2">
                 <i class="fas fa-trash-alt"></i> Delete
             </button>
@@ -134,22 +136,30 @@
                     <div class="d-flex justify-content-center align-items-center mb-4 ">
                         <h4 class="text-body mb-0 text-white">Comments</h4>
                     </div>
-                    <div class="card mb-3 ">
+                    <form class="form-add-comment" th:action="'/comments/add-comment/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST">
+                        <div class="form-group">
+                            <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Add a comment"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                    <div class="card mb-3" th:each="comment : ${vehicle.comments}">
                         <div class="card-body">
                             <div class="d-flex flex-start">
                                 <img class="rounded-circle shadow-1-strong me-3 mr-3"
-                                     src="/images/test.jpeg"  alt="avatar"
+                                     th:src="${comment.getUser().getProfilePictureUrl()}" alt="avatar"
                                      width="40" height="40"/>
                                 <div class="w-100">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h6 class="text-success fw-bold mb-0">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <h6 class="text-success fw-bold mb-0" th:text="${comment.user.username} + ':'">
                                             lara_stewart:
-                                            <span class="text-body ms-2 text-white">....</span>
                                         </h6>
+                                        <span class="text-body ms-2 text-white ml-1" th:text="${comment.comment}">....</span>
 
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <form action="...." method="POST">
+                                        <form th:action="'/vehicles/delete-comment' + ${vehicleType} + '/' + ${vehicle.id} + '/' + ${comment.id}"  method="POST"
+                                              th:if="${comment.user.username == user || isOwner || isAdmin}"   >
                                             <button type="submit" class="btn btn-danger btn-sm ">
                                                 <i class="fas fa-trash-alt"></i> Delete
                                             </button>
@@ -159,14 +169,15 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
+
+<script>
+
+</script>
 
 
 <footer th:replace="~{fragments/footer}"></footer>

@@ -1,13 +1,13 @@
 package com.example.speedywheels.model.view;
 
 import com.example.speedywheels.model.entity.Comment;
+import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.enums.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +15,8 @@ import java.util.Set;
 @Setter
 @Accessors(chain = true)
 public class CarProfileView {
+
+    private Long id;
 
     private String brand;
 
@@ -24,13 +26,13 @@ public class CarProfileView {
 
     private int mileage;
 
-    private LocalDateTime productionDate;
+    private String productionDate;
 
     private Color color;
 
     private String location;
 
-    private LocalDateTime registeredOn;
+    private String registeredOn;
 
     private TransmissionType transmission;
 
@@ -53,4 +55,6 @@ public class CarProfileView {
     private boolean hasAirConditioner;
 
     private boolean hasGPS;
+
+    private Long ownerId;
 }

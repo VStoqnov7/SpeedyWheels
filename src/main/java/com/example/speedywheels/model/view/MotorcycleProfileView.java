@@ -7,13 +7,14 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 @Getter
 @Setter
 @Accessors(chain = true)
 public class MotorcycleProfileView {
+
+    private Long id;
 
     private String brand;
 
@@ -23,13 +24,13 @@ public class MotorcycleProfileView {
 
     private int mileage;
 
-    private LocalDateTime productionDate;
+    private String productionDate;
 
     private Color color;
 
     private String location;
 
-    private LocalDateTime registeredOn;
+    private String registeredOn;
 
     private TransmissionType transmission;
 
@@ -52,4 +53,6 @@ public class MotorcycleProfileView {
     private boolean hasSidecar;
 
     private boolean hasStabilityControl;
+
+    private Long ownerId;
 }
