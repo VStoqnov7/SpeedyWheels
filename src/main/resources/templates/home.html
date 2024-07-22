@@ -18,105 +18,121 @@
     <img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040185/premium-car-storage_pfi4zm.jpg" alt="">
 </div>
 
-
-
-<div class="choice-container">
-    <div class="choice">
-        <a th:href="@{/vehicles/car}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040014/car-option_z3m3b4.jpg" alt="Car"></a>
-        <h3>Car</h3>
-    </div>
-    <div class="choice">
-        <a th:href="@{/vehicles/jeep}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040092/jeep-option_kvbook.jpg" alt="Jeep"></a>
-        <h3>Jeep</h3>
-    </div>
-    <div class="choice">
-        <a th:href="@{/vehicles/all}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040065/motorcycle-option_pljrrq.jpg" alt="Motorcycle"></a>
-        <h3>Motorcycle</h3>
-    </div>
-    <div class="choice">
-        <a th:href="@{/vehicles/all}"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040116/all-options_g528ci.jpg" alt="All"></a>
-        <h3>All</h3>
-    </div>
-</div>
-
-
-
-<div class="vehicle-container">
-    <div class="motorcycle">
-        <div class="text-expensive-vehicles">
-            <p>The most expensive Vehicles</p>
+<th:block th:if="${availableCars || availableMotorcycles}">
+    <div class="choice-container">
+        <div class="choice">
+            <a th:href="@{/vehicles/car}"><img
+                    src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040014/car-option_z3m3b4.jpg" alt="Car"></a>
+            <h3>Car</h3>
         </div>
-        <img th:src="@{${theMostExpensiveMotorcycle.photosUrls.get(0)}}" alt="Most Expensive Motorcycle">
-    </div>
-    <div class="vehicle">
-        <img th:src="@{${theMostExpensiveCarView.photosUrls.get(0)}}"  alt="Most Expensive Car">
-        <div class="details">
-            <p>It is a long established fact that a reader will be distracted by thereadable content of a page when
-                looking at its layoupoint of using Lorem Ipsum is that it has a more-or-less nordistribution of
-                letters, as opposed to using 'Content here, content here making it look like readable English.</p>
+        <div class="choice">
+            <a th:href="@{/vehicles/jeep}"><img
+                    src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040092/jeep-option_kvbook.jpg"
+                    alt="Jeep"></a>
+            <h3>Jeep</h3>
         </div>
-        <div class="button-best-car">
-            <a th:href="@{/vehicles/all}" class="button-find-best-car">Find your best vehicle here</a>
+        <div class="choice">
+            <a th:href="@{/vehicles/all}"><img
+                    src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040065/motorcycle-option_pljrrq.jpg"
+                    alt="Motorcycle"></a>
+            <h3>Motorcycle</h3>
+        </div>
+        <div class="choice">
+            <a th:href="@{/vehicles/all}"><img
+                    src="https://res.cloudinary.com/db1rc9fon/image/upload/v1721040116/all-options_g528ci.jpg"
+                    alt="All"></a>
+            <h3>All</h3>
         </div>
     </div>
+</th:block>
 
-</div>
+<th:block th:unless="${availableCars || availableMotorcycles}">
+    <div class="no-vehicles">
+        <h2>No Vehicles Available</h2>
+        <p>Currently, there are no vehicles available. Please add new vehicles to continue.</p>
+    </div>
+</th:block>
 
-
-
-
-<div class="latest-car">
-    <h2>The Most Powerful Car</h2>
-    <div class="car-details">
-        <img th:src="@{${theMostPowerfulCarView.photosUrls.get(0)}}"alt="Car Image">
-        <div class="car-info">
-            <h3 th:text="'New ' + ${theMostPowerfulCarView.brand} + ' ' + ${theMostPowerfulCarView.model}">New Audi A6</h3>
-            <div class="items">
-                <div>
-                    <i class="fa-solid fa-times" th:if="${theMostPowerfulCarView.hasAirConditioner}"></i>
-                    <i class="fa-solid fa-check" th:unless="${theMostPowerfulCarView.hasAirConditioner}"></i>
-                    <label>Climate Control</label>
-                </div>
-                <div>
-                    <i class="fa-solid fa-times" th:if="${theMostPowerfulCarView.hasGPS}"></i>
-                    <i class="fa-solid fa-check" th:unless="${theMostPowerfulCarView.hasGPS}"></i>
-                    <label>GPS Navigation</label>
-                </div>
-                <div>
-                    <i class="fa-solid fa-times" th:if="${theMostPowerfulCarView.has4x4}"></i>
-                    <i class="fa-solid fa-check" th:unless="${theMostPowerfulCarView.has4x4}"></i>
-                    <label>4x4</label>
-                </div>
+<th:block th:if="${availableCars && availableMotorcycles}">
+    <div class="vehicle-container">
+        <div class="motorcycle">
+            <div class="text-expensive-vehicles">
+                <p>The most expensive Vehicles</p>
             </div>
-            <a th:href="'/vehicles/vehicle-profile/car/' + ${theMostPowerfulCarView.id}" class="btn">Read More</a>
+            <img th:src="@{${theMostExpensiveMotorcycle.photosUrls.get(0)}}" alt="Most Expensive Motorcycle">
         </div>
-    </div>
-</div>
-
-
-<!-- TODO: Only 8 Vehicles-->
-<div class="container-fluid mb-5">
-    <h2 class="section-title">The latest vehicles in recent days</h2>
-    <div class="horizontal-line"></div>
-    <div class="row mx-auto justify-content-center" >
-        <div class="card mt-4 mx-3" th:each="vehicle : ${latestEightVehicles}">
-            <img th:src="${vehicle.getPhotosUrls().get(0)}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <h5 class="card-title" th:text="${vehicle.brand}">BMW</h5>
+        <div class="vehicle">
+            <img th:src="@{${theMostExpensiveCarView.photosUrls.get(0)}}" alt="Most Expensive Car">
+            <div class="details">
+                <p>It is a long established fact that a reader will be distracted by thereadable content of a page when
+                    looking at its layoupoint of using Lorem Ipsum is that it has a more-or-less nordistribution of
+                    letters, as opposed to using 'Content here, content here making it look like readable English.</p>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" th:text="'Production Date: ' + ${vehicle.productionDate}">Production Date: 2003</li>
-                <li class="list-group-item" th:text="'Location: ' + ${vehicle.location}">Location: Sofia.</li>
-                <li class="list-group-item" th:text="'Price: ' + ${vehicle.price} + ' lv.'">Price: 7200 lv.</li>
-            </ul>
-            <div class="card-body">
-                <a th:href="'/vehicles/vehicle-profile/' + ${vehicle.type} + '/' + ${vehicle.id}"  class="card-link">ALL PRODUCT REVIEWS >></a>
+            <div class="button-best-car">
+                <a th:href="@{/vehicles/all}" class="button-find-best-car">Find your best vehicle here</a>
             </div>
         </div>
     </div>
-</div>
+</th:block>
 
 
+<th:block th:if="${availableCars}">
+    <div class="latest-car">
+        <h2>The Most Powerful Car</h2>
+        <div class="car-details">
+            <img th:src="@{${theMostPowerfulCarView.photosUrls.get(0)}}" alt="Car Image">
+            <div class="car-info">
+                <h3 th:text="'New ' + ${theMostPowerfulCarView.brand} + ' ' + ${theMostPowerfulCarView.model}">New Audi
+                    A6</h3>
+                <div class="items">
+                    <div>
+                        <i class="fa-solid fa-check" th:if="${theMostPowerfulCarView.hasAirConditioner}"></i>
+                        <i class="fa-solid fa-times" th:unless="${theMostPowerfulCarView.hasAirConditioner}"></i>
+                        <label>Climate Control</label>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-check" th:if="${theMostPowerfulCarView.hasGPS}"></i>
+                        <i class="fa-solid fa-times" th:unless="${theMostPowerfulCarView.hasGPS}"></i>
+                        <label>GPS Navigation</label>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-check" th:if="${theMostPowerfulCarView.has4x4}"></i>
+                        <i class="fa-solid fa-times" th:unless="${theMostPowerfulCarView.has4x4}"></i>
+                        <label>4x4</label>
+                    </div>
+                </div>
+                <a th:href="'/vehicles/vehicle-profile/car/' + ${theMostPowerfulCarView.id}" class="btn">Read More</a>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:if="${availableCars || availableMotorcycles}">
+    <div class="container-fluid mb-5">
+        <h2 class="section-title">The latest vehicles in recent days</h2>
+        <div class="horizontal-line"></div>
+        <div class="row mx-auto justify-content-center">
+            <div class="card mt-4 mx-3" th:each="vehicle : ${latestEightVehicles}">
+                <img th:src="${vehicle.getPhotosUrls().get(0)}" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title" th:text="${vehicle.brand}">BMW</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="'Production Date: ' + ${vehicle.productionDate}">Production
+                        Date:
+                        2003
+                    </li>
+                    <li class="list-group-item" th:text="'Location: ' + ${vehicle.location}">Location: Sofia.</li>
+                    <li class="list-group-item" th:text="'Price: ' + ${vehicle.price} + ' BGN'">Price: 7200 lv.</li>
+                </ul>
+                <div class="card-body">
+                    <a th:href="'/vehicles/vehicle-profile/' + ${vehicle.type} + '/' + ${vehicle.id}" class="card-link">ALL
+                        PRODUCT REVIEWS >></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
 <footer th:replace="~{fragments/footer}"></footer>
 </body>
 </html>

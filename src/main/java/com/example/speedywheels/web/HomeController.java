@@ -46,7 +46,8 @@ public class HomeController {
                 .limit(8)
                 .collect(Collectors.toList());
 
-
+        model.addObject("availableCars", this.carService.availableCars());
+        model.addObject("availableMotorcycles", this.motorcycleService.availableMotorcycles());
         model.addObject("theMostExpensiveCarView", theMostExpensiveCarView);
         model.addObject("theMostExpensiveMotorcycle", theMostExpensiveMotorcycle);
         model.addObject("theMostPowerfulCarView", theMostPowerfulCarView);
