@@ -5,7 +5,7 @@ import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
 import com.example.speedywheels.model.enums.CarCategory;
-import com.example.speedywheels.model.view.LatestEightVehiclesView;
+import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
 import com.example.speedywheels.repository.CarRepository;
@@ -71,11 +71,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<LatestEightVehiclesView> findLatestCars() {
+    public List<VehicleView> findLatestCars() {
         return carRepository.findLatestCars()
                 .stream()
                 .map(car -> {
-                    LatestEightVehiclesView view = modelMapper.map(car, LatestEightVehiclesView.class);
+                    VehicleView view = modelMapper.map(car, VehicleView.class);
                     view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
                     view.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
                     view.setType("car");
@@ -128,11 +128,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<LatestEightVehiclesView> findJeeps() {
+    public List<VehicleView> findJeeps() {
         List<Car> jeeps = carRepository.findByCategory(CarCategory.JEEP);
         return jeeps.stream()
                 .map(car -> {
-                    LatestEightVehiclesView view = modelMapper.map(car, LatestEightVehiclesView.class);
+                    VehicleView view = modelMapper.map(car, VehicleView.class);
                     view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
                     view.setType("car");
                     return view;})

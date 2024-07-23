@@ -1,6 +1,6 @@
 package com.example.speedywheels.web;
 
-import com.example.speedywheels.model.view.LatestEightVehiclesView;
+import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
 import com.example.speedywheels.service.interfaces.CarService;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,12 +35,12 @@ public class HomeController {
         TheMostExpensiveVehicleView theMostExpensiveMotorcycle = this.motorcycleService.theMostExpensiveMotorcycle();
         TheMostPowerfulCarView theMostPowerfulCarView = this.carService.theMostPowerfulCar();
 
-        List<LatestEightVehiclesView> latestEightCars = this.carService.findLatestCars();
-        List<LatestEightVehiclesView> latestEightMotorcycles = this.motorcycleService.findLatestMotorcycles();
-        List<LatestEightVehiclesView> latestEightVehicles = Stream.concat(
+        List<VehicleView> latestEightCars = this.carService.findLatestCars();
+        List<VehicleView> latestEightMotorcycles = this.motorcycleService.findLatestMotorcycles();
+        List<VehicleView> latestEightVehicles = Stream.concat(
                         latestEightCars.stream(),
                         latestEightMotorcycles.stream())
-                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .limit(8)
                 .collect(Collectors.toList());
 

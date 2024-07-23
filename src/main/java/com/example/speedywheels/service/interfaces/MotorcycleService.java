@@ -4,7 +4,7 @@ import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
 import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
-import com.example.speedywheels.model.view.LatestEightVehiclesView;
+import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,7 +15,7 @@ public interface MotorcycleService {
 
     TheMostExpensiveVehicleView theMostExpensiveMotorcycle();
 
-    List<LatestEightVehiclesView> findLatestMotorcycles();
+    List<VehicleView> findLatestMotorcycles();
 
     Motorcycle findById(Long vehicleId);
 

@@ -6,15 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.math.BigDecimal;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
 @Accessors(chain = true)
-public class LatestEightVehiclesView {
+public class VehicleView {
 
     private Long id;
 

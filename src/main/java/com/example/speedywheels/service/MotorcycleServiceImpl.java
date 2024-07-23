@@ -4,7 +4,7 @@ import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
 import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
-import com.example.speedywheels.model.view.LatestEightVehiclesView;
+import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.repository.MotorcycleRepository;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,11 +60,11 @@ public class MotorcycleServiceImpl implements MotorcycleService {
     }
 
     @Override
-    public List<LatestEightVehiclesView> findLatestMotorcycles() {
+    public List<VehicleView> findLatestMotorcycles() {
         return motorcycleRepository.findLatestMotorcycles()
                 .stream()
                 .map(motorcycle -> {
-                    LatestEightVehiclesView view = modelMapper.map(motorcycle, LatestEightVehiclesView.class);
+                    VehicleView view = modelMapper.map(motorcycle, VehicleView.class);
                     view.setProductionDate(ModelAttributeUtil.formatDate(motorcycle.getProductionDate()));
                     view.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
                     view.setType("motorcycle");

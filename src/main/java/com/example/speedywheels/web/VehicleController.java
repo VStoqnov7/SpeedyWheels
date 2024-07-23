@@ -4,7 +4,7 @@ import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.view.CarProfileView;
-import com.example.speedywheels.model.view.LatestEightVehiclesView;
+import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.MotorcycleProfileView;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
@@ -47,18 +47,18 @@ public class VehicleController {
 
     @GetMapping("/all")
     public ModelAndView showAllVehicles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
-        List<LatestEightVehiclesView> cars = carService.findLatestCars();
-        List<LatestEightVehiclesView> motorcycles = motorcycleService.findLatestMotorcycles();
-        List<LatestEightVehiclesView> vehicles = Stream.concat(
+        List<VehicleView> cars = carService.findLatestCars();
+        List<VehicleView> motorcycles = motorcycleService.findLatestMotorcycles();
+        List<VehicleView> vehicles = Stream.concat(
                         cars.stream(),
                         motorcycles.stream())
-                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .collect(Collectors.toList());
 
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), vehicles.size());
 
-        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+        Page<VehicleView> allVehicles = new PageImpl<>(
                 vehicles.subList(start, end),
                 pageable,
                 vehicles.size()
@@ -73,15 +73,15 @@ public class VehicleController {
 
     @GetMapping("/jeeps")
     public ModelAndView showJeeps(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
-        List<LatestEightVehiclesView> jeeps = carService.findJeeps()
+        List<VehicleView> jeeps = carService.findJeeps()
                 .stream()
-                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .collect(Collectors.toList());
 
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), jeeps.size());
 
-        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+        Page<VehicleView> allVehicles = new PageImpl<>(
                 jeeps.subList(start, end),
                 pageable,
                 jeeps.size()
@@ -96,15 +96,15 @@ public class VehicleController {
 
     @GetMapping("/motorcycles")
     public ModelAndView showMotorcycles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
-        List<LatestEightVehiclesView> motorcycles = motorcycleService.findLatestMotorcycles()
+        List<VehicleView> motorcycles = motorcycleService.findLatestMotorcycles()
                 .stream()
-                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .collect(Collectors.toList());
 
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), motorcycles.size());
 
-        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+        Page<VehicleView> allVehicles = new PageImpl<>(
                 motorcycles.subList(start, end),
                 pageable,
                 motorcycles.size()
@@ -120,15 +120,15 @@ public class VehicleController {
 
     @GetMapping("/cars")
     public ModelAndView showCars(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
-        List<LatestEightVehiclesView> cars = carService.findLatestCars()
+        List<VehicleView> cars = carService.findLatestCars()
                 .stream()
-                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .collect(Collectors.toList());
 
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), cars.size());
 
-        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+        Page<VehicleView> allVehicles = new PageImpl<>(
                 cars.subList(start, end),
                 pageable,
                 cars.size()

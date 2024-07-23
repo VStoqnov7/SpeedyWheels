@@ -4,7 +4,7 @@ import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
-import com.example.speedywheels.model.view.LatestEightVehiclesView;
+import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public interface CarService {
 
     TheMostPowerfulCarView theMostPowerfulCar();
 
-    List<LatestEightVehiclesView> findLatestCars();
+    List<VehicleView> findLatestCars();
 
     Car findById(Long vehicleId);
 
@@ -32,5 +32,5 @@ public interface CarService {
 
     void saveVehicle(Vehicle vehicle);
 
-    List<LatestEightVehiclesView> findJeeps();
+    List<VehicleView> findJeeps();
 }
