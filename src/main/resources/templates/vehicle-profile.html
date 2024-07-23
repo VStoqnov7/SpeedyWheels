@@ -112,10 +112,12 @@
                 </div>
             </th:block>
         </div>
-        <form th:action="'/vehicles/add/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST" th:if="${!isFavorite} and !${isOwner}">
+        <form th:action="'/vehicles/add/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST"
+              th:if="${!isFavorite} and !${isOwner}">
             <button type="submit" class="btn btn-danger bg-success"><i class="fa-regular fa-star"></i></button>
         </form>
-        <form th:action="'/vehicles/delete/' + ${vehicleType} + '/' + ${vehicle.id}"  method="POST" th:if="${isFavorite}">
+        <form th:action="'/vehicles/delete/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST"
+              th:if="${isFavorite}">
             <input type="hidden" name="_method" value="DELETE"/>
             <button type="submit" class="btn btn-danger"><i class="fa-solid fa-star"></i></button>
         </form>
@@ -129,6 +131,11 @@
             </button>
         </form>
     </div>
+
+    <div id="vehicle-data"
+         th:attr="data-vehicle-type=${vehicleType}, data-vehicle-id=${vehicle.id}, data-user=${user}, data-is-owner=${isOwner}, data-is-admin=${isAdmin}">
+    </div>
+
     <div>
         <div class="container mt-4 mb-5  comments">
             <div class="row d-flex justify-content-center ">
@@ -136,46 +143,72 @@
                     <div class="d-flex justify-content-center align-items-center mb-4 ">
                         <h4 class="text-body mb-0 text-white">Comments</h4>
                     </div>
-                    <form class="form-add-comment" th:action="'/comments/add-comment/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST">
+                    <form class="form-add-comment"
+                          th:action="'/comments/add-comment/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST">
                         <div class="form-group">
-                            <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Add a comment"></textarea>
+                            <textarea class="form-control" id="comment" name="comment" rows="3"
+                                      placeholder="Add a comment"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
 
-                    <div class="card mb-3" th:each="comment : ${vehicle.comments}">
+                    <div class="card mb-3" id="card-section">
                         <div class="card-body">
                             <div class="d-flex flex-start">
                                 <img class="rounded-circle shadow-1-strong me-3 mr-3"
-                                     th:src="${comment.getUser().getProfilePictureUrl()}" alt="avatar"
+                                      alt="avatar"
                                      width="40" height="40"/>
                                 <div class="w-100">
                                     <div class="d-flex align-items-center mb-3">
-                                        <h6 class="text-success fw-bold mb-0" th:text="${comment.user.username} + ':'">
-                                            lara_stewart:
+                                        <h6 class="text-success fw-bold mb-0">
                                         </h6>
-                                        <span class="text-body ms-2 text-white ml-1" th:text="${comment.comment}">....</span>
-
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <form th:action="'/vehicles/delete-comment' + ${vehicleType} + '/' + ${vehicle.id} + '/' + ${comment.id}"  method="POST"
-                                              th:if="${comment.user.username == user || isOwner || isAdmin}"   >
-                                            <button type="submit" class="btn btn-danger btn-sm ">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                        </form>
+                                        <span class="text-body ms-2 text-white ml-1">....</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const vehicleDataElement = document.getElementById('vehicle-data');
+        const vehicleType = vehicleDataElement.getAttribute('data-vehicle-type');
+        const vehicleId = vehicleDataElement.getAttribute('data-vehicle-id');
+        const user = vehicleDataElement.getAttribute('data-user');
+        const isOwner = vehicleDataElement.getAttribute('data-is-owner');
+        const isAdmin = vehicleDataElement.getAttribute('data-is-admin');
+
+        const cardSection = document.getElementById('card-section');
+
+        fetch(`/comments/${vehicleType}/${vehicleId}`)
+            .then(response => response.json())
+            .then(comments => {
+                const commentsHTML = comments.map(comment => `
+                        <div class="card-body">
+                            <div class="d-flex flex-start">
+                                <img class="rounded-circle shadow-1-strong me-3 mr-2" src="${comment.userProfilePictureUrl}" alt="avatar" width="40" height="40"/>
+                                <div class="w-100">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <h6 class="text-success fw-bold mb-0">${comment.userUsername}:</h6>
+                                        <span class="text-body ms-2 text-white">${comment.comment}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                `).join('');
+
+                cardSection.innerHTML = commentsHTML;
+            })
+            .catch(error => console.error('Error fetching comments:', error));
+    });
+
 
 </script>
 
