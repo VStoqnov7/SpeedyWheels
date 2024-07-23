@@ -46,7 +46,7 @@ public class VehicleController {
 
 
     @GetMapping("/all")
-    public ModelAndView showAllVehicles(@PageableDefault(sort = "id", size = 1) Pageable pageable, ModelAndView model) {
+    public ModelAndView showAllVehicles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
         List<LatestEightVehiclesView> cars = carService.findLatestCars();
         List<LatestEightVehiclesView> motorcycles = motorcycleService.findLatestMotorcycles();
         List<LatestEightVehiclesView> vehicles = Stream.concat(
@@ -72,7 +72,7 @@ public class VehicleController {
     }
 
     @GetMapping("/jeeps")
-    public ModelAndView showJeeps(@PageableDefault(sort = "id", size = 1) Pageable pageable, ModelAndView model) {
+    public ModelAndView showJeeps(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
         List<LatestEightVehiclesView> jeeps = carService.findJeeps()
                 .stream()
                 .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
@@ -95,7 +95,7 @@ public class VehicleController {
     }
 
     @GetMapping("/motorcycles")
-    public ModelAndView showMotorcycles(@PageableDefault(sort = "id", size = 2) Pageable pageable, ModelAndView model) {
+    public ModelAndView showMotorcycles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
         List<LatestEightVehiclesView> motorcycles = motorcycleService.findLatestMotorcycles()
                 .stream()
                 .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
@@ -119,7 +119,7 @@ public class VehicleController {
     }
 
     @GetMapping("/cars")
-    public ModelAndView showCars(@PageableDefault(sort = "id", size = 2) Pageable pageable, ModelAndView model) {
+    public ModelAndView showCars(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
         List<LatestEightVehiclesView> cars = carService.findLatestCars()
                 .stream()
                 .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
