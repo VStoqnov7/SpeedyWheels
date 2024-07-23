@@ -42,7 +42,7 @@ public class CarProfileView {
 
     private EngineType engineType;
 
-    private BigDecimal price;
+    private String price;
 
     private List<String> photosUrls;
 

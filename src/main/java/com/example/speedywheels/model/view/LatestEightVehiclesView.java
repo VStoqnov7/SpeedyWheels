@@ -1,6 +1,7 @@
 package com.example.speedywheels.model.view;
 
 
+import com.example.speedywheels.model.enums.EngineType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -19,15 +20,23 @@ public class LatestEightVehiclesView {
 
     private String brand;
 
+    private String model;
+
+    private int power;
+
+    private int mileage;
+
     private String productionDate;
 
     private String location;
 
     private LocalDateTime registeredOn;
 
-    private BigDecimal price;
+    private String price;
 
     private String type;
+
+    private EngineType engineType;
 
     private List<String> photosUrls;
 }

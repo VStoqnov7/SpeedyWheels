@@ -89,17 +89,18 @@ body {
 }
 
 .details-vehicle span{
-    color: rgb(54, 53, 53);
-    font-weight: bold;
+    color: white;
+    font-weight: normal;
 }
 
 .details-vehicle p{
-    color: white;
+    color: rgb(54, 53, 53);
     margin-bottom: 0.2rem;
+    font-weight: bold;
 }
 
 .text-center a{
-    color: red;
+    color: #e5dbdb;
     text-decoration: none;
 }
 

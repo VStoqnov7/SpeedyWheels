@@ -4,6 +4,7 @@ import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
+import com.example.speedywheels.model.enums.CarCategory;
 import com.example.speedywheels.model.view.LatestEightVehiclesView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
@@ -17,8 +18,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,9 +77,9 @@ public class CarServiceImpl implements CarService {
                 .map(car -> {
                     LatestEightVehiclesView view = modelMapper.map(car, LatestEightVehiclesView.class);
                     view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
                     view.setType("car");
-                    return view;
-                })
+                    return view;})
                 .collect(Collectors.toList());
     }
 
@@ -126,5 +125,17 @@ public class CarServiceImpl implements CarService {
     public void saveVehicle(Vehicle vehicle) {
         Car car = modelMapper.map(vehicle,Car.class);
         this.carRepository.save(car);
+    }
+
+    @Override
+    public List<LatestEightVehiclesView> findJeeps() {
+        List<Car> jeeps = carRepository.findByCategory(CarCategory.JEEP);
+        return jeeps.stream()
+                .map(car -> {
+                    LatestEightVehiclesView view = modelMapper.map(car, LatestEightVehiclesView.class);
+                    view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
+                    view.setType("car");
+                    return view;})
+                .collect(Collectors.toList());
     }
 }

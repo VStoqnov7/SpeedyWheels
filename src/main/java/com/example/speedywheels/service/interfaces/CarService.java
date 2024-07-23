@@ -31,4 +31,6 @@ public interface CarService {
     void removeCarFromFavorites(Car car);
 
     void saveVehicle(Vehicle vehicle);
+
+    List<LatestEightVehiclesView> findJeeps();
 }

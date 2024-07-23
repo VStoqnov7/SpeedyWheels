@@ -1,6 +1,7 @@
 package com.example.speedywheels.repository;
 
 import com.example.speedywheels.model.entity.Car;
+import com.example.speedywheels.model.enums.CarCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,4 +19,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     @Query(value = "SELECT * FROM cars ORDER BY registered_on DESC LIMIT 8", nativeQuery = true)
     List<Car> findLatestCars();
+
+    List<Car> findByCategory(CarCategory carCategory);
 }

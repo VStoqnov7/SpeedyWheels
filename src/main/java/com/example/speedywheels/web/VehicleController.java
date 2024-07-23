@@ -3,8 +3,8 @@ package com.example.speedywheels.web;
 import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.model.entity.User;
-import com.example.speedywheels.model.entity.Vehicle;
 import com.example.speedywheels.model.view.CarProfileView;
+import com.example.speedywheels.model.view.LatestEightVehiclesView;
 import com.example.speedywheels.model.view.MotorcycleProfileView;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
@@ -12,11 +12,20 @@ import com.example.speedywheels.service.interfaces.UserService;
 import com.example.speedywheels.util.ModelAttributeUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/vehicles")
@@ -36,6 +45,102 @@ public class VehicleController {
     }
 
 
+    @GetMapping("/all")
+    public ModelAndView showAllVehicles(@PageableDefault(sort = "id", size = 1) Pageable pageable, ModelAndView model) {
+        List<LatestEightVehiclesView> cars = carService.findLatestCars();
+        List<LatestEightVehiclesView> motorcycles = motorcycleService.findLatestMotorcycles();
+        List<LatestEightVehiclesView> vehicles = Stream.concat(
+                        cars.stream(),
+                        motorcycles.stream())
+                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .collect(Collectors.toList());
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), vehicles.size());
+
+        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+                vehicles.subList(start, end),
+                pageable,
+                vehicles.size()
+        );
+
+        model.addObject("filter","all");
+        model.addObject("vehicles", allVehicles);
+        model.addObject("title", "Vehicle Showcase");
+        model.setViewName("vehicles");
+        return model;
+    }
+
+    @GetMapping("/jeeps")
+    public ModelAndView showJeeps(@PageableDefault(sort = "id", size = 1) Pageable pageable, ModelAndView model) {
+        List<LatestEightVehiclesView> jeeps = carService.findJeeps()
+                .stream()
+                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .collect(Collectors.toList());
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), jeeps.size());
+
+        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+                jeeps.subList(start, end),
+                pageable,
+                jeeps.size()
+        );
+
+        model.addObject("filter","jeeps");
+        model.addObject("vehicles", allVehicles);
+        model.addObject("title", "Jeep Showcase");
+        model.setViewName("vehicles");
+        return model;
+    }
+
+    @GetMapping("/motorcycles")
+    public ModelAndView showMotorcycles(@PageableDefault(sort = "id", size = 2) Pageable pageable, ModelAndView model) {
+        List<LatestEightVehiclesView> motorcycles = motorcycleService.findLatestMotorcycles()
+                .stream()
+                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .collect(Collectors.toList());
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), motorcycles.size());
+
+        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+                motorcycles.subList(start, end),
+                pageable,
+                motorcycles.size()
+        );
+
+
+        model.addObject("filter","motorcycles");
+        model.addObject("vehicles", allVehicles);
+        model.addObject("title", "Motorcycle Showcase");
+        model.setViewName("vehicles");
+        return model;
+    }
+
+    @GetMapping("/cars")
+    public ModelAndView showCars(@PageableDefault(sort = "id", size = 2) Pageable pageable, ModelAndView model) {
+        List<LatestEightVehiclesView> cars = carService.findLatestCars()
+                .stream()
+                .sorted(Comparator.comparing(LatestEightVehiclesView::getRegisteredOn).reversed())
+                .collect(Collectors.toList());
+
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageable.getPageSize(), cars.size());
+
+        Page<LatestEightVehiclesView> allVehicles = new PageImpl<>(
+                cars.subList(start, end),
+                pageable,
+                cars.size()
+        );
+
+        model.addObject("filter","cars");
+        model.addObject("vehicles", allVehicles);
+        model.addObject("title", "Car Showcase");
+        model.setViewName("vehicles");
+        return model;
+    }
+
     @GetMapping("/vehicle-profile/{type}/{vehicleId}")
     public ModelAndView vehicleProfile(ModelAndView model,
                                        @PathVariable String type,
@@ -52,6 +157,7 @@ public class VehicleController {
                 CarProfileView carProfileView = modelMapper.map(car, CarProfileView.class);
                 carProfileView.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
                 carProfileView.setRegisteredOn(ModelAttributeUtil.formatDate(car.getRegisteredOn()));
+                carProfileView.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
                 model.addObject("vehicle", carProfileView);
                 model.addObject("vehicleType", "car");
                 vehicleFound = true;
@@ -65,6 +171,7 @@ public class VehicleController {
             if (motorcycle != null) {
                 MotorcycleProfileView motorcycleProfileView = modelMapper.map(motorcycle, MotorcycleProfileView.class);
                 motorcycleProfileView.setRegisteredOn(ModelAttributeUtil.formatDate(motorcycle.getRegisteredOn()));
+                motorcycleProfileView.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
                 model.addObject("vehicle", motorcycleProfileView);
                 model.addObject("vehicleType", "motorcycle");
                 vehicleFound = true;

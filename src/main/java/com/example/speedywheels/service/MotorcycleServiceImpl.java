@@ -1,7 +1,6 @@
 package com.example.speedywheels.service;
 
 import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
-import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
@@ -18,13 +17,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class MotorcycleServiceImpl implements MotorcycleService {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final ModelMapper modelMapper;
     private final UserService userService;
     private final CloudinaryService cloudinaryService;
@@ -70,9 +67,9 @@ public class MotorcycleServiceImpl implements MotorcycleService {
                 .map(motorcycle -> {
                     LatestEightVehiclesView view = modelMapper.map(motorcycle, LatestEightVehiclesView.class);
                     view.setProductionDate(ModelAttributeUtil.formatDate(motorcycle.getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
                     view.setType("motorcycle");
-                    return view;
-                })
+                    return view;})
                 .collect(Collectors.toList());
     }
 
@@ -119,4 +116,5 @@ public class MotorcycleServiceImpl implements MotorcycleService {
         Motorcycle motorcycle = modelMapper.map(vehicle,Motorcycle.class);
         this.motorcycleRepository.save(motorcycle);
     }
+
 }
