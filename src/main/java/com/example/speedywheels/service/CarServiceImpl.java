@@ -138,4 +138,18 @@ public class CarServiceImpl implements CarService {
                     return view;})
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<VehicleView> findMyFavoriteCars(String username) {
+        return this.userService.findByUsername(username).get()
+                .getFavoriteCars()
+                .stream()
+                .map(car -> {
+                    VehicleView view = modelMapper.map(car, VehicleView.class);
+                    view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
+                    view.setType("car");
+                    return view;})
+                .collect(Collectors.toList());
+    }
 }

@@ -21,7 +21,7 @@
 </div>
 
 
-<div th:if="${#lists.isEmpty(vehicles)}" class="alert alert-warning mt-4 text-center" role="alert">
+<div th:if="${vehicles.isEmpty()}" class="alert alert-warning mt-4 text-center no-vehicles" role="alert">
     No vehicles available at the moment.
 </div>
 

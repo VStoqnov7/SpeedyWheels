@@ -1,7 +1,10 @@
 package com.example.speedywheels.model.view;
 
 
+import com.example.speedywheels.model.enums.Color;
 import com.example.speedywheels.model.enums.EngineType;
+import com.example.speedywheels.model.enums.EuroStandard;
+import com.example.speedywheels.model.enums.TransmissionType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -26,9 +29,17 @@ public class VehicleView {
 
     private String productionDate;
 
+    private Color color;
+
     private String location;
 
     private LocalDateTime registeredOn;
+
+    private TransmissionType transmission;
+
+    private EuroStandard euroStandard;
+
+    private int cubicCapacity;
 
     private String price;
 

@@ -28,4 +28,6 @@ public interface MotorcycleService {
     void removeMotorcycleFromFavorites(Motorcycle motorcycle);
 
     void saveVehicle(Vehicle vehicle);
+
+    List<VehicleView> findMyFavoriteMotorcycles(String username);
 }

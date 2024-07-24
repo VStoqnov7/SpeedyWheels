@@ -33,4 +33,6 @@ public interface CarService {
     void saveVehicle(Vehicle vehicle);
 
     List<VehicleView> findJeeps();
+
+    List<VehicleView> findMyFavoriteCars(String username);
 }

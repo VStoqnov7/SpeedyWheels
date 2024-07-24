@@ -116,7 +116,7 @@
               th:if="${!isFavorite} and !${isOwner}">
             <button type="submit" class="btn btn-danger bg-success"><i class="fa-regular fa-star"></i></button>
         </form>
-        <form th:action="'/vehicles/delete/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST"
+        <form th:action="'/vehicles/delete-favorite-vehicle/' + ${vehicleType} + '/' + ${vehicle.id} + '/' + ${page}" method="POST"
               th:if="${isFavorite}">
             <input type="hidden" name="_method" value="DELETE"/>
             <button type="submit" class="btn btn-danger"><i class="fa-solid fa-star"></i></button>

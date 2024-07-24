@@ -64,7 +64,7 @@ public class VehicleController {
                 vehicles.size()
         );
 
-        model.addObject("filter","all");
+        model.addObject("filter", "all");
         model.addObject("vehicles", allVehicles);
         model.addObject("title", "Vehicle Showcase");
         model.setViewName("vehicles");
@@ -87,7 +87,7 @@ public class VehicleController {
                 jeeps.size()
         );
 
-        model.addObject("filter","jeeps");
+        model.addObject("filter", "jeeps");
         model.addObject("vehicles", allVehicles);
         model.addObject("title", "Jeep Showcase");
         model.setViewName("vehicles");
@@ -111,7 +111,7 @@ public class VehicleController {
         );
 
 
-        model.addObject("filter","motorcycles");
+        model.addObject("filter", "motorcycles");
         model.addObject("vehicles", allVehicles);
         model.addObject("title", "Motorcycle Showcase");
         model.setViewName("vehicles");
@@ -134,7 +134,7 @@ public class VehicleController {
                 cars.size()
         );
 
-        model.addObject("filter","cars");
+        model.addObject("filter", "cars");
         model.addObject("vehicles", allVehicles);
         model.addObject("title", "Car Showcase");
         model.setViewName("vehicles");
@@ -185,7 +185,8 @@ public class VehicleController {
             return model;
         }
 
-        model.addObject("isFavorite",isFavorite);
+        model.addObject("page", "profile");
+        model.addObject("isFavorite", isFavorite);
         model.addObject("isOwner", isOwner);
         model.addObject("user", userDetails.getUsername());
         model.addObject("isAdmin", userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")));
@@ -196,9 +197,9 @@ public class VehicleController {
 
     @PostMapping("/add/{type}/{vehicleId}")
     public ModelAndView addToFavorite(@PathVariable String type,
-                                 @PathVariable Long vehicleId,
-                                 @AuthenticationPrincipal UserDetails userDetails,
-                                 ModelAndView model) {
+                                      @PathVariable Long vehicleId,
+                                      @AuthenticationPrincipal UserDetails userDetails,
+                                      ModelAndView model) {
         User user = this.userService.findByUsername(userDetails.getUsername()).get();
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
@@ -216,11 +217,12 @@ public class VehicleController {
         return model;
     }
 
-    @DeleteMapping("/delete/{type}/{vehicleId}")
+    @DeleteMapping("/delete-favorite-vehicle/{type}/{vehicleId}/{page}")
     public ModelAndView deleteFavoriteVehicle(@PathVariable String type,
-                                @PathVariable Long vehicleId,
-                                @AuthenticationPrincipal UserDetails userDetails,
-                                ModelAndView model) {
+                                              @PathVariable Long vehicleId,
+                                              @PathVariable String page,
+                                              @AuthenticationPrincipal UserDetails userDetails,
+                                              ModelAndView model) {
         User user = this.userService.findByUsername(userDetails.getUsername()).get();
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
@@ -234,14 +236,14 @@ public class VehicleController {
             }
         }
         userService.saveCurrentUser(user);
-        model.setViewName("redirect:/vehicles/vehicle-profile/" + type + "/" + vehicleId);
+        model.setViewName(page.equals("profile") ? "redirect:/vehicles/vehicle-profile/" + type + "/" + vehicleId : "redirect:/user/favorite-vehicles");
         return model;
     }
 
     @DeleteMapping("/delete-vehicle/{type}/{vehicleId}")
     public ModelAndView deleteVehicle(@PathVariable String type,
-                                              @PathVariable Long vehicleId,
-                                              ModelAndView model) {
+                                      @PathVariable Long vehicleId,
+                                      ModelAndView model) {
 
         User user = null;
         if (type.equals("car")) {

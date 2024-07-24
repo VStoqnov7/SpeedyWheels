@@ -116,4 +116,17 @@ public class MotorcycleServiceImpl implements MotorcycleService {
         this.motorcycleRepository.save(motorcycle);
     }
 
+    @Override
+    public List<VehicleView> findMyFavoriteMotorcycles(String username) {
+        return this.userService.findByUsername(username).get()
+                .getFavoriteMotorcycles()
+                .stream()
+                .map(motorcycle -> {
+                    VehicleView view = modelMapper.map(motorcycle, VehicleView.class);
+                    view.setProductionDate(ModelAttributeUtil.formatDate(motorcycle.getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
+                    view.setType("motorcycle");
+                    return view;})
+                .collect(Collectors.toList());
+    }
 }
