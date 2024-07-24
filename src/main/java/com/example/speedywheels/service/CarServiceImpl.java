@@ -3,6 +3,7 @@ package com.example.speedywheels.service;
 import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.User;
+import com.example.speedywheels.model.entity.UserFavoriteCars;
 import com.example.speedywheels.model.entity.Vehicle;
 import com.example.speedywheels.model.enums.CarCategory;
 import com.example.speedywheels.model.view.VehicleView;
@@ -106,19 +107,18 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void removeCarFromFavorites(Car car) {
-        boolean isFavorite = userService.findAll().stream()
-                .anyMatch(u -> u.getFavoriteCars().contains(car));
+        List<User> users = userService.findAll();
 
-        if (isFavorite) {
-            List<User> users = userService.findAll();
+        users.forEach(user -> {
+            List<UserFavoriteCars> favoritesToRemove = user.getFavoriteCars().stream()
+                    .filter(fav -> fav.getCar().equals(car))
+                    .collect(Collectors.toList());
 
-            users.forEach(user -> {
-                if (user.getFavoriteCars().contains(car)) {
-                    user.getFavoriteCars().remove(car);
-                    userService.saveCurrentUser(user);
-                }
-            });
-        }
+            if (!favoritesToRemove.isEmpty()) {
+                user.getFavoriteCars().removeAll(favoritesToRemove);
+                userService.saveCurrentUser(user);
+            }
+        });
     }
 
     @Override
@@ -144,10 +144,11 @@ public class CarServiceImpl implements CarService {
         return this.userService.findByUsername(username).get()
                 .getFavoriteCars()
                 .stream()
-                .map(car -> {
-                    VehicleView view = modelMapper.map(car, VehicleView.class);
-                    view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
-                    view.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
+                .map(favoriteCar -> {
+                    VehicleView view = modelMapper.map(favoriteCar.getCar(), VehicleView.class);
+                    view.setProductionDate(ModelAttributeUtil.formatDate(favoriteCar.getCar().getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(favoriteCar.getCar().getPrice()));
+                    view.setAddedToFavorite(favoriteCar.getAddedToFavorite());
                     view.setType("car");
                     return view;})
                 .collect(Collectors.toList());

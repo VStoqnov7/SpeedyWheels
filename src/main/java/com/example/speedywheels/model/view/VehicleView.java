@@ -48,4 +48,6 @@ public class VehicleView {
     private EngineType engineType;
 
     private List<String> photosUrls;
+
+    private LocalDateTime addedToFavorite;
 }

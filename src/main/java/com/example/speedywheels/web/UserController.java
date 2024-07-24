@@ -28,18 +28,15 @@ import java.util.stream.Stream;
 public class UserController {
     private final CarService carService;
     private final MotorcycleService motorcycleService;
-    private final UserService userService;
-
 
     @Autowired
-    public UserController(CarService carService, MotorcycleService motorcycleService, UserService userService) {
+    public UserController(CarService carService, MotorcycleService motorcycleService) {
         this.carService = carService;
         this.motorcycleService = motorcycleService;
-        this.userService = userService;
     }
 
     @GetMapping("/favorite-vehicles")
-    public ModelAndView showAllFavoriteVehicles(@PageableDefault(sort = "id", size = 10) Pageable pageable,
+    public ModelAndView showAllFavoriteVehicles(@PageableDefault(sort = "id",size = 10) Pageable pageable,
                                         ModelAndView model,
                                         @AuthenticationPrincipal UserDetails userDetails) {
         List<VehicleView> cars = carService.findMyFavoriteCars(userDetails.getUsername());
@@ -47,8 +44,8 @@ public class UserController {
         List<VehicleView> vehicles = Stream.concat(
                         cars.stream(),
                         motorcycles.stream())
+                .sorted(Comparator.comparing(VehicleView::getAddedToFavorite).reversed())
                 .collect(Collectors.toList());
-        Collections.reverse(vehicles);
 
         int start = (int) pageable.getOffset();
         int end = Math.min(start + pageable.getPageSize(), vehicles.size());

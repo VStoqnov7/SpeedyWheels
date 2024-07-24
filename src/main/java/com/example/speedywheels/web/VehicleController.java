@@ -1,8 +1,6 @@
 package com.example.speedywheels.web;
 
-import com.example.speedywheels.model.entity.Car;
-import com.example.speedywheels.model.entity.Motorcycle;
-import com.example.speedywheels.model.entity.User;
+import com.example.speedywheels.model.entity.*;
 import com.example.speedywheels.model.view.CarProfileView;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.MotorcycleProfileView;
@@ -22,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -161,7 +160,8 @@ public class VehicleController {
                 model.addObject("vehicle", carProfileView);
                 model.addObject("vehicleType", "car");
                 vehicleFound = true;
-                isFavorite = user.getFavoriteCars().contains(car) ? true : false;
+                isFavorite = user.getFavoriteCars().stream()
+                        .anyMatch(favorite -> favorite.getCar().equals(car));
                 isOwner = user.getMyCars().contains(car);
             }
         }
@@ -175,7 +175,8 @@ public class VehicleController {
                 model.addObject("vehicle", motorcycleProfileView);
                 model.addObject("vehicleType", "motorcycle");
                 vehicleFound = true;
-                isFavorite = user.getFavoriteMotorcycles().contains(motorcycle) ? true : false;
+                isFavorite = user.getFavoriteMotorcycles().stream()
+                        .anyMatch(favorite -> favorite.getMotorcycle().equals(motorcycle));
                 isOwner = user.getMyMotorcycles().contains(motorcycle);
             }
         }
@@ -204,12 +205,20 @@ public class VehicleController {
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
             if (car != null) {
-                user.getFavoriteCars().add(car);
+                UserFavoriteCars userFavoriteCar = new UserFavoriteCars()
+                        .setCar(car)
+                        .setAddedToFavorite(LocalDateTime.now())
+                        .setUser(user);
+                user.getFavoriteCars().add(userFavoriteCar);
             }
         } else if (type.equals("motorcycle")) {
             Motorcycle motorcycle = motorcycleService.findById(vehicleId);
             if (motorcycle != null) {
-                user.getFavoriteMotorcycles().add(motorcycle);
+                UserFavoriteMotorcycle userFavoriteMotorcycle = new UserFavoriteMotorcycle()
+                        .setMotorcycle(motorcycle)
+                        .setAddedToFavorite(LocalDateTime.now())
+                        .setUser(user);
+                user.getFavoriteMotorcycles().add(userFavoriteMotorcycle);
             }
         }
         userService.saveCurrentUser(user);
@@ -227,12 +236,26 @@ public class VehicleController {
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
             if (car != null) {
-                user.getFavoriteCars().remove(car);
+                UserFavoriteCars favorite = user.getFavoriteCars().stream()
+                        .filter(f -> f.getCar().equals(car))
+                        .findFirst()
+                        .orElse(null);
+
+                if (favorite != null) {
+                    user.getFavoriteCars().remove(favorite);
+                }
             }
         } else if (type.equals("motorcycle")) {
             Motorcycle motorcycle = motorcycleService.findById(vehicleId);
             if (motorcycle != null) {
-                user.getFavoriteMotorcycles().remove(motorcycle);
+                UserFavoriteMotorcycle favorite = user.getFavoriteMotorcycles().stream()
+                        .filter(f -> f.getMotorcycle().equals(motorcycle))
+                        .findFirst()
+                        .orElse(null);
+
+                if (favorite != null) {
+                    user.getFavoriteMotorcycles().remove(favorite);
+                }
             }
         }
         userService.saveCurrentUser(user);

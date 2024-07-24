@@ -3,6 +3,7 @@ package com.example.speedywheels.service;
 import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
 import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.model.entity.User;
+import com.example.speedywheels.model.entity.UserFavoriteMotorcycle;
 import com.example.speedywheels.model.entity.Vehicle;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
@@ -95,19 +96,18 @@ public class MotorcycleServiceImpl implements MotorcycleService {
 
     @Override
     public void removeMotorcycleFromFavorites(Motorcycle motorcycle) {
-        boolean isFavorite = userService.findAll().stream()
-                .anyMatch(u -> u.getFavoriteMotorcycles().contains(motorcycle));
+        List<User> users = userService.findAll();
 
-        if (isFavorite) {
-            List<User> users = userService.findAll();
+        users.forEach(user -> {
+            List<UserFavoriteMotorcycle> favoritesToRemove = user.getFavoriteMotorcycles().stream()
+                    .filter(fav -> fav.getMotorcycle().equals(motorcycle))
+                    .collect(Collectors.toList());
 
-            users.forEach(user -> {
-                if (user.getFavoriteMotorcycles().contains(motorcycle)) {
-                    user.getFavoriteMotorcycles().remove(motorcycle);
-                    userService.saveCurrentUser(user);
-                }
-            });
-        }
+            if (!favoritesToRemove.isEmpty()) {
+                user.getFavoriteMotorcycles().removeAll(favoritesToRemove);
+                userService.saveCurrentUser(user);
+            }
+        });
     }
 
     @Override
@@ -121,10 +121,11 @@ public class MotorcycleServiceImpl implements MotorcycleService {
         return this.userService.findByUsername(username).get()
                 .getFavoriteMotorcycles()
                 .stream()
-                .map(motorcycle -> {
-                    VehicleView view = modelMapper.map(motorcycle, VehicleView.class);
-                    view.setProductionDate(ModelAttributeUtil.formatDate(motorcycle.getProductionDate()));
-                    view.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
+                .map(favoriteMotorcycle -> {
+                    VehicleView view = modelMapper.map(favoriteMotorcycle.getMotorcycle(), VehicleView.class);
+                    view.setProductionDate(ModelAttributeUtil.formatDate(favoriteMotorcycle.getMotorcycle().getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(favoriteMotorcycle.getMotorcycle().getPrice()));
+                    view.setAddedToFavorite(favoriteMotorcycle.getAddedToFavorite());
                     view.setType("motorcycle");
                     return view;})
                 .collect(Collectors.toList());

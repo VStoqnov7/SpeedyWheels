@@ -6,7 +6,9 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 @Getter
 @Setter
@@ -60,7 +62,7 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "car_id")
     )
-    private Set<Car> myCars;
+    private List<Car> myCars;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -68,32 +70,22 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "motorcycle_id")
     )
-    private Set<Motorcycle> myMotorcycles;
+    private List<Motorcycle> myMotorcycles;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "favorite_cars",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "car_id")
-    )
-    private Set<Car> favoriteCars;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserFavoriteCars> favoriteCars;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "favorite_motorcycles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "motorcycle_id")
-    )
-    private Set<Motorcycle> favoriteMotorcycles;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserFavoriteMotorcycle> favoriteMotorcycles;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles;
 
     public User() {
-        this.myCars = new LinkedHashSet<>();
-        this.myMotorcycles = new LinkedHashSet<>();
-        this.favoriteCars = new LinkedHashSet<>();
-        this.favoriteMotorcycles = new LinkedHashSet<>();
+        this.myCars = new ArrayList<>();
+        this.myMotorcycles = new ArrayList<>();
+        this.favoriteCars = new ArrayList<>();
+        this.favoriteMotorcycles = new ArrayList<>();
         this.roles = new LinkedHashSet<>();
     }
 }
