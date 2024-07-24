@@ -4,6 +4,7 @@ import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
 import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
+import com.example.speedywheels.model.view.MotorcycleProfileView;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,8 +24,6 @@ public interface MotorcycleService {
 
     boolean availableMotorcycles();
 
-    void deleteMotorcycle(Long vehicleId);
-
     void removeMotorcycleFromFavorites(Motorcycle motorcycle);
 
     void saveVehicle(Vehicle vehicle);
@@ -34,4 +33,12 @@ public interface MotorcycleService {
     List<VehicleView> findMyMotorcycles(String username);
 
     void refreshMotorcycle(Long vehicleId);
+
+    MotorcycleProfileView createMotorcycleProfileView(Motorcycle motorcycle);
+
+    void addFavoriteMotorcycle(Motorcycle motorcycle, User user);
+
+    void deleteFavoriteMotorcycle(Motorcycle motorcycle, User user);
+
+    void deleteMotorcycle(User user, Long vehicleId, Motorcycle motorcycle);
 }

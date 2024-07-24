@@ -1,8 +1,6 @@
 package com.example.speedywheels.web;
 
-import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
-import com.example.speedywheels.model.entity.Motorcycle;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
 import com.example.speedywheels.util.ModelAttributeUtil;
 import jakarta.validation.Valid;

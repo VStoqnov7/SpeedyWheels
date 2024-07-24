@@ -2,6 +2,7 @@ package com.example.speedywheels.service;
 
 import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
 import com.example.speedywheels.model.entity.*;
+import com.example.speedywheels.model.view.MotorcycleProfileView;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.repository.MotorcycleRepository;
@@ -87,11 +88,6 @@ public class MotorcycleServiceImpl implements MotorcycleService {
     }
 
     @Override
-    public void deleteMotorcycle(Long vehicleId) {
-        this.motorcycleRepository.deleteById(vehicleId);
-    }
-
-    @Override
     public void removeMotorcycleFromFavorites(Motorcycle motorcycle) {
         List<User> users = userService.findAll();
 
@@ -147,5 +143,41 @@ public class MotorcycleServiceImpl implements MotorcycleService {
         Motorcycle motorcycle = motorcycleRepository.findById(vehicleId).get();
         motorcycle.setRegisteredOn(LocalDateTime.now());
         motorcycleRepository.save(motorcycle);
+    }
+
+    @Override
+    public MotorcycleProfileView createMotorcycleProfileView(Motorcycle motorcycle) {
+        MotorcycleProfileView motorcycleProfileView = modelMapper.map(motorcycle, MotorcycleProfileView.class);
+        motorcycleProfileView.setRegisteredOn(ModelAttributeUtil.formatDate(motorcycle.getRegisteredOn()));
+        motorcycleProfileView.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
+        return motorcycleProfileView;
+    }
+
+    @Override
+    public void addFavoriteMotorcycle(Motorcycle motorcycle, User user) {
+        UserFavoriteMotorcycle userFavoriteMotorcycle = new UserFavoriteMotorcycle()
+                .setMotorcycle(motorcycle)
+                .setAddedToFavorite(LocalDateTime.now())
+                .setUser(user);
+        user.getFavoriteMotorcycles().add(userFavoriteMotorcycle);
+    }
+
+    @Override
+    public void deleteFavoriteMotorcycle(Motorcycle motorcycle, User user) {
+        UserFavoriteMotorcycle favorite = user.getFavoriteMotorcycles().stream()
+                .filter(f -> f.getMotorcycle().equals(motorcycle))
+                .findFirst()
+                .orElse(null);
+
+        if (favorite != null) {
+            user.getFavoriteMotorcycles().remove(favorite);
+        }
+    }
+
+    @Override
+    public void deleteMotorcycle(User user, Long vehicleId, Motorcycle motorcycle) {
+        user.getMyMotorcycles().remove(motorcycle);
+        this.removeMotorcycleFromFavorites(motorcycle);
+        this.motorcycleRepository.deleteById(vehicleId);
     }
 }

@@ -6,6 +6,7 @@ import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.UserFavoriteCars;
 import com.example.speedywheels.model.entity.Vehicle;
 import com.example.speedywheels.model.enums.CarCategory;
+import com.example.speedywheels.model.view.CarProfileView;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
@@ -102,11 +103,6 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteCar(Long vehicleId) {
-        this.carRepository.deleteById(vehicleId);
-    }
-
-    @Override
     public void removeCarFromFavorites(Car car) {
         List<User> users = userService.findAll();
 
@@ -177,5 +173,42 @@ public class CarServiceImpl implements CarService {
         Car car = carRepository.findById(vehicleId).get();
         car.setRegisteredOn(LocalDateTime.now());
         carRepository.save(car);
+    }
+
+    @Override
+    public CarProfileView createCarProfileView(Car car) {
+        CarProfileView carProfileView = modelMapper.map(car, CarProfileView.class);
+        carProfileView.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
+        carProfileView.setRegisteredOn(ModelAttributeUtil.formatDate(car.getRegisteredOn()));
+        carProfileView.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));;
+        return carProfileView;
+    }
+
+    @Override
+    public void addFavoriteCar(Car car, User user) {
+        UserFavoriteCars userFavoriteCar = new UserFavoriteCars()
+                .setCar(car)
+                .setAddedToFavorite(LocalDateTime.now())
+                .setUser(user);
+        user.getFavoriteCars().add(userFavoriteCar);
+    }
+
+    @Override
+    public void deleteFavoriteCar(Car car, User user) {
+        UserFavoriteCars favorite = user.getFavoriteCars().stream()
+                .filter(f -> f.getCar().equals(car))
+                .findFirst()
+                .orElse(null);
+
+        if (favorite != null) {
+            user.getFavoriteCars().remove(favorite);
+        }
+    }
+
+    @Override
+    public void deleteCar(User user, Long vehicleId, Car car) {
+        user.getMyCars().remove(car);
+        this.removeCarFromFavorites(car);
+        this.carRepository.deleteById(vehicleId);
     }
 }

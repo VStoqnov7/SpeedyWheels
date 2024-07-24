@@ -123,7 +123,7 @@
         </form>
 
 
-        <form th:action="'/vehicles/delete-vehicle/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST"
+        <form th:action="'/vehicles/delete-vehicle/' + ${vehicleType} + '/' + ${vehicle.id} + '/' + ${page}" method="POST"
               th:if="${isAdmin or isOwner}">
             <input type="hidden" name="_method" value="DELETE"/>
             <button type="submit" class="btn btn-danger btn-sm mt-2">

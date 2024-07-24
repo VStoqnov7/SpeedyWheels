@@ -35,11 +35,9 @@ public class HomeController {
         TheMostExpensiveVehicleView theMostExpensiveMotorcycle = this.motorcycleService.theMostExpensiveMotorcycle();
         TheMostPowerfulCarView theMostPowerfulCarView = this.carService.theMostPowerfulCar();
 
-        List<VehicleView> latestEightCars = this.carService.findLatestCars();
-        List<VehicleView> latestEightMotorcycles = this.motorcycleService.findLatestMotorcycles();
         List<VehicleView> latestEightVehicles = Stream.concat(
-                        latestEightCars.stream(),
-                        latestEightMotorcycles.stream())
+                        this.carService.findLatestCars().stream(),
+                        this.motorcycleService.findLatestMotorcycles().stream())
                 .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .limit(8)
                 .collect(Collectors.toList());

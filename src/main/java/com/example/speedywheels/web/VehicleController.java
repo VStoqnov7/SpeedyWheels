@@ -7,8 +7,6 @@ import com.example.speedywheels.model.view.MotorcycleProfileView;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
 import com.example.speedywheels.service.interfaces.UserService;
-import com.example.speedywheels.util.ModelAttributeUtil;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,25 +29,20 @@ public class VehicleController {
 
     private final CarService carService;
     private final MotorcycleService motorcycleService;
-    private final ModelMapper modelMapper;
     private final UserService userService;
 
     @Autowired
-    public VehicleController(CarService carService, MotorcycleService motorcycleService, ModelMapper modelMapper, UserService userService) {
+    public VehicleController(CarService carService, MotorcycleService motorcycleService, UserService userService) {
         this.carService = carService;
         this.motorcycleService = motorcycleService;
-        this.modelMapper = modelMapper;
         this.userService = userService;
     }
 
-
     @GetMapping("/all")
     public ModelAndView showAllVehicles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
-        List<VehicleView> cars = carService.findLatestCars();
-        List<VehicleView> motorcycles = motorcycleService.findLatestMotorcycles();
         List<VehicleView> vehicles = Stream.concat(
-                        cars.stream(),
-                        motorcycles.stream())
+                        carService.findLatestCars().stream(),
+                motorcycleService.findLatestMotorcycles().stream())
                 .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .collect(Collectors.toList());
 
@@ -145,21 +137,17 @@ public class VehicleController {
                                        @PathVariable String type,
                                        @PathVariable Long vehicleId,
                                        @AuthenticationPrincipal UserDetails userDetails) {
-        boolean vehicleFound = false;
-        boolean isFavorite = false;
-        boolean isOwner = false;
+
         User user = this.userService.findByUsername(userDetails.getUsername()).get();
+        boolean isFavorite = false;
+        boolean isOwner = isOwner(vehicleId, user);
 
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
             if (car != null) {
-                CarProfileView carProfileView = modelMapper.map(car, CarProfileView.class);
-                carProfileView.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
-                carProfileView.setRegisteredOn(ModelAttributeUtil.formatDate(car.getRegisteredOn()));
-                carProfileView.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
+                CarProfileView carProfileView = this.carService.createCarProfileView(car);
                 model.addObject("vehicle", carProfileView);
                 model.addObject("vehicleType", "car");
-                vehicleFound = true;
                 isFavorite = user.getFavoriteCars().stream()
                         .anyMatch(favorite -> favorite.getCar().equals(car));
             }
@@ -168,32 +156,30 @@ public class VehicleController {
         if (type.equals("motorcycle")) {
             Motorcycle motorcycle = motorcycleService.findById(vehicleId);
             if (motorcycle != null) {
-                MotorcycleProfileView motorcycleProfileView = modelMapper.map(motorcycle, MotorcycleProfileView.class);
-                motorcycleProfileView.setRegisteredOn(ModelAttributeUtil.formatDate(motorcycle.getRegisteredOn()));
-                motorcycleProfileView.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
+                MotorcycleProfileView motorcycleProfileView = this.motorcycleService.createMotorcycleProfileView(motorcycle);
                 model.addObject("vehicle", motorcycleProfileView);
                 model.addObject("vehicleType", "motorcycle");
-                vehicleFound = true;
                 isFavorite = user.getFavoriteMotorcycles().stream()
                         .anyMatch(favorite -> favorite.getMotorcycle().equals(motorcycle));
             }
         }
 
-        if (!vehicleFound) {
-            model.setViewName("error");
-            return model;
-        }
+        addObjects(model, userDetails, isFavorite, isOwner);
+        model.setViewName("vehicle-profile");
+        return model;
+    }
 
-        isOwner = user.getMyCars().stream().anyMatch(myCar -> myCar.equals(carService.findById(vehicleId))) ||
-                user.getMyMotorcycles().stream().anyMatch(myMotorcycle -> myMotorcycle.equals(motorcycleService.findById(vehicleId)));
-
+    private static void addObjects(ModelAndView model, UserDetails userDetails, boolean isFavorite, boolean isOwner) {
         model.addObject("page", "profile");
         model.addObject("isFavorite", isFavorite);
         model.addObject("isOwner", isOwner);
         model.addObject("user", userDetails.getUsername());
         model.addObject("isAdmin", userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")));
-        model.setViewName("vehicle-profile");
-        return model;
+    }
+
+    private boolean isOwner(Long vehicleId, User user) {
+        return user.getMyCars().stream().anyMatch(myCar -> myCar.equals(carService.findById(vehicleId))) ||
+                user.getMyMotorcycles().stream().anyMatch(myMotorcycle -> myMotorcycle.equals(motorcycleService.findById(vehicleId)));
     }
 
 
@@ -206,20 +192,12 @@ public class VehicleController {
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
             if (car != null) {
-                UserFavoriteCars userFavoriteCar = new UserFavoriteCars()
-                        .setCar(car)
-                        .setAddedToFavorite(LocalDateTime.now())
-                        .setUser(user);
-                user.getFavoriteCars().add(userFavoriteCar);
+                this.carService.addFavoriteCar(car,user);
             }
         } else if (type.equals("motorcycle")) {
             Motorcycle motorcycle = motorcycleService.findById(vehicleId);
             if (motorcycle != null) {
-                UserFavoriteMotorcycle userFavoriteMotorcycle = new UserFavoriteMotorcycle()
-                        .setMotorcycle(motorcycle)
-                        .setAddedToFavorite(LocalDateTime.now())
-                        .setUser(user);
-                user.getFavoriteMotorcycles().add(userFavoriteMotorcycle);
+                this.motorcycleService.addFavoriteMotorcycle(motorcycle,user);
             }
         }
         userService.saveCurrentUser(user);
@@ -237,26 +215,12 @@ public class VehicleController {
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
             if (car != null) {
-                UserFavoriteCars favorite = user.getFavoriteCars().stream()
-                        .filter(f -> f.getCar().equals(car))
-                        .findFirst()
-                        .orElse(null);
-
-                if (favorite != null) {
-                    user.getFavoriteCars().remove(favorite);
-                }
+                this.carService.deleteFavoriteCar(car,user);
             }
         } else if (type.equals("motorcycle")) {
             Motorcycle motorcycle = motorcycleService.findById(vehicleId);
             if (motorcycle != null) {
-                UserFavoriteMotorcycle favorite = user.getFavoriteMotorcycles().stream()
-                        .filter(f -> f.getMotorcycle().equals(motorcycle))
-                        .findFirst()
-                        .orElse(null);
-
-                if (favorite != null) {
-                    user.getFavoriteMotorcycles().remove(favorite);
-                }
+                this.motorcycleService.deleteFavoriteMotorcycle(motorcycle,user);
             }
         }
         userService.saveCurrentUser(user);
@@ -269,27 +233,21 @@ public class VehicleController {
                                       @PathVariable Long vehicleId,
                                       @PathVariable String page,
                                       ModelAndView model) {
-
         User user = null;
         if (type.equals("car")) {
             Car car = carService.findById(vehicleId);
             if (car != null) {
-                user = carService.findCarOwner(vehicleId);
-                user.getMyCars().remove(car);
-                this.carService.removeCarFromFavorites(car);
-                this.carService.deleteCar(vehicleId);
+                user = this.carService.findCarOwner(vehicleId);
+                this.carService.deleteCar(user,vehicleId,car);
             }
         } else if (type.equals("motorcycle")) {
             Motorcycle motorcycle = motorcycleService.findById(vehicleId);
             if (motorcycle != null) {
-                user = motorcycleService.findMotorcycleOwner(vehicleId);
-                user.getMyMotorcycles().remove(motorcycle);
-                this.motorcycleService.removeMotorcycleFromFavorites(motorcycle);
-                this.motorcycleService.deleteMotorcycle(vehicleId);
+                user = this.motorcycleService.findMotorcycleOwner(vehicleId);
+                this.motorcycleService.deleteMotorcycle(user,vehicleId,motorcycle);
             }
         }
         userService.saveCurrentUser(user);
-
         model.setViewName(page.equals("profile") ? "redirect:/home" : "redirect:/user/my-vehicles");
         return model;
     }

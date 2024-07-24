@@ -1,6 +1,5 @@
 package com.example.speedywheels.web;
 
-import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
@@ -30,24 +29,20 @@ import java.util.stream.Stream;
 public class UserController {
     private final CarService carService;
     private final MotorcycleService motorcycleService;
-    private final UserService userService;
 
     @Autowired
-    public UserController(CarService carService, MotorcycleService motorcycleService, UserService userService) {
+    public UserController(CarService carService, MotorcycleService motorcycleService) {
         this.carService = carService;
         this.motorcycleService = motorcycleService;
-        this.userService = userService;
     }
 
     @GetMapping("/favorite-vehicles")
     public ModelAndView showAllFavoriteVehicles(@PageableDefault(sort = "id",size = 10) Pageable pageable,
                                         ModelAndView model,
                                         @AuthenticationPrincipal UserDetails userDetails) {
-        List<VehicleView> cars = carService.findMyFavoriteCars(userDetails.getUsername());
-        List<VehicleView> motorcycles = motorcycleService.findMyFavoriteMotorcycles(userDetails.getUsername());
         List<VehicleView> vehicles = Stream.concat(
-                        cars.stream(),
-                        motorcycles.stream())
+                        carService.findMyFavoriteCars(userDetails.getUsername()).stream(),
+                        motorcycleService.findMyFavoriteMotorcycles(userDetails.getUsername()).stream())
                 .sorted(Comparator.comparing(VehicleView::getAddedToFavorite).reversed())
                 .collect(Collectors.toList());
 
@@ -71,11 +66,9 @@ public class UserController {
     public ModelAndView showAllMyVehicles(@PageableDefault(sort = "id",size = 10) Pageable pageable,
                                                 ModelAndView model,
                                                 @AuthenticationPrincipal UserDetails userDetails) {
-        List<VehicleView> cars = carService.findMyCars(userDetails.getUsername());
-        List<VehicleView> motorcycles = motorcycleService.findMyMotorcycles(userDetails.getUsername());
         List<VehicleView> vehicles = Stream.concat(
-                        cars.stream(),
-                        motorcycles.stream())
+                        carService.findMyCars(userDetails.getUsername()).stream(),
+                        motorcycleService.findMyMotorcycles(userDetails.getUsername()).stream())
                 .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
                 .collect(Collectors.toList());
 

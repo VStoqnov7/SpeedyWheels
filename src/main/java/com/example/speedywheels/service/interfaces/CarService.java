@@ -4,6 +4,7 @@ import com.example.speedywheels.model.dtos.CarAddDTO;
 import com.example.speedywheels.model.entity.Car;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.entity.Vehicle;
+import com.example.speedywheels.model.view.CarProfileView;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.model.view.TheMostPowerfulCarView;
@@ -26,8 +27,6 @@ public interface CarService {
 
     boolean availableCars();
 
-    void deleteCar(Long vehicleId);
-
     void removeCarFromFavorites(Car car);
 
     void saveVehicle(Vehicle vehicle);
@@ -39,4 +38,12 @@ public interface CarService {
     List<VehicleView> findMyCars(String username);
 
     void refreshCar(Long vehicleId);
+
+    CarProfileView createCarProfileView(Car car);
+
+    void addFavoriteCar(Car car, User user);
+
+    void deleteFavoriteCar(Car car, User user);
+
+    void deleteCar(User user, Long vehicleId, Car car);
 }

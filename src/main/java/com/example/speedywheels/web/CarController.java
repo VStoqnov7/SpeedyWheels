@@ -1,7 +1,6 @@
 package com.example.speedywheels.web;
 
 import com.example.speedywheels.model.dtos.CarAddDTO;
-import com.example.speedywheels.model.enums.*;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.util.ModelAttributeUtil;
 import jakarta.validation.Valid;
