@@ -35,4 +35,8 @@ public interface CarService {
     List<VehicleView> findJeeps();
 
     List<VehicleView> findMyFavoriteCars(String username);
+
+    List<VehicleView> findMyCars(String username);
+
+    void refreshCar(Long vehicleId);
 }

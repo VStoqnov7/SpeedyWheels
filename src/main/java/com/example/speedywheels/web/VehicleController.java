@@ -162,7 +162,6 @@ public class VehicleController {
                 vehicleFound = true;
                 isFavorite = user.getFavoriteCars().stream()
                         .anyMatch(favorite -> favorite.getCar().equals(car));
-                isOwner = user.getMyCars().contains(car);
             }
         }
 
@@ -177,7 +176,6 @@ public class VehicleController {
                 vehicleFound = true;
                 isFavorite = user.getFavoriteMotorcycles().stream()
                         .anyMatch(favorite -> favorite.getMotorcycle().equals(motorcycle));
-                isOwner = user.getMyMotorcycles().contains(motorcycle);
             }
         }
 
@@ -185,6 +183,9 @@ public class VehicleController {
             model.setViewName("error");
             return model;
         }
+
+        isOwner = user.getMyCars().stream().anyMatch(myCar -> myCar.equals(carService.findById(vehicleId))) ||
+                user.getMyMotorcycles().stream().anyMatch(myMotorcycle -> myMotorcycle.equals(motorcycleService.findById(vehicleId)));
 
         model.addObject("page", "profile");
         model.addObject("isFavorite", isFavorite);
@@ -263,9 +264,10 @@ public class VehicleController {
         return model;
     }
 
-    @DeleteMapping("/delete-vehicle/{type}/{vehicleId}")
+    @DeleteMapping("/delete-vehicle/{type}/{vehicleId}/{page}")
     public ModelAndView deleteVehicle(@PathVariable String type,
                                       @PathVariable Long vehicleId,
+                                      @PathVariable String page,
                                       ModelAndView model) {
 
         User user = null;
@@ -287,7 +289,8 @@ public class VehicleController {
             }
         }
         userService.saveCurrentUser(user);
-        model.setViewName("redirect:/home");
+
+        model.setViewName(page.equals("profile") ? "redirect:/home" : "redirect:/user/my-vehicles");
         return model;
     }
 

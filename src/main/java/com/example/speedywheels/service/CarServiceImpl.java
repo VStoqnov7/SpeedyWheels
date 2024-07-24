@@ -80,7 +80,8 @@ public class CarServiceImpl implements CarService {
                     view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
                     view.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
                     view.setType("car");
-                    return view;})
+                    return view;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -123,7 +124,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void saveVehicle(Vehicle vehicle) {
-        Car car = modelMapper.map(vehicle,Car.class);
+        Car car = modelMapper.map(vehicle, Car.class);
         this.carRepository.save(car);
     }
 
@@ -135,7 +136,8 @@ public class CarServiceImpl implements CarService {
                     VehicleView view = modelMapper.map(car, VehicleView.class);
                     view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
                     view.setType("car");
-                    return view;})
+                    return view;
+                })
                 .collect(Collectors.toList());
     }
 
@@ -150,7 +152,30 @@ public class CarServiceImpl implements CarService {
                     view.setPrice(ModelAttributeUtil.formatPrice(favoriteCar.getCar().getPrice()));
                     view.setAddedToFavorite(favoriteCar.getAddedToFavorite());
                     view.setType("car");
-                    return view;})
+                    return view;
+                })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<VehicleView> findMyCars(String username) {
+        return this.userService.findByUsername(username).get()
+                .getMyCars()
+                .stream()
+                .map(car -> {
+                    VehicleView view = modelMapper.map(car, VehicleView.class);
+                    view.setProductionDate(ModelAttributeUtil.formatDate(car.getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(car.getPrice()));
+                    view.setType("car");
+                    return view;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void refreshCar(Long vehicleId) {
+        Car car = carRepository.findById(vehicleId).get();
+        car.setRegisteredOn(LocalDateTime.now());
+        carRepository.save(car);
     }
 }

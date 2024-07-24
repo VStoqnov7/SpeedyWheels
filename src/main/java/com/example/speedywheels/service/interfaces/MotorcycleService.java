@@ -30,4 +30,8 @@ public interface MotorcycleService {
     void saveVehicle(Vehicle vehicle);
 
     List<VehicleView> findMyFavoriteMotorcycles(String username);
+
+    List<VehicleView> findMyMotorcycles(String username);
+
+    void refreshMotorcycle(Long vehicleId);
 }

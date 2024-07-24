@@ -1,10 +1,7 @@
 package com.example.speedywheels.service;
 
 import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
-import com.example.speedywheels.model.entity.Motorcycle;
-import com.example.speedywheels.model.entity.User;
-import com.example.speedywheels.model.entity.UserFavoriteMotorcycle;
-import com.example.speedywheels.model.entity.Vehicle;
+import com.example.speedywheels.model.entity.*;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.repository.MotorcycleRepository;
@@ -129,5 +126,26 @@ public class MotorcycleServiceImpl implements MotorcycleService {
                     view.setType("motorcycle");
                     return view;})
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<VehicleView> findMyMotorcycles(String username) {
+        return this.userService.findByUsername(username).get()
+                .getMyMotorcycles()
+                .stream()
+                .map(motorcycle -> {
+                    VehicleView view = modelMapper.map(motorcycle, VehicleView.class);
+                    view.setProductionDate(ModelAttributeUtil.formatDate(motorcycle.getProductionDate()));
+                    view.setPrice(ModelAttributeUtil.formatPrice(motorcycle.getPrice()));
+                    view.setType("motorcycle");
+                    return view;})
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void refreshMotorcycle(Long vehicleId) {
+        Motorcycle motorcycle = motorcycleRepository.findById(vehicleId).get();
+        motorcycle.setRegisteredOn(LocalDateTime.now());
+        motorcycleRepository.save(motorcycle);
     }
 }
