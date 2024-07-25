@@ -17,6 +17,11 @@ body {
     width: 90%;
 }
 
+.profile-image{
+    width: 7rem;
+    height: 7rem;
+}
+
 .card {
     background-color: transparent;
     backdrop-filter: blur(0.3rem);
@@ -88,6 +93,14 @@ span{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.github{
+    margin-top: 1.5rem;
+}
+
+.rounded{
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 1700px) {
@@ -162,7 +175,7 @@ span{
     }
 
     *{
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .list-group-item{
@@ -175,7 +188,12 @@ span{
     }
 
     .info-1{
-        height: 23.5rem;
+        height: 22rem;
+    }
+
+    .profile-image{
+        width: 5rem;
+        height: 5rem;
     }
 
     .info-2{
@@ -203,7 +221,7 @@ span{
     }
 
     *{
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .col-sm-3{

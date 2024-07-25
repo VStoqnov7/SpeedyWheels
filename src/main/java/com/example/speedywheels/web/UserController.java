@@ -1,9 +1,12 @@
 package com.example.speedywheels.web;
 
+import com.example.speedywheels.model.dtos.UserProfileDTO;
+import com.example.speedywheels.model.view.UserProfileView;
 import com.example.speedywheels.model.view.VehicleView;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
 import com.example.speedywheels.service.interfaces.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,10 +15,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Comparator;
@@ -30,10 +31,48 @@ public class UserController {
     private final CarService carService;
     private final MotorcycleService motorcycleService;
 
+    private final UserService userService;
+
     @Autowired
-    public UserController(CarService carService, MotorcycleService motorcycleService) {
+    public UserController(CarService carService, MotorcycleService motorcycleService, UserService userService) {
         this.carService = carService;
         this.motorcycleService = motorcycleService;
+        this.userService = userService;
+    }
+
+
+    @GetMapping("/profile")
+    public ModelAndView showUserProfile(@AuthenticationPrincipal UserDetails userDetails,
+                                       ModelAndView model) {
+        UserProfileView userProfileView = this.userService.mapUserToView(userDetails.getUsername());
+        UserProfileDTO userProfileDTO = this.userService.mapUserToDTO(userDetails.getUsername());
+
+        model.addObject("userProfileView", userProfileView);
+        model.addObject("userProfile", userProfileDTO);
+
+        model.addObject("roles", userProfileView.getRoles().stream()
+                .map(role -> role.getName().getName())
+                .collect(Collectors.joining(" & ")));
+        model.setViewName("user-profile");
+        return model;
+    }
+
+    @PostMapping("/profile")
+    public ModelAndView updateUserProfile(@Valid @ModelAttribute("userProfile") UserProfileDTO userProfileDTO,
+                                          BindingResult bindingResult,
+                                          ModelAndView model,
+                                          @AuthenticationPrincipal UserDetails userDetails) {
+        if (bindingResult.hasErrors()) {
+            UserProfileView userProfileView = this.userService.mapUserToView(userDetails.getUsername());
+            model.addObject("userProfileView", userProfileView);
+            model.addObject(userProfileDTO);
+            model.setViewName("user-profile");
+            return model;
+        }
+
+        userService.updateUser(userProfileDTO,userDetails.getUsername());
+        model.setViewName("redirect:/user/profile");
+        return model;
     }
 
     @GetMapping("/favorite-vehicles")
@@ -99,4 +138,5 @@ public class UserController {
         model.setViewName("redirect:/user/my-vehicles");
         return model;
     }
+
 }
