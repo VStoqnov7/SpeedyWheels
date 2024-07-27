@@ -27,6 +27,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     private UserDetails map(User user) {
+        if (user.isBanned()) {
+            throw new UsernameNotFoundException("User is banned.");
+        }
+
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
