@@ -44,12 +44,15 @@ table th {
 
 
 .table td{
-    text-align: center;
     vertical-align: middle;
 }
 
-#toggleButton{
+.block-button{
     cursor: pointer;
+}
+
+.align-middle{
+    height: 4rem;
 }
 
 
@@ -86,7 +89,7 @@ table th {
     }
 
     .card{
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .h6{
@@ -107,7 +110,7 @@ table th {
     .users{
         margin: 0;
         width: 100%;
-        padding: 6rem 1rem 3rem 1rem;
+        padding: 8rem 1rem 3rem 1rem;
     }
 
     .card{
@@ -132,11 +135,15 @@ table th {
     .users{
         margin: 0;
         width: 100%;
-        padding: 5rem 0.5rem 3rem 0.5rem;
+        padding: 7rem 0.5rem 3rem 0.5rem;
     }
 
     .card{
         font-size: 0.6rem;
+    }
+
+    h5{
+        font-size: 0.9rem;
     }
 
     .h6{
@@ -150,6 +157,14 @@ table th {
     .btn-sm{
         padding: 1px 1px;
         font-size: 0.6rem;
+    }
+
+    .col-12{
+        padding: 0;
+    }
+
+    .row{
+        margin: 0;
     }
 }
 

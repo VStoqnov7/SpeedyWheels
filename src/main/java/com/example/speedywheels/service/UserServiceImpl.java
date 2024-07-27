@@ -3,15 +3,15 @@ package com.example.speedywheels.service;
 import com.example.speedywheels.config.AdminConfig;
 import com.example.speedywheels.model.dtos.UserProfileDTO;
 import com.example.speedywheels.model.dtos.UserRegisterDTO;
-import com.example.speedywheels.model.entity.Contact;
-import com.example.speedywheels.model.entity.SocialMedia;
-import com.example.speedywheels.model.entity.User;
-import com.example.speedywheels.model.entity.UserRole;
+import com.example.speedywheels.model.entity.*;
 import com.example.speedywheels.model.enums.Role;
+import com.example.speedywheels.model.view.UserControlRoomView;
 import com.example.speedywheels.model.view.UserProfileView;
 import com.example.speedywheels.repository.UserRepository;
 import com.example.speedywheels.service.interfaces.UserRoleService;
 import com.example.speedywheels.service.interfaces.UserService;
+import com.example.speedywheels.util.FavoriteUtils;
+import com.example.speedywheels.util.ModelAttributeUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,10 +19,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private final AdminConfig adminConfig;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService {
     public void dbInitAdmin() {
         if (this.userRepository.count() == 0) {
             Set<UserRole> roles = new HashSet<>();
-            roles.add(this.userRoleService.findByRole(Role.ADMIN));
             roles.add(this.userRoleService.findByRole(Role.USER));
+            roles.add(this.userRoleService.findByRole(Role.ADMIN));
 
             User user = new User()
                     .setUsername(adminConfig.getUsername())
@@ -132,8 +132,69 @@ public class UserServiceImpl implements UserService {
             if (userProfileDTO.getSocialMediasFacebook() != null) socialMedia.setFacebook(userProfileDTO.getSocialMediasFacebook());
         }
 
-        System.out.println();
         this.userRepository.save(user);
     }
 
+    @Override
+    public List<UserControlRoomView> findAllUsersExcludingVenci777() {
+        return userRepository.findAllUsersExcludingUsername("venci777")
+                .stream()
+                .map(user -> {
+                    UserControlRoomView view = modelMapper.map(user, UserControlRoomView.class);
+                    view.setRegisteredOn(ModelAttributeUtil.formatDate(user.getRegisteredOn()));
+                    view.setVehicleCounts(user.getMyCars().size() + user.getMyMotorcycles().size());
+                    return view;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addAdminRole(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            UserRole adminRole = this.userRoleService.findByRole(Role.ADMIN);
+            user.getRoles().add(adminRole);
+            this.userRepository.save(user);
+        }
+    }
+
+    @Override
+    public void removeAdminRole(Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            UserRole adminRole = this.userRoleService.findByRole(Role.ADMIN);
+            user.getRoles().remove(adminRole);
+            this.userRepository.save(user);
+        }
+    }
+
+    @Override
+    public void blockUser(Long userId) {
+        userRepository.findById(userId)
+                .ifPresent(user -> {
+                    user.setBanned(true);
+                    userRepository.save(user);
+                });
+    }
+
+    @Override
+    public void unblockUser(Long userId) {
+        userRepository.findById(userId)
+                .ifPresent(user -> {
+                    user.setBanned(false);
+                    userRepository.save(user);
+                });
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        userRepository.findById(userId)
+                .ifPresent(user -> {
+                    user.getMyCars().forEach(car -> FavoriteUtils.removeCarFromFavorites(this,car));
+                    user.getMyMotorcycles().forEach(motorcycle -> FavoriteUtils.removeMotorcycleFromFavorites(this,motorcycle));
+                    userRepository.deleteById(userId);
+                });
+    }
 }
