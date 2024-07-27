@@ -8,6 +8,7 @@ import com.example.speedywheels.model.view.TheMostExpensiveVehicleView;
 import com.example.speedywheels.repository.MotorcycleRepository;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
 import com.example.speedywheels.service.interfaces.UserService;
+import com.example.speedywheels.util.FavoriteUtils;
 import com.example.speedywheels.util.ModelAttributeUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,18 +90,7 @@ public class MotorcycleServiceImpl implements MotorcycleService {
 
     @Override
     public void removeMotorcycleFromFavorites(Motorcycle motorcycle) {
-        List<User> users = userService.findAll();
-
-        users.forEach(user -> {
-            List<UserFavoriteMotorcycle> favoritesToRemove = user.getFavoriteMotorcycles().stream()
-                    .filter(fav -> fav.getMotorcycle().equals(motorcycle))
-                    .collect(Collectors.toList());
-
-            if (!favoritesToRemove.isEmpty()) {
-                user.getFavoriteMotorcycles().removeAll(favoritesToRemove);
-                userService.saveCurrentUser(user);
-            }
-        });
+        FavoriteUtils.removeMotorcycleFromFavorites(userService, motorcycle);
     }
 
     @Override

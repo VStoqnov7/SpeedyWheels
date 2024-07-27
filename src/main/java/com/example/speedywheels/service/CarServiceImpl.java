@@ -13,6 +13,7 @@ import com.example.speedywheels.model.view.TheMostPowerfulCarView;
 import com.example.speedywheels.repository.CarRepository;
 import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.UserService;
+import com.example.speedywheels.util.FavoriteUtils;
 import com.example.speedywheels.util.ModelAttributeUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,18 +105,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void removeCarFromFavorites(Car car) {
-        List<User> users = userService.findAll();
-
-        users.forEach(user -> {
-            List<UserFavoriteCars> favoritesToRemove = user.getFavoriteCars().stream()
-                    .filter(fav -> fav.getCar().equals(car))
-                    .collect(Collectors.toList());
-
-            if (!favoritesToRemove.isEmpty()) {
-                user.getFavoriteCars().removeAll(favoritesToRemove);
-                userService.saveCurrentUser(user);
-            }
-        });
+        FavoriteUtils.removeCarFromFavorites(userService, car);
     }
 
     @Override
