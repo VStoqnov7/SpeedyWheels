@@ -28,6 +28,24 @@ spring:
       filter:
         enabled: true
 
+# Email Sending
+  mail:
+    host: smtp.mailgun.org
+    port: 587
+    username: ${MAIL_USER:postmaster@sandboxffdbd31ee7a7474a9b8c70911be6119e.mailgun.org}
+    password: ${MAIL_PASSWORD:621ab2e66ab2abc6e2c8fef70b00afd6-0f1db83d-c01ff40a}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# Email Recipient
+email:
+  recipient:
+    address: ${EMAIL_RECIPIENT:ventsislav.stoyanov777@gmail.com}
+
 # Logging Levels
 logging:
   level:
@@ -39,11 +57,14 @@ logging:
       nodeValue: WARN
     blog: WARN
 
+# Cloudinary
 cloudinary:
   name: ${CLOUDINARY_NAME:db1rc9fon}
   api-key: ${CLOUDINARY_API_KEY:243925638474447}
   api-secret: ${CLOUDINARY_API_SECRET:tUEAVL6gWzGlllgMDLfHzDZFoH0}
 
+
+# Administrator
 admin:
   username: ${ADMIN_USERNAME:venci777}
   password: ${ADMIN_PASSWORD:sssss}
