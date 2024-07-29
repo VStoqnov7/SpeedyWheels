@@ -23,10 +23,10 @@
                     <div class="col-md-7">
                         <div class="contact-wrap w-100 p-md-5 p-4 text-center">
                             <h3 class="mb-4 contact-text">Contact Us</h3>
-                            <div th:if="${param.success}">
+                            <div th:if="${success}" class="alert alert-success">
                                 <p>Your message was sent successfully!</p>
                             </div>
-                            <div th:if="${param.error}">
+                            <div th:if="${error}" class="alert alert-danger">
                                 <p>There was an error sending the message. Please try again.</p>
                             </div>
                             <div id="form-message-warning" class="mb-4"></div>
