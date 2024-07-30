@@ -1,5 +1,6 @@
 package com.example.speedywheels.service.interfaces;
 
+import com.example.speedywheels.model.dtos.UserEmailDTO;
 import com.example.speedywheels.model.dtos.UserProfileDTO;
 import com.example.speedywheels.model.dtos.UserRegisterDTO;
 import com.example.speedywheels.model.entity.User;
@@ -37,5 +38,7 @@ public interface UserService {
     void unblockUser(Long userId);
 
     void deleteUser(Long userId);
+
+    List<UserEmailDTO>  getAllUserEmails();
 
 }

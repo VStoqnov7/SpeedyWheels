@@ -1,6 +1,7 @@
 package com.example.speedywheels.service;
 
 import com.example.speedywheels.config.AdminConfig;
+import com.example.speedywheels.model.dtos.UserEmailDTO;
 import com.example.speedywheels.model.dtos.UserProfileDTO;
 import com.example.speedywheels.model.dtos.UserRegisterDTO;
 import com.example.speedywheels.model.entity.*;
@@ -196,5 +197,12 @@ public class UserServiceImpl implements UserService {
                     user.getMyMotorcycles().forEach(motorcycle -> FavoriteUtils.removeMotorcycleFromFavorites(this,motorcycle));
                     userRepository.deleteById(userId);
                 });
+    }
+
+    @Override
+    public List<UserEmailDTO> getAllUserEmails() {
+        return this.userRepository.findAll().stream()
+                .map(user -> this.modelMapper.map(user, UserEmailDTO.class))
+                .collect(Collectors.toList());
     }
 }
