@@ -17,10 +17,10 @@
 <th:block sec:authorize="!isAuthenticated()">
     <div class="home">
         <div class="welcome">
-            <h1>Welcome to <span>SpeedyWheels</span></h1>
-            <h2>Find Your Next Car or Motorcycle in Minutes</h2>
-            <p>In three steps you can pick a car or motorcycle, see its price and boom! You're done.</p>
-            <p>To see our services please <a  th:href="@{/user/login}">Login</a> or <a th:href="@{/user/register}">Create Account</a> !</p>
+            <h1><span class="welcome-title" th:text="#{welcome.title}">Welcome to </span><span class="speedyWheels">SpeedyWheels</span></h1>
+            <h2 th:text="#{welcome.subtitle}">Find Your Next Car or Motorcycle in Minutes</h2>
+            <p th:text="#{welcome.description}">In three steps you can pick a car or motorcycle, see its price and boom! You're done.</p>
+            <p><span th:text="#{welcome.instruction}">To see our services please </span><a th:href="@{/user/login}" th:text="#{welcome.login}">Login</a> <span th:text="#{welcome.or}">or</span> <a th:href="@{/user/register}" th:text="#{welcome.createAccount}">Create Account</a> <span th:text="#{welcome.text}"> !</span></p>
         </div>
     </div>
 </th:block>

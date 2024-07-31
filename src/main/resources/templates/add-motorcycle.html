@@ -16,10 +16,10 @@
 
 <div class="add-motorcycle">
         <form th:method="POST" th:action="@{/motorcycles/add-motorcycle}" th:object="${motorcycleAddDTO}" enctype="multipart/form-data">
-            <h2>Add Motorcycle</h2>
+            <h2 th:text="#{motorcycle.add.title}">Add Motorcycle</h2>
             <div class="form-group">
                 <div>
-                    <label for="brand" th:style="${#fields.hasErrors('brand')} ? 'margin-bottom: 0;' : ''">Brand:</label>
+                    <label for="brand" th:style="${#fields.hasErrors('brand')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.brand}">Brand:</label>
                     <small id="brandError"
                            class="bg-danger rounded d-block "
                            th:if="${#fields.hasErrors('brand')}"
@@ -31,7 +31,7 @@
                            th:field="*{brand}">
                 </div>
                 <div>
-                    <label for="model" th:style="${#fields.hasErrors('model')} ? 'margin-bottom: 0;' : ''">Model:</label>
+                    <label for="model" th:style="${#fields.hasErrors('model')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.model}">Model:</label>
                     <small id="modelError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('model')}"
@@ -43,7 +43,7 @@
                            th:field="*{model}">
                 </div>
                 <div>
-                    <label for="power" th:style="${#fields.hasErrors('power')} ? 'margin-bottom: 0;' : ''">Power (hp):</label>
+                    <label for="power" th:style="${#fields.hasErrors('power')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.power}">Power (hp):</label>
                     <small id="powerError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('power')}"
@@ -55,7 +55,7 @@
                            th:field="*{power}">
                 </div>
                 <div>
-                    <label for="mileage" th:style="${#fields.hasErrors('mileage')} ? 'margin-bottom: 0;' : ''">Mileage:</label>
+                    <label for="mileage" th:style="${#fields.hasErrors('mileage')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.mileage}">Mileage:</label>
                     <small id="mileageError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('mileage')}"
@@ -67,7 +67,7 @@
                            th:field="*{mileage}">
                 </div>
                 <div>
-                    <label for="productionDate" th:style="${#fields.hasErrors('productionDate')} ? 'margin-bottom: 0;' : ''">Production Date:</label>
+                    <label for="productionDate" th:style="${#fields.hasErrors('productionDate')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.productionDate}">Production Date:</label>
                     <small id="productionDateError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('productionDate')}"
@@ -79,7 +79,7 @@
                            th:field="*{productionDate}">
                 </div>
                 <div>
-                    <label for="color" th:style="${#fields.hasErrors('color')} ? 'margin-bottom: 0;' : ''">Color:</label>
+                    <label for="color" th:style="${#fields.hasErrors('color')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.color}">Color:</label>
                     <small id="colorError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('color')}"
@@ -88,12 +88,12 @@
                     <select id="color"
                             name="color"
                             th:field="*{color}">
-                        <option value="">- Select color -</option>
-                        <option th:each="color : ${colors}" th:value="${color}" th:text="${color.getName()}">Color</option>
+                        <option value="" th:text="#{motorcycle.add.select.color}">- Select color -</option>
+                        <option th:each="color : ${colors}" th:value="${color}" th:text="${color.getName(#locale)}">Color</option>
                     </select>
                 </div>
                 <div>
-                    <label for="location" th:style="${#fields.hasErrors('location')} ? 'margin-bottom: 0;' : ''">Location:</label>
+                    <label for="location" th:style="${#fields.hasErrors('location')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.location}">Location:</label>
                     <small id="locationError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('location')}"
@@ -105,7 +105,7 @@
                            th:field="*{location}">
                 </div>
                 <div>
-                    <label for="transmission" th:style="${#fields.hasErrors('transmission')} ? 'margin-bottom: 0;' : ''">Transmission:</label>
+                    <label for="transmission" th:style="${#fields.hasErrors('transmission')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.transmission}">Transmission:</label>
                     <small id="transmissionError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('transmission')}"
@@ -114,12 +114,12 @@
                     <select id="transmission"
                             name="transmission"
                             th:field="*{transmission}">
-                        <option value="">- Select transmission -</option>
-                        <option th:each="transmission : ${transmissions}" th:value="${transmission}" th:text="${transmission.getName()}">Transmission</option>
+                        <option value="" th:text="#{motorcycle.add.select.transmission}">- Select transmission -</option>
+                        <option th:each="transmission : ${transmissions}" th:value="${transmission}" th:text="${transmission.getName(#locale)}">Transmission</option>
                     </select>
                 </div>
                 <div>
-                    <label for="category" th:style="${#fields.hasErrors('category')} ? 'margin-bottom: 0;' : ''">Category:</label>
+                    <label for="category" th:style="${#fields.hasErrors('category')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.category}">Category:</label>
                     <small id="categoryError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('category')}"
@@ -128,12 +128,12 @@
                     <select id="category"
                             name="category"
                             th:field="*{category}">
-                        <option value="">- Select category -</option>
-                        <option th:each="category : ${categories}" th:value="${category}" th:text="${category.getName()}">Category</option>
+                        <option value="" th:text="#{motorcycle.add.select.category}">- Select category -</option>
+                        <option th:each="category : ${categories}" th:value="${category}" th:text="${category.getName(#locale)}">Category</option>
                     </select>
                 </div>
                 <div>
-                    <label for="euroStandard" th:style="${#fields.hasErrors('euroStandard')} ? 'margin-bottom: 0;' : ''">Euro Standard:</label>
+                    <label for="euroStandard" th:style="${#fields.hasErrors('euroStandard')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.euroStandard}">Euro Standard:</label>
                     <small id="euroStandardError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('euroStandard')}"
@@ -142,13 +142,13 @@
                     <select id="euroStandard"
                             name="euroStandard"
                             th:field="*{euroStandard}">
-                        <option value="">- Select euro standard -</option>
-                        <option th:each="euroStandard : ${euroStandards}" th:value="${euroStandard}" th:text="${euroStandard.getName()}">Euro Standard</option>
+                        <option value="" th:text="#{motorcycle.add.select.euroStandard}">- Select euro standard -</option>
+                        <option th:each="euroStandard : ${euroStandards}" th:value="${euroStandard}" th:text="${euroStandard.getName(#locale)}">Euro Standard</option>
 
                     </select>
                 </div>
                 <div>
-                    <label for="cubicCapacity" th:style="${#fields.hasErrors('cubicCapacity')} ? 'margin-bottom: 0;' : ''">Engine Capacity (cc):</label>
+                    <label for="cubicCapacity" th:style="${#fields.hasErrors('cubicCapacity')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.cubicCapacity}">Engine Capacity (cc):</label>
                     <small id="cubicCapacityError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('cubicCapacity')}"
@@ -160,7 +160,7 @@
                            th:field="*{cubicCapacity}">
                 </div>
                 <div class="engine-type">
-                    <label for="engineType" th:style="${#fields.hasErrors('engineType')} ? 'margin-bottom: 0;' : ''">Engine Type:</label>
+                    <label for="engineType" th:style="${#fields.hasErrors('engineType')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.engineType}">Engine Type:</label>
                     <small id="engineTypeError"
                            class="bg-danger rounded d-block"
                            th:if="${#fields.hasErrors('engineType')}"
@@ -169,13 +169,13 @@
                     <select id="engineType"
                             name="engineType"
                             th:field="*{engineType}">
-                        <option value="">- Select engine type -</option>
-                        <option th:each="engineType : ${engineTypes}" th:value="${engineType}" th:text="${engineType.getName()}">Engine Type:</option>
+                        <option value="" th:text="#{motorcycle.add.select.engineType}">- Select engine type -</option>
+                        <option th:each="engineType : ${engineTypes}" th:value="${engineType}" th:text="${engineType.getName(#locale)}">Engine Type:</option>
                     </select>
                 </div>
             </div>
             <div class="price">
-                <label for="price" th:style="${#fields.hasErrors('price')} ? 'margin-bottom: 0;' : ''">Price (BGN):</label>
+                <label for="price" th:style="${#fields.hasErrors('price')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.price}">Price (BGN):</label>
                 <small id="priceError"
                        class="bg-danger rounded d-block"
                        th:if="${#fields.hasErrors('price')}"
@@ -187,7 +187,7 @@
                        th:field="*{price}">
             </div>
             <div class="photos">
-                <label for="photosUrls" th:style="${#fields.hasErrors('photosUrls')} ? 'margin-bottom: 0;' : ''">Photos:</label>
+                <label for="photosUrls" th:style="${#fields.hasErrors('photosUrls')} ? 'margin-bottom: 0;' : ''" th:text="#{motorcycle.add.photosUrls}">Photos:</label>
                 <small id="photosUrlsError"
                        class="bg-danger rounded d-block"
                        th:if="${#fields.hasErrors('photosUrls')}"
@@ -207,7 +207,7 @@
                            type="checkbox"
                            name="hasLuggageCase"
                            th:field="*{hasLuggageCase}">
-                    <label class="form-check-label" for="hasLuggageCase">Luggage Case</label>
+                    <label class="form-check-label" for="hasLuggageCase" th:text="#{motorcycle.add.luggageCase}">Luggage Case</label>
                 </div>
                 <div class="form-check form-check-inline custom-checkbox">
                     <input class="form-check-input"
@@ -215,7 +215,7 @@
                            type="checkbox"
                            name="hasSidecar"
                            th:field="*{hasSidecar}">
-                    <label class="form-check-label" for="hasSidecar">Sidecar</label>
+                    <label class="form-check-label" for="hasSidecar" th:text="#{motorcycle.add.sideCar}">Sidecar</label>
                 </div>
                 <div class="form-check form-check-inline custom-checkbox">
                     <input class="form-check-input"
@@ -223,10 +223,10 @@
                            type="checkbox"
                            name="hasStabilityControl"
                            th:field="*{hasStabilityControl}">
-                    <label class="form-check-label" for="hasStabilityControl">Stability Control</label>
+                    <label class="form-check-label" for="hasStabilityControl" th:text="#{motorcycle.add.stabilityControl}">Stability Control</label>
                 </div>
             </div>
-            <button type="submit">Add Motorcycle</button>
+            <button type="submit" th:text="#{motorcycle.add.button}">Add Motorcycle</button>
         </form>
 </div>
 

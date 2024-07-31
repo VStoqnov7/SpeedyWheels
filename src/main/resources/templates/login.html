@@ -17,14 +17,15 @@
         <div class="form">
             <form class="login-form acrylic" method="POST" th:action="@{/user/login}">
 
-                <p class="bg-danger text-white pt-2 pb-2 pr-4 pl-4" th:if="${bad_credentials}">
+                <p class="bg-danger text-white pt-2 pb-2 pr-4 pl-4" th:if="${bad_credentials}"
+                   th:text="#{login.invalid.credentials}">
                     Invalid username or password.
                 </p>
-                <span>Login to your account</span>
-                <input id="username" name="username" type="text" placeholder="Username" />
-                <input id="password" name="password" type="password" placeholder="Password" />
-                <button class="login" type="submit"><strong>LOGIN</strong></button>
-                <p class="message"><a th:href="@{/user/register}">Create Account</a></p>
+                <span th:text="#{login.title}">Login to your account</span>
+                <input id="username" name="username" type="text" th:placeholder="#{login.username.placeholder}" />
+                <input id="password" name="password" type="password"  th:placeholder="#{login.password.placeholder}" />
+                <button class="login" type="submit"><strong th:text="#{login.submit.button}">LOGIN</strong></button>
+                <p class="message"><a th:href="@{/user/register}" th:text="#{login.create.account.link}">Create Account</a></p>
             </form>
         </div>
     </div>

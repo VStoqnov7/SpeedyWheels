@@ -17,11 +17,11 @@
 <div class="container mb-5">
     <div class="line-with-text">
         <div class="line-1"></div>
-        <div class="text-line">My Vehicles</div>
+        <div class="text-line" th:text="#{my.vehicles.title}">My Vehicles</div>
         <div class="line-2"></div>
     </div>
 
-    <div th:if="${myVehicles.isEmpty()}" class="alert alert-warning mt-4 text-center no-my-vehicles" role="alert">
+    <div th:if="${myVehicles.isEmpty()}" class="alert alert-warning mt-4 text-center no-my-vehicles" role="alert" th:text="#{my.vehicles.no.available}">
         No vehicles available at the moment.
     </div>
 
@@ -37,29 +37,29 @@
                             </a>
                             <div class="d-flex align-items-center justify-content-between mt-1">
                                 <p class="font-italic text-muted mb-0 small mt-3 mr-3">
-                                    <span><span th:text="${vehicle.power}">200</span> hp | </span>
-                                    <span><span th:text="${vehicle.mileage}">15 000</span> km | </span>
+                                    <span><span th:text="${vehicle.power}">200</span> <span th:text="#{my.vehicles.hp}">hp</span> | </span>
+                                    <span><span th:text="${vehicle.mileage}">15 000</span> <span th:text="#{my.vehicles.km}">km</span> | </span>
                                     <span><span th:text="${vehicle.productionDate}">January 2016</span> | </span>
-                                    <span><span th:text="${vehicle.color.getName()}">Red</span> | </span>
-                                    <span><span th:text="${vehicle.transmission.getName()}">Manual</span> | </span>
-                                    <span><span th:text="${vehicle.euroStandard.getName()}">Euro</span>  | </span>
-                                    <span><span th:text="${vehicle.cubicCapacity}">2000</span> cc | </span>
-                                    <span><span th:text="${vehicle.engineType.getName()}">Diesel</span></span>
+                                    <span><span th:text="${vehicle.color.getName(#locale)}">Red</span> | </span>
+                                    <span><span th:text="${vehicle.transmission.getName(#locale)}">Manual</span> | </span>
+                                    <span><span th:text="${vehicle.euroStandard.getName(#locale)}">Euro</span>  | </span>
+                                    <span><span th:text="${vehicle.cubicCapacity}">2000</span> <span th:text="#{my.vehicles.cc}">cc</span> | </span>
+                                    <span><span th:text="${vehicle.engineType.getName(#locale)}">Diesel</span></span>
                                 </p>
                                 </p>
                                 <h6 class="font-weight-bold my-2 mr-3 price" th:text="${vehicle.price} + ' BGN'">20,000</h6>
                                 <div class="buttons">
                                     <a th:href="'/vehicles/vehicle-profile/' + ${vehicle.type} + '/' + ${vehicle.id}" class="btn btn-info mb-3"><i class="fas fa-info-circle"></i>
-                                        Info</a>
+                                        <span th:text="#{my.vehicles.infoButton}">Info</span></a>
                                     <form th:action="'/user/refresh-vehicle/' + ${vehicle.type} + '/' + ${vehicle.id}" method="POST">
                                         <button type="submit" class="btn btn-labeled btn-info mb-3">
-                                            <span class="btn-label"><i class="fa fa-refresh"></i></span> Refresh
+                                            <span class="btn-label"><i class="fa fa-refresh"></i></span> <span th:text="#{my.vehicles.refresh}">Refresh</span>
                                         </button>
                                     </form>
                                     <form th:action="'/vehicles/delete-vehicle/' + ${vehicle.type} + '/' + ${vehicle.id} + '/' + ${page}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE"/>
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
-                                            Delete</button>
+                                            <span th:text="#{my.vehicles.delete}">Delete</span></button>
                                     </form>
                                 </div>
                             </div>
@@ -84,15 +84,15 @@
                     <!-- First Page -->
                     <li class="page-item" th:classappend="${myVehicles.number == 0 ? 'disabled' : ''}">
                         <a th:unless="${myVehicles.number == 0}" class="page-link"
-                           th:href="@{'/user/my-vehicles?page=0'}">First</a>
-                        <a th:if="${myVehicles.number == 0}" class="page-link" href="#">First</a>
+                           th:href="@{'/user/my-vehicles?page=0'}" th:text="#{my.vehicles.first}">First</a>
+                        <a th:if="${myVehicles.number == 0}" class="page-link" href="#" th:text="#{my.vehicles.first}">First</a>
                     </li>
 
                     <!-- Previous Page -->
                     <li class="page-item" th:classappend="${myVehicles.number == 0 ? 'disabled' : ''}">
                         <a th:unless="${myVehicles.number == 0}" class="page-link"
-                           th:href="@{'/user/my-vehicles?page=' + ${myVehicles.number - 1}}">Previous</a>
-                        <a th:if="${myVehicles.number == 0}" class="page-link" href="#">Previous</a>
+                           th:href="@{'/user/my-vehicles?page=' + ${myVehicles.number - 1}}" th:text="#{my.vehicles.previous}">Previous</a>
+                        <a th:if="${myVehicles.number == 0}" class="page-link" href="#" th:text="#{my.vehicles.previous}">Previous</a>
                     </li>
 
                     <!-- Page Numbers -->
@@ -159,15 +159,15 @@
                     <!-- Next Page -->
                     <li class="page-item" th:classappend="${myVehicles.number == myVehicles.totalPages - 1 ? 'disabled' : ''}">
                         <a th:unless="${myVehicles.number == myVehicles.totalPages - 1}" class="page-link"
-                           th:href="@{'/user/my-vehicles' + '?page=' + ${myVehicles.number + 1}}">Next</a>
-                        <a th:if="${myVehicles.number == myVehicles.totalPages - 1}" class="page-link" href="#">Next</a>
+                           th:href="@{'/user/my-vehicles' + '?page=' + ${myVehicles.number + 1}}" th:text="#{my.vehicles.next}">Next</a>
+                        <a th:if="${myVehicles.number == myVehicles.totalPages - 1}" class="page-link" href="#" th:text="#{my.vehicles.next}">Next</a>
                     </li>
 
                     <!-- Last Page -->
                     <li class="page-item" th:classappend="${myVehicles.number == myVehicles.totalPages - 1 ? 'disabled' : ''}">
                         <a th:unless="${myVehicles.number == myVehicles.totalPages - 1}" class="page-link"
-                           th:href="@{'/user/my-vehicles' + '?page=' + ${myVehicles.totalPages - 1}}">Last</a>
-                        <a th:if="${myVehicles.number == myVehicles.totalPages - 1}" class="page-link" href="#">Last</a>
+                           th:href="@{'/user/my-vehicles' + '?page=' + ${myVehicles.totalPages - 1}}" th:text="#{my.vehicles.last}">Last</a>
+                        <a th:if="${myVehicles.number == myVehicles.totalPages - 1}" class="page-link" href="#" th:text="#{my.vehicles.last}">Last</a>
                     </li>
 
                 </ul>

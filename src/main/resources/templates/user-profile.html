@@ -112,7 +112,7 @@
                                 <li class="list-group-item">
                                     <div class="row mb-1">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Username</h6>
+                                            <h6 class="mb-0" th:text="#{user.profile.username}">Username</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <span class="text-warning" th:text="${userProfileView.username}">Username</span>
@@ -123,7 +123,7 @@
                                 <li class="list-group-item">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">First Name</h6>
+                                            <h6 class="mb-0" th:text="#{user.profile.firstName}">First Name</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary d-flex">
                                             <span id="firstname-span" th:text="${userProfileView.firstName}">John</span>
@@ -146,7 +146,7 @@
                                 <li class="list-group-item">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Last Name</h6>
+                                            <h6 class="mb-0" th:text="#{user.profile.lastName}">Last Name</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary d-flex">
                                             <span id="lastname-span" th:text="${userProfileView.lastName}">Doe</span>
@@ -169,7 +169,7 @@
                                 <li class="list-group-item">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Phone</h6>
+                                            <h6 class="mb-0" th:text="#{user.profile.phone}">Phone</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary d-flex">
                                             <span id="phone-span" th:text="${userProfileView.contactPhone != null ? userProfileView.contactPhone : 'N/A'}">(239) 816-9029</span>
@@ -187,7 +187,7 @@
                                 <li class="list-group-item">
                                     <div class="row mb-1">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Email</h6>
+                                            <h6 class="mb-0" th:text="#{user.profile.email}">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <span class="text-warning" th:text="${userProfileView.contactEmail}">Email</span>
@@ -198,7 +198,7 @@
                                 <li class="list-group-item">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">City</h6>
+                                            <h6 class="mb-0" th:text="#{user.profile.city}">City</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary d-flex">
                                             <span id="city-span" th:text="${userProfileView.city != null ? userProfileView.city : 'N/A'}">Sofia</span>
@@ -216,7 +216,7 @@
                                 <li class="list-group-item">
                                     <div class="row mb-1">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Role</h6>
+                                            <h6 class="mb-0" th:text="#{user.profile.role}">Role</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <span class="text-warning" th:text="${roles}">User</span>
@@ -228,7 +228,7 @@
                     </div>
                     <div class="button-submit">
                         <div>
-                            <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                            <input type="submit" class="btn btn-primary px-4" th:value="#{user.profile.saveChanges}">
                         </div>
                     </div>
                 </div>

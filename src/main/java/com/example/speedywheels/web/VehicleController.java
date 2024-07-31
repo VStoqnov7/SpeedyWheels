@@ -8,6 +8,7 @@ import com.example.speedywheels.service.interfaces.CarService;
 import com.example.speedywheels.service.interfaces.MotorcycleService;
 import com.example.speedywheels.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,16 +32,18 @@ public class VehicleController {
     private final CarService carService;
     private final MotorcycleService motorcycleService;
     private final UserService userService;
+    private final MessageSource messageSource;
 
     @Autowired
-    public VehicleController(CarService carService, MotorcycleService motorcycleService, UserService userService) {
+    public VehicleController(CarService carService, MotorcycleService motorcycleService, UserService userService, MessageSource messageSource) {
         this.carService = carService;
         this.motorcycleService = motorcycleService;
         this.userService = userService;
+        this.messageSource = messageSource;
     }
 
     @GetMapping("/all")
-    public ModelAndView showAllVehicles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
+    public ModelAndView showAllVehicles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model, Locale locale) {
         List<VehicleView> vehicles = Stream.concat(
                         carService.findLatestCars().stream(),
                 motorcycleService.findLatestMotorcycles().stream())
@@ -57,13 +61,13 @@ public class VehicleController {
 
         model.addObject("filter", "all");
         model.addObject("vehicles", allVehicles);
-        model.addObject("title", "Vehicle Showcase");
+        model.addObject("title", messageSource.getMessage("vehicles.title.all", null, locale));
         model.setViewName("vehicles");
         return model;
     }
 
     @GetMapping("/jeeps")
-    public ModelAndView showJeeps(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
+    public ModelAndView showJeeps(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model, Locale locale) {
         List<VehicleView> jeeps = carService.findJeeps()
                 .stream()
                 .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
@@ -80,13 +84,13 @@ public class VehicleController {
 
         model.addObject("filter", "jeeps");
         model.addObject("vehicles", allVehicles);
-        model.addObject("title", "Jeep Showcase");
+        model.addObject("title", messageSource.getMessage("vehicles.title.jeep", null, locale));
         model.setViewName("vehicles");
         return model;
     }
 
     @GetMapping("/motorcycles")
-    public ModelAndView showMotorcycles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
+    public ModelAndView showMotorcycles(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model, Locale locale) {
         List<VehicleView> motorcycles = motorcycleService.findLatestMotorcycles()
                 .stream()
                 .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
@@ -104,13 +108,13 @@ public class VehicleController {
 
         model.addObject("filter", "motorcycles");
         model.addObject("vehicles", allVehicles);
-        model.addObject("title", "Motorcycle Showcase");
+        model.addObject("title", messageSource.getMessage("vehicles.title.motorcycle", null, locale));
         model.setViewName("vehicles");
         return model;
     }
 
     @GetMapping("/cars")
-    public ModelAndView showCars(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model) {
+    public ModelAndView showCars(@PageableDefault(sort = "id", size = 10) Pageable pageable, ModelAndView model, Locale locale) {
         List<VehicleView> cars = carService.findLatestCars()
                 .stream()
                 .sorted(Comparator.comparing(VehicleView::getRegisteredOn).reversed())
@@ -127,7 +131,7 @@ public class VehicleController {
 
         model.addObject("filter", "cars");
         model.addObject("vehicles", allVehicles);
-        model.addObject("title", "Car Showcase");
+        model.addObject("title", messageSource.getMessage("vehicles.title.car", null, locale));
         model.setViewName("vehicles");
         return model;
     }

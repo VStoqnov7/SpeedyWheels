@@ -27,7 +27,7 @@ body::before {
 .add-motorcycle {
     display: block;
     padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
     margin-left: 5rem;
 }
 
@@ -140,7 +140,7 @@ option {
 
 @media screen and (max-width: 900px) {
     .add-motorcycle{
-        padding-top: 8rem;
+        padding-top: 9rem;
         margin-left: 0;
         width: 100%;
     }
@@ -157,11 +157,6 @@ option {
 }
 
 @media screen and (max-width: 700px) {
-    .add-motorcycle{
-        padding-top: 7rem;
-        margin-left: 0;
-        width: 100%;
-    }
 
     .add-motorcycle form{
         width: 90%;

@@ -21,7 +21,7 @@
 </div>
 
 
-<div th:if="${vehicles.isEmpty()}" class="alert alert-warning mt-4 text-center no-vehicles" role="alert">
+<div th:if="${vehicles.isEmpty()}" class="alert alert-warning mt-4 text-center no-vehicles" role="alert" th:text="#{vehicles.no.available}">
     No vehicles available at the moment.
 </div>
 
@@ -57,14 +57,14 @@
                 </div>
 
                 <div class="details-vehicle">
-                    <p>Power(hp): <span th:text="${vehicle.power}"></span></p>
-                    <p>Mileage: <span th:text="${vehicle.mileage}"></span></p>
-                    <p>Location: <span th:text="${vehicle.location}"></span></p>
-                    <p>Engine Type: <span th:text="${vehicle.engineType.getName()}"></span></p>
-                    <p>Price: <span th:text="${vehicle.price} + ' BGN'"></span></p>
+                    <p><span class="p-text1" th:text="#{vehicles.power}">Power(hp): </span> <span th:text="${vehicle.power}" class="p-text2"></span></p>
+                    <p><span class="p-text1" th:text="#{vehicles.mileage}">Mileage: </span> <span th:text="${vehicle.mileage}"> class="p-text2"</span></p>
+                    <p><span class="p-text1" th:text="#{vehicles.location}">Location: </span> <span th:text="${vehicle.location}" class="p-text2"></span></p>
+                    <p><span class="p-text1" th:text="#{vehicles.engine.type}">Engine Type: </span> <span th:text="${vehicle.engineType.getName(#locale)}" class="p-text2"></span></p>
+                    <p><span class="p-text1" th:text="#{vehicles.price}">Price: </span> <span th:text="${vehicle.price} + ' BGN'" class="p-text2"></span></p>
                 </div>
                 <div class="button-vehicle">
-                    <a th:href="'/vehicles/vehicle-profile/' + ${vehicle.type} + '/' + ${vehicle.id}" class="">Details</a>
+                    <a th:href="'/vehicles/vehicle-profile/' + ${vehicle.type} + '/' + ${vehicle.id}" th:text="#{vehicles.details}">Details</a>
                 </div>
             </div>
         </div>
@@ -82,14 +82,14 @@
                     <li class="page-item" th:classappend="${vehicles.number == 0 ? 'disabled' : ''}">
                         <a th:unless="${vehicles.number == 0}" class="page-link"
                            th:href="@{'/vehicles/' + ${filter} + '?page=0'}">First</a>
-                        <a th:if="${vehicles.number == 0}" class="page-link" href="#">First</a>
+                        <a th:if="${vehicles.number == 0}" class="page-link" href="#" th:text="#{vehicles.first}">First</a>
                     </li>
 
                     <!-- Previous Page -->
                     <li class="page-item" th:classappend="${vehicles.number == 0 ? 'disabled' : ''}">
                         <a th:unless="${vehicles.number == 0}" class="page-link"
-                           th:href="@{'/vehicles/' + ${filter} + '?page=' + ${vehicles.number - 1}}">Previous</a>
-                        <a th:if="${vehicles.number == 0}" class="page-link" href="#">Previous</a>
+                           th:href="@{'/vehicles/' + ${filter} + '?page=' + ${vehicles.number - 1}}" th:text="#{vehicles.previous}">Previous</a>
+                        <a th:if="${vehicles.number == 0}" class="page-link" href="#" th:text="#{vehicles.previous}">Previous</a>
                     </li>
 
                     <!-- Page Numbers -->
@@ -156,15 +156,15 @@
                     <!-- Next Page -->
                     <li class="page-item" th:classappend="${vehicles.number == vehicles.totalPages - 1 ? 'disabled' : ''}">
                         <a th:unless="${vehicles.number == vehicles.totalPages - 1}" class="page-link"
-                           th:href="@{'/vehicles/' + ${filter} + '?page=' + ${vehicles.number + 1}}">Next</a>
-                        <a th:if="${vehicles.number == vehicles.totalPages - 1}" class="page-link" href="#">Next</a>
+                           th:href="@{'/vehicles/' + ${filter} + '?page=' + ${vehicles.number + 1}}" th:text="#{vehicles.next}">Next</a>
+                        <a th:if="${vehicles.number == vehicles.totalPages - 1}" class="page-link" href="#" th:text="#{vehicles.next}">Next</a>
                     </li>
 
                     <!-- Last Page -->
                     <li class="page-item" th:classappend="${vehicles.number == vehicles.totalPages - 1 ? 'disabled' : ''}">
                         <a th:unless="${vehicles.number == vehicles.totalPages - 1}" class="page-link"
-                           th:href="@{'/vehicles/' + ${filter} + '?page=' + ${vehicles.totalPages - 1}}">Last</a>
-                        <a th:if="${vehicles.number == vehicles.totalPages - 1}" class="page-link" href="#">Last</a>
+                           th:href="@{'/vehicles/' + ${filter} + '?page=' + ${vehicles.totalPages - 1}}" th:text="#{vehicles.last}">Last</a>
+                        <a th:if="${vehicles.number == vehicles.totalPages - 1}" class="page-link" href="#" th:text="#{vehicles.last}">Last</a>
                     </li>
 
                 </ul>

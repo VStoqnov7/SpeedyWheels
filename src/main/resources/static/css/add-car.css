@@ -25,7 +25,7 @@ body {
 .add-car {
     display: block;
     padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
     margin-left: 5rem;
 }
 
@@ -142,7 +142,7 @@ option {
 
 @media screen and (max-width: 900px) {
     .add-car{
-        padding-top: 8rem;
+        padding-top: 9rem;
         margin-left: 0;
         width: 100%;
     }
@@ -159,15 +159,9 @@ option {
 }
 
 @media screen and (max-width: 700px) {
-    .add-car{
-        padding-top: 7rem;
-        margin-left: 0;
-        width: 100%;
-    }
 
     .add-car form{
         width: 90%;
-        margin: 0 auto;
     }
 
     .add-car form h2{

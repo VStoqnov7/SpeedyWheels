@@ -45,34 +45,34 @@
     </div>
 
     <div class="description text-center mt-4">
-        <h5>Vehicle Info</h5>
+        <h5 th:text="#{vehicle.profile.title}">Vehicle Info</h5>
         <div class="row justify-content-around">
             <div>
-                <p><span class="description-text">Power(hp): </span></p>
-                <p><span class="description-text">Mileage: </span></p>
-                <p><span class="description-text">Production Date: </span></p>
-                <p><span class="description-text">Color: </span></p>
-                <p><span class="description-text">Location: </span></p>
-                <p><span class="description-text">Registered On: </span></p>
-                <p><span class="description-text">Transmission: </span></p>
-                <p><span class="description-text">Euro Standard: </span></p>
-                <p><span class="description-text">Cubic: </span></p>
-                <p><span class="description-text">Engine Type: </span></p>
-                <p><span class="description-text">Category: </span></p>
-                <p><span class="description-text">Price: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.power}">Power(hp): </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.mileage}">Mileage: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.productionDate}">Production Date: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.color}">Color: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.location}">Location: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.registeredOn}">Registered On: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.transmission}">Transmission: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.euroStandard}">Euro Standard: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.cubicCapacity}">Cubic: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.engineType}">Engine Type: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.category}">Category: </span></p>
+                <p><span class="description-text" th:text="#{vehicle.profile.price}">Price: </span></p>
             </div>
             <div>
                 <p><span th:text="${vehicle.power}">...</span></p>
                 <p><span th:text="${vehicle.mileage}">...</span></p>
                 <p><span th:text="${vehicle.productionDate}">...</span></p>
-                <p><span th:text="${vehicle.color.getName()}">...</span></p>
+                <p><span th:text="${vehicle.color.getName(#locale)}">...</span></p>
                 <p><span th:text="${vehicle.location}">...</span></p>
                 <p><span th:text="${vehicle.registeredOn}">...</span></p>
-                <p><span th:text="${vehicle.transmission.getName()}">...</span></p>
-                <p><span th:text="${vehicle.euroStandard.getName()}">...</span></p>
+                <p><span th:text="${vehicle.transmission.getName(#locale)}">...</span></p>
+                <p><span th:text="${vehicle.euroStandard.getName(#locale)}">...</span></p>
                 <p><span th:text="${vehicle.cubicCapacity}">...</span></p>
-                <p><span th:text="${vehicle.engineType.getName()}">...</span></p>
-                <p><span th:text="${vehicle.category.getName()}">...</span></p>
+                <p><span th:text="${vehicle.engineType.getName(#locale)}">...</span></p>
+                <p><span th:text="${vehicle.category.getName(#locale)}">...</span></p>
                 <p><span th:text="${vehicle.price} + ' BGN'">... BGN</span></p>
             </div>
         </div>
@@ -81,34 +81,34 @@
                 <div>
                     <i class="fa-solid fa-check" th:if="${vehicle.has4x4}"></i>
                     <i class="fa-solid fa-times" th:unless="${vehicle.has4x4}"></i>
-                    <label>4x4</label>
+                    <label th:text="#{vehicle.profile.4x4}">4x4</label>
                 </div>
                 <div>
                     <i class="fa-solid fa-check" th:if="${vehicle.hasAirConditioner}"></i>
                     <i class="fa-solid fa-times" th:unless="${vehicle.hasAirConditioner}"></i>
-                    <label>Climate Control</label>
+                    <label th:text="#{vehicle.profile.climateControl}">Climate Control</label>
                 </div>
                 <div>
                     <i class="fa-solid fa-check" th:if="${vehicle.hasGPS}"></i>
                     <i class="fa-solid fa-times" th:unless="${vehicle.hasGPS}"></i>
-                    <label>GPS Navigation</label>
+                    <label th:text="#{vehicle.profile.gpsNavigation}">GPS Navigation</label>
                 </div>
             </th:block>
             <th:block th:if="${vehicleType == 'motorcycle'}">
                 <div>
                     <i class="fa-solid fa-check" th:if="${vehicle.hasLuggageCase}"></i>
                     <i class="fa-solid fa-times" th:unless="${vehicle.hasLuggageCase}"></i>
-                    <label>Luggage Case</label>
+                    <label th:text="#{vehicle.profile.luggageCase}">Luggage Case</label>
                 </div>
                 <div>
                     <i class="fa-solid fa-check" th:if="${vehicle.hasSidecar}"></i>
                     <i class="fa-solid fa-times" th:unless="${vehicle.hasSidecar}"></i>
-                    <label>Sidecar</label>
+                    <label th:text="#{vehicle.profile.sidecar}">Sidecar</label>
                 </div>
                 <div>
                     <i class="fa-solid fa-check" th:if="${vehicle.hasStabilityControl}"></i>
                     <i class="fa-solid fa-times" th:unless="${vehicle.hasStabilityControl}"></i>
-                    <label>Stability Control</label>
+                    <label th:text="#{vehicle.profile.stabilityControl}">Stability Control</label>
                 </div>
             </th:block>
         </div>
@@ -127,7 +127,7 @@
               th:if="${isAdmin or isOwner}">
             <input type="hidden" name="_method" value="DELETE"/>
             <button type="submit" class="btn btn-danger btn-sm mt-2">
-                <i class="fas fa-trash-alt"></i> Delete
+                <i class="fas fa-trash-alt"></i> <span th:text="#{vehicle.profile.delete}"> Delete</span>
             </button>
         </form>
     </div>
@@ -141,15 +141,15 @@
             <div class="row d-flex justify-content-center ">
                 <div class="w-100">
                     <div class="d-flex justify-content-center align-items-center mb-4 ">
-                        <h4 class="text-body mb-0 text-white">Comments</h4>
+                        <h4 class="text-body mb-0 text-white" th:text="#{vehicle.profile.comments.title}">Comments</h4>
                     </div>
                     <form class="form-add-comment"
                           th:action="'/comments/add-comment/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST">
                         <div class="form-group">
                             <textarea class="form-control" id="comment" name="comment" rows="3"
-                                      placeholder="Add a comment"></textarea>
+                                      th:placeholder="#{vehicle.profile.comments.addComment}"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" th:text="#{vehicle.profile.comments.submit}">Submit</button>
                     </form>
 
                     <div class="card mb-3" id="card-section">

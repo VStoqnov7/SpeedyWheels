@@ -22,63 +22,71 @@
                 <div class="row no-gutters mb-4">
                     <div class="col-md-7">
                         <div class="contact-wrap w-100 p-md-5 p-4 text-center">
-                            <h3 class="mb-4 contact-text">Contact Us</h3>
+                            <h3 class="mb-4 contact-text" th:text="#{contact.title}">Contact Us</h3>
                             <div th:if="${success}" class="alert alert-success">
-                                <p>Your message was sent successfully!</p>
+                                <p th:text="#{contact.success}">Your message was sent successfully!</p>
                             </div>
                             <div th:if="${error}" class="alert alert-danger">
-                                <p>There was an error sending the message. Please try again.</p>
+                                <p th:text="#{contact.error}">There was an error sending the message. Please try
+                                    again.</p>
                             </div>
                             <div id="form-message-warning" class="mb-4"></div>
-                            <form method="POST" th:action="@{/contact-us/send-message}" th:object="${contactDTO}" id="contactForm" name="contactForm" class="contactForm">                                <div class="row">
+                            <form method="POST" th:action="@{/contact-us/send-message}" th:object="${contactDTO}"
+                                  id="contactForm" name="contactForm" class="contactForm">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="label contact-text" for="name">Full Name</label>
+                                            <label class="label contact-text" for="name" th:text="#{contact.fullName}">Full
+                                                Name</label>
                                             <input id="name"
                                                    type="text"
                                                    class="form-control"
                                                    name="fullName"
                                                    th:field="*{fullName}"
-                                                   placeholder="Full Name">
+                                                   th:placeholder="#{contact.placeholder.fullName}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="label contact-text" for="email">Email Address</label>
+                                            <label class="label contact-text" for="email" th:text="#{contact.email}">Email
+                                                Address</label>
                                             <input id="email"
                                                    type="text"
                                                    class="form-control"
                                                    name="email"
                                                    th:field="*{email}"
-                                                   placeholder="Email">
+                                                   th:placeholder="#{contact.placeholder.email}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="label contact-text" for="subject">Subject</label>
+                                            <label class="label contact-text" for="subject"
+                                                   th:text="#{contact.subject}">Subject</label>
                                             <input id="subject"
                                                    type="text"
                                                    class="form-control"
                                                    name="subject"
                                                    th:field="*{subject}"
-                                                   placeholder="Subject">
+                                                   th:placeholder="#{contact.placeholder.subject}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="label contact-text" for="message">Message</label>
+                                            <label class="label contact-text" for="message"
+                                                   th:text="#{contact.message}">Message</label>
                                             <textarea id="message"
                                                       class="form-control"
                                                       cols="30"
                                                       rows="4"
                                                       name="message"
                                                       th:field="*{message}"
-                                                      placeholder="Message"></textarea>
+                                                      th:placeholder="#{contact.placeholder.message}">
+                                            </textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group mt-3 mb-0">
-                                            <button type="submit" class="button">Send Message</button>
+                                            <button type="submit" class="button" th:text="#{contact.sendButton}">Send Message</button>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +104,7 @@
                                 <span class="fa-solid fa-location-dot contact-text"></span>
                             </div>
                             <div class="text">
-                                <p><span class="contact-text">Address: </span>Pozitano 175 Street, zh.k. Razsadnika
+                                <p><span class="contact-text" th:text="#{contact.addressLabel}">Address: </span> Pozitano 175 Street, zh.k. Razsadnika
                                     - Koniovitsa</p>
                             </div>
                         </div>
@@ -107,7 +115,7 @@
                                 <span class="fa fa-phone contact-text"></span>
                             </div>
                             <div class="text">
-                                <p><span class="contact-text">Phone: </span>+359 xxx xxx xxx </p>
+                                <p><span class="contact-text" th:text="#{contact.phoneLabel}">Phone: </span> +359 xxx xxx xxx </p>
                             </div>
                         </div>
                     </div>
@@ -117,7 +125,7 @@
                                 <span class="fa-regular fa-envelope contact-text"></span>
                             </div>
                             <div class="text">
-                                <p><span class="contact-text">Email: </span>example@mail.bg</p>
+                                <p><span class="contact-text" th:text="#{contact.emailLabel}">Email: </span> example@mail.bg</p>
                             </div>
                         </div>
                     </div>
@@ -127,8 +135,8 @@
                                 <span class="fa fa-globe contact-text"></span>
                             </div>
                             <div class="text">
-                                <p><span class="contact-text">Website: </span><a href="/"
-                                                                                 class="website">example.com</a></p>
+                                <p><span class="contact-text" th:text="#{contact.websiteLabel}">Website: </span><a href="/"
+                                                                                 class="website"> example.com</a></p>
                             </div>
                         </div>
                     </div>

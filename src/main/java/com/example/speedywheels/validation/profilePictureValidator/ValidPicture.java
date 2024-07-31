@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PictureValidator.class)
 public @interface ValidPicture {
-    String message() default "Picture must not be empty";
+    String message() default "{photosError}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

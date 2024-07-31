@@ -18,8 +18,8 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                <h2 class="mb-4 display-5 text-center text-secondary">About Us</h2>
-                <p class="text-center lead fs-4 text-white container-font">Welcome to our website dedicated to
+                <h2 class="mb-4 display-5 text-center text-secondary" th:text="#{about.title}">About Us</h2>
+                <p class="text-center lead fs-4 text-white container-font" th:text="#{about.description}">Welcome to our website dedicated to
                     vehicles!
                     We are a specialized resource focused on everything
                     related to the latest models, technologies, and accessories for automobiles and jeeps. Our goal
@@ -43,7 +43,7 @@
                 <div class="row justify-content-lg-end">
                     <div class="col-12 col-lg-11">
                         <div class="about-wrapper">
-                            <p class="lead mb-4 mb-md-5 text-white container-font">In each category, you will find
+                            <p class="lead mb-4 mb-md-5 text-white container-font" th:text="#{about.details}">In each category, you will find
                                 comprehensive
                                 materials on
                                 various models of cars and jeeps, aiming to provide insights
@@ -51,13 +51,13 @@
                                 automotive industry or an experienced
                                 enthusiast, here you will find valuable information to help you make informed
                                 decisions when choosing and maintaining
-                                your vehicle..</p>
+                                your vehicle.</p>
                             <div class="row gy-4 mb-4 mb-md-4">
                                 <div class="col-12 col-md-6">
                                     <div class="card border border-dark">
                                         <div class="card-body p-3">
                                             <h3 class="display-5 fw-bold text-primary text-center mb-2">370+</h3>
-                                            <p class="fw-bold text-center m-0">Qualified Experts</p>
+                                            <p class="fw-bold text-center m-0" th:text="#{about.experts.label}">Qualified Experts</p>
                                         </div>
                                     </div>
                                 </div>
@@ -65,18 +65,18 @@
                                     <div class="card border border-dark">
                                         <div class="card-body p-3">
                                             <h3 class="display-5 fw-bold text-primary text-center mb-2">18k+</h3>
-                                            <p class="fw-bold text-center m-0">Satisfied Clients</p>
+                                            <p class="fw-bold text-center m-0" th:text="#{about.clients.label}">Satisfied Clients</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <th:block sec:authorize="isAuthenticated()">
-                                <a th:href="@{/home}" class="btn btn-primary bsb-btn-2xl">Explore <i
+                                <a th:href="@{/home}" class="btn btn-primary bsb-btn-2xl" th:text="#{about.explore.authenticated}">Explore <i
                                         class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </th:block>
                             <th:block sec:authorize="isAnonymous()">
-                                <a th:href="@{/}"class="btn btn-primary bsb-btn-2xl">Explore <i
+                                <a th:href="@{/}"class="btn btn-primary bsb-btn-2xl" th:text="#{about.explore.authenticated}">Explore <i
                                         class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </th:block>

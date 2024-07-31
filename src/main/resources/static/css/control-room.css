@@ -110,7 +110,7 @@ table th {
     .users{
         margin: 0;
         width: 100%;
-        padding: 8rem 1rem 3rem 1rem;
+        padding: 8.5rem 1rem 3rem 1rem;
     }
 
     .card{
@@ -133,9 +133,7 @@ table th {
 
 @media screen and (max-width: 730px) {
     .users{
-        margin: 0;
-        width: 100%;
-        padding: 7rem 0.5rem 3rem 0.5rem;
+        padding: 8.5rem 0.5rem 3rem 0.5rem;
     }
 
     .card{

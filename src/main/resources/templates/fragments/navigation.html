@@ -23,39 +23,39 @@
     </th:block>
     <div class="menu">
         <th:block sec:authorize="isAuthenticated()">
-            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/home}" th:text="#{nav.home}">Home</a>
         </th:block>
         <th:block sec:authorize="isAnonymous()">
-            <a th:href="@{/}">Home</a>
+            <a th:href="@{/}" th:text="#{nav.home}">Home</a>
         </th:block>
-        <a th:href="@{/about}">About</a>
+        <a th:href="@{/about}" th:text="#{nav.about}">About</a>
         <th:block sec:authorize="isAuthenticated()">
             <div class="dropdown">
-                <a href="#">Add <i class="fas fa-caret-down"></i></a>
+                <a href="#" th:text="#{nav.add}">Add <i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-content">
-                    <a th:href="@{/cars/add-car}">Car</a>
-                    <a th:href="@{/motorcycles/add-motorcycle}">Motorcycle</a>
+                    <a th:href="@{/cars/add-car}" th:text="#{nav.car}">Car</a>
+                    <a th:href="@{/motorcycles/add-motorcycle}" th:text="#{nav.motorcycle}">Motorcycle</a>
                 </div>
             </div>
             <th:block sec:authorize="hasRole('ADMIN')">
-                <a th:href="@{/control-room}">Control room</a>
+                <a th:href="@{/control-room}" th:text="#{nav.controlRoom}">Control room</a>
             </th:block>
         </th:block>
-        <a th:href="@{/contact-us}">Contact</a>
+        <a th:href="@{/contact-us}" th:text="#{nav.contact}">Contact</a>
         <th:block sec:authorize="!isAuthenticated()">
-            <a th:href="@{/user/register}">Create Account</a>
-            <a th:href="@{/user/login}">Login</a>
+            <a th:href="@{/user/register}" th:text="#{nav.createAccount}">Create Account</a>
+            <a th:href="@{/user/login}" th:text="#{nav.login}">Login</a>
         </th:block>
         <th:block sec:authorize="isAuthenticated()">
             <form method="POST" th:action="@{/user/logout}">
-                <button type="submit">Logout</button>
+                <button type="submit" th:text="#{nav.logout}">Logout</button>
             </form>
         </th:block>
     </div>
     <div class="flags">
-        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999767/en-flag_nwclyn.png"
-                         alt="English"></a>
-        <a href="#"><img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999722/bg-flag_rftlfl.png"
-                         alt="Bulgarian"></a>
+        <img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999767/en-flag_nwclyn.png" alt="English"
+             onclick="changeLanguage('en')">
+        <img src="https://res.cloudinary.com/db1rc9fon/image/upload/v1720999722/bg-flag_rftlfl.png" alt="Bulgarian"
+             onclick="changeLanguage('bg')">
     </div>
 </nav>

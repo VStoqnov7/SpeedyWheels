@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PhotosValidator.class)
 public @interface ValidPhotos {
-    String message() default "At least one photo is required!";
+    String message() default "{photosUrlsError}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

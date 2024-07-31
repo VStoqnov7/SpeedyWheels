@@ -8,6 +8,7 @@ import com.example.speedywheels.service.interfaces.MotorcycleService;
 import com.example.speedywheels.service.interfaces.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -50,8 +52,10 @@ public class UserController {
         model.addObject("userProfileView", userProfileView);
         model.addObject("userProfile", userProfileDTO);
 
+        Locale locale = LocaleContextHolder.getLocale();
+
         model.addObject("roles", userProfileView.getRoles().stream()
-                .map(role -> role.getName().getName())
+                .map(role -> role.getName().getName(locale))
                 .collect(Collectors.joining(" & ")));
         model.setViewName("user-profile");
         return model;

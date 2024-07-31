@@ -63,9 +63,10 @@ nav .flags {
     display: flex;
 }
 
-nav .flags a{
+nav .flags img{
     width: 1.5rem;
     margin-left: 0.4rem;
+    cursor: pointer;
 }
 
 nav i{
@@ -168,13 +169,13 @@ nav .menu form button {
 
     nav .menu,
     .my-ads-and-favorite,
-    nav .flags {
+    nav .menu .flags {
         display: none;
     }
 
     nav .menu.menu-open,
     .my-ads-and-favorite.menu-open,
-    nav .flags.menu-open {
+    nav .menu.flags.menu-open {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;

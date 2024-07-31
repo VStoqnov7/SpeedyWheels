@@ -81,6 +81,12 @@ body {
     }
 }
 
+@media screen and (max-width: 900px) {
+    .line-with-text{
+        padding-top: 9rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
 
     .list-group-item{

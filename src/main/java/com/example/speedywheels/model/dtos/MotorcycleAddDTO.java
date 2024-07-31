@@ -19,42 +19,42 @@ import java.util.List;
 @Setter
 @Accessors(chain = true)
 public class MotorcycleAddDTO {
-    @NotBlank(message = "Brand is required!")
+    @NotBlank(message = "{motorcycle.add.brandError}")
     private String brand;
 
-    @NotBlank(message = "Model is required!")
+    @NotBlank(message = "{motorcycle.add.modelError}")
     private String model;
 
-    @Min(value = 1, message = "Power must be at least 1!")
+    @Min(value = 1, message = "{motorcycle.add.powerError}")
     private int power;
 
-    @Min(value = 0, message = "Mileage must be a non-negative number!")
+    @Min(value = 0, message = "{motorcycle.add.mileageError}")
     private int mileage;
 
-    @NotNull(message = "Production date is required!")
-    @PastOrPresent(message = "Production date must be in the past or present!")
+    @NotNull(message = "{motorcycle.add.productionDateError}")
+    @PastOrPresent(message = "{motorcycle.add.productionDateErrorPastOrPresent}")
     private LocalDateTime productionDate;
 
-    @NotNull(message = "Color is required!")
+    @NotNull(message = "{motorcycle.add.colorError}")
     private Color color;
 
-    @NotBlank(message = "Location is required!")
+    @NotBlank(message = "{motorcycle.add.locationError}")
     private String location;
 
-    @NotNull(message = "Transmission type is required!")
+    @NotNull(message = "{motorcycle.add.transmissionError}")
     private TransmissionType transmission;
 
-    @NotNull(message = "Euro standard is required!")
+    @NotNull(message = "{motorcycle.add.euroStandardError}")
     private EuroStandard euroStandard;
 
-    @Min(value = 1, message = "Cubic capacity must be at least 1!")
+    @Min(value = 1, message = "{motorcycle.add.cubicCapacityError}")
     private int cubicCapacity;
 
-    @NotNull(message = "Engine type is required!")
+    @NotNull(message = "{motorcycle.add.engineTypeError}")
     private EngineType engineType;
 
-    @NotNull(message = "Price date is required!")
-    @Min(value = 1, message = "Price must be greater than zero!")
+    @NotNull(message = "{motorcycle.add.priceErrorNotNull}")
+    @Min(value = 1, message = "{motorcycle.add.priceError}")
     private BigDecimal price;
 
     @ValidPhotos

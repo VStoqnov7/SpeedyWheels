@@ -1,17 +1,20 @@
 package com.example.speedywheels.model.enums;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum MotorcycleCategory {
-    ATV("ATV"),
-    UTV("UTV"),
-    BUGGY("Buggy"),
-    ENDURO("Enduro"),
-    SNOWMOBILE("Snowmobile"),
-    CROSS("Cross"),
-    SCOOTER("Scooter"),
-    TOURER("Tourer"),
-    CHOPPER("Chopper"),
-    SPORT("Sport"),
-    TRIKE("Trike");;
+    ATV("enum.motorcycleCategory.ATV"),
+    UTV("enum.motorcycleCategory.UTV"),
+    BUGGY("enum.motorcycleCategory.Buggy"),
+    ENDURO("enum.motorcycleCategory.Enduro"),
+    SNOWMOBILE("enum.motorcycleCategory.Snowmobile"),
+    CROSS("enum.motorcycleCategory.Cross"),
+    SCOOTER("enum.motorcycleCategory.Scooter"),
+    TOURER("enum.motorcycleCategory.Tourer"),
+    CHOPPER("enum.motorcycleCategory.Chopper"),
+    SPORT("enum.motorcycleCategory.Sport"),
+    TRIKE("enum.motorcycleCategory.Trike");
 
     private final String name;
 
@@ -19,7 +22,8 @@ public enum MotorcycleCategory {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Locale locale) {
+        ResourceBundle messages = ResourceBundle.getBundle("messages", locale);
+        return messages.getString(name);
     }
 }

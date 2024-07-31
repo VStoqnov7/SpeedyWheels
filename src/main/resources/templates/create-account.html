@@ -38,7 +38,7 @@
                 <label for="username"><i class="fa fa-user-circle"></i></label>
                 <input id="username"
                        type="text"
-                       placeholder="Username"
+                       th:placeholder="#{create.account.placeholder.username}"
                        name="username"
                        th:field="*{username}"/>
                 <small id="usernameError"
@@ -50,7 +50,7 @@
             <div class="element" th:style="${#fields.hasErrors('email')} ? 'margin-bottom: 0;' : ''">
                 <label for="email"><i class="fa fa-envelope"></i></label>
                 <input id="email"
-                       placeholder="Your Email Address"
+                       th:placeholder="#{create.account.placeholder.email}"
                        name="email"
                        th:field="*{email}"/>
                 <small id="emailError"
@@ -63,7 +63,7 @@
                 <label for="firstName"><i class="fa fa-user"></i></label>
                 <input id="firstName"
                        type="text"
-                       placeholder="First Name"
+                       th:placeholder="#{create.account.placeholder.firstName}"
                        name="firstName"
                        th:field="*{firstName}"/>
                 <small id="firstNameError"
@@ -76,7 +76,7 @@
                 <label for="lastName"><i class="fa-regular fa-user"></i></label>
                 <input id="lastName"
                        type="text"
-                       placeholder="Last Name"
+                       th:placeholder="#{create.account.placeholder.lastName}"
                        name="lastName"
                        th:field="*{lastName}"/>
                 <small id="lastNameError"
@@ -89,7 +89,7 @@
                 <label for="age"><i class="fa fa-calendar"></i></label>
                 <input id="age"
                        type="number"
-                       placeholder="Age"
+                       th:placeholder="#{create.account.placeholder.age}"
                        name="age"
                        th:field="*{age}"/>
                 <small id="ageError"
@@ -102,7 +102,7 @@
                 <label for="password"><i class="fa fa-lock"></i></label>
                 <input id="password"
                        type="password"
-                       placeholder="Password"
+                       th:placeholder="#{create.account.placeholder.password}"
                        name="password"
                        th:field="*{password}"/>
                 <small id="passwordError"
@@ -115,7 +115,7 @@
                 <label for="confirmPassword"><i class="fa fa-lock"></i></label>
                 <input id="confirmPassword"
                        type="password"
-                       placeholder="Re-Enter Password"
+                       th:placeholder="#{create.account.placeholder.confirmPassword}"
                        name="confirmPassword"
                        th:field="*{confirmPassword}"/>
                 <small id="confirmPasswordError"
@@ -124,7 +124,7 @@
                        th:errors="*{confirmPassword}">Confirm password Error
                 </small>
             </div>
-            <button type="submit">Create Account</button>
+            <button type="submit" th:text="#{create.account.button}">Create Account</button>
         </div>
     </form>
 </div>

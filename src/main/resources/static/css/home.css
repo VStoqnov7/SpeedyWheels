@@ -285,6 +285,11 @@ body {
 
 
 @media screen and (max-width: 900px) {
+
+    .premium-car{
+        margin-top: 9rem;
+    }
+
     .choice-container{
         gap: 1rem;
         flex-wrap: wrap;

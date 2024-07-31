@@ -1,8 +1,11 @@
 package com.example.speedywheels.model.enums;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum TransmissionType {
-    MANUAL("Manual"),
-    AUTOMATIC("Automatic");
+    MANUAL("enum.transmissionType.Manual"),
+    AUTOMATIC("enum.transmissionType.Automatic");
 
     private final String name;
 
@@ -10,7 +13,8 @@ public enum TransmissionType {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public String getName(Locale locale) {
+        ResourceBundle messages = ResourceBundle.getBundle("messages", locale);
+        return messages.getString(name);
     }
 }

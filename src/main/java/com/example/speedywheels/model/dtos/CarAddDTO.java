@@ -17,48 +17,48 @@ import java.util.List;
 @Accessors(chain = true)
 public class CarAddDTO {
 
-    @NotBlank(message = "Brand is required!")
+    @NotBlank(message = "{car.add.brandError}")
     private String brand;
 
-    @NotBlank(message = "Model is required!")
+    @NotBlank(message = "{car.add.modelError}")
     private String model;
 
-    @Min(value = 1, message = "Power must be at least 1!")
+    @Min(value = 1, message = "{car.add.powerError}")
     private int power;
 
-    @Min(value = 0, message = "Mileage must be a non-negative number!")
+    @Min(value = 0, message = "{car.add.mileageError}")
     private int mileage;
 
-    @NotNull(message = "Production date is required!")
-    @PastOrPresent(message = "Production date must be in the past or present!")
+    @NotNull(message = "{car.add.productionDateError}")
+    @PastOrPresent(message = "{car.add.productionDateErrorPastOrPresent}")
     private LocalDateTime productionDate;
 
-    @NotNull(message = "Color is required!")
+    @NotNull(message = "{car.add.colorError}")
     private Color color;
 
-    @NotBlank(message = "Location is required!")
+    @NotBlank(message = "{car.add.locationError}")
     private String location;
 
-    @NotNull(message = "Transmission type is required!")
+    @NotNull(message = "{car.add.transmissionError}")
     private TransmissionType transmission;
 
-    @NotNull(message = "Euro standard is required!")
+    @NotNull(message = "{car.add.euroStandardError}")
     private EuroStandard euroStandard;
 
-    @Min(value = 1, message = "Cubic capacity must be at least 1!")
+    @Min(value = 1, message = "{car.add.cubicCapacityError}")
     private int cubicCapacity;
 
-    @NotNull(message = "Engine type is required!")
+    @NotNull(message = "{car.add.engineTypeError}")
     private EngineType engineType;
 
-    @NotNull(message = "Price date is required!")
-    @Min(value = 1, message = "Price must be greater than zero!")
+    @NotNull(message = "{car.add.priceErrorNotNull}")
+    @Min(value = 1, message = "{car.add.priceError}")
     private BigDecimal price;
 
     @ValidPhotos
     private List<MultipartFile> photosUrls;
 
-    @NotNull(message = "Car category is required!")
+    @NotNull(message = "{car.add.categoryError}")
     private CarCategory category;
 
     private boolean has4x4;

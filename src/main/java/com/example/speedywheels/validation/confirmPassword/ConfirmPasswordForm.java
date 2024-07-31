@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = ConfirmPasswordValidator.class)
 public @interface ConfirmPasswordForm {
 
-    String message() default "Invalid password!";
+    String message() default "{confirmPasswordError}";
 
     Class<?>[] groups() default {};
 

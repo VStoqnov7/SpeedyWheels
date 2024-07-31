@@ -168,20 +168,11 @@ body {
 @media screen and (max-width: 900px) {
 
     .line-with-text{
-        margin-top: 7rem;
-    }
-
-    .line-with-text{
         margin-top: 9rem;
     }
-
-
 }
 
 @media screen and (max-width: 770px) {
-    .line-with-text{
-        margin-top: 6.5rem;
-    }
 
     .items i.fa-solid.fa-check{
         font-size: 0.8rem;
@@ -190,19 +181,10 @@ body {
     .items label{
         font-size: 0.6rem;
     }
-
-}
-
-@media screen and (max-width: 700px) {
-    .line-with-text{
-        margin-top: 7rem;
-    }
 }
 
 @media screen and (max-width: 600px) {
-    .line-with-text{
-        margin-top: 6rem;
-    }
+
     .items i.fa-solid.fa-check{
         font-size: 0.7rem;
     }

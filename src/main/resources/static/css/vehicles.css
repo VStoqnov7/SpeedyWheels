@@ -42,8 +42,6 @@ body {
     background-clip: padding-box;
 }
 
-
-
 /* Vehicles */
 .vehicle-container{
     width: 100%;
@@ -88,12 +86,16 @@ body {
     object-fit: cover;
 }
 
-.details-vehicle span{
+.details-vehicle p{
+    margin-bottom: 0;
+}
+
+.details-vehicle .p-text2{
     color: white;
     font-weight: normal;
 }
 
-.details-vehicle p{
+.details-vehicle p .p-text1{
     color: rgb(54, 53, 53);
     margin-bottom: 0.2rem;
     font-weight: bold;
@@ -126,14 +128,12 @@ body {
     .container{
         max-width: 60rem;
     }
-
 }
 
 @media screen and (max-width: 900px) {
     .line-with-text{
-        margin-top: 6.5rem;
+        margin-top: 9rem;
     }
-
 }
 
 @media screen and (max-width: 768px) {
