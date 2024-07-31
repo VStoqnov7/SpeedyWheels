@@ -1,0 +1,92 @@
+body {
+    background: url('https://res.cloudinary.com/db1rc9fon/image/upload/v1722421465/error_fcble2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 3rem;
+}
+
+.lost-container {
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.lost {
+    font-size: 2rem;
+}
+
+.button-container {
+    margin-top: 10px;
+}
+
+.go-home {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #92a0af;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.go-home:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+i {
+    color: yellowgreen;
+}
+
+@media screen and (max-width: 1000px) {
+    .lost {
+        font-size: 1.4rem;
+    }
+    .go-home {
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .lost {
+        font-size: 1.1rem;
+    }
+    .go-home {
+        padding: 6px 14px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .lost {
+        font-size: 0.9rem;
+    }
+    .go-home {
+        padding: 5px 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .lost {
+        font-size: 0.85rem;
+    }
+    .go-home {
+        padding: 4px 10px;
+    }
+}

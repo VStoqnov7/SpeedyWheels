@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link th:include="~{fragments/head :: head}">
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+
+
+<body>
+
+<div class="main-container">
+    <div class="lost-container">
+        <h1 class="lost"><i class="fa-solid fa-triangle-exclamation"></i> <span th:text="#{error.lost.text}">You are lost!</span> <i
+                class="fa-solid fa-triangle-exclamation"></i></h1>
+        <div class="button-container">
+            <th:block sec:authorize="isAuthenticated()">
+                <a class="go-home" th:href="@{/home}" th:text="#{error.lost.button}">Go home</a>
+            </th:block>
+            <th:block sec:authorize="isAnonymous()">
+                <a class="go-home" th:href="@{/}" th:text="#{error.lost.button}">Go home</a>
+            </th:block>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
