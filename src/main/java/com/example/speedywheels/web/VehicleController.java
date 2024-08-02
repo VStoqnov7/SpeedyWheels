@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -142,34 +143,50 @@ public class VehicleController {
                                        @PathVariable Long vehicleId,
                                        @AuthenticationPrincipal UserDetails userDetails) {
 
-        User user = this.userService.findByUsername(userDetails.getUsername()).get();
+        User user = userService.findByUsername(userDetails.getUsername()).orElse(null);
+        if (user == null) return setNotFound(model);
+
+        return processVehicleProfile(model, type, vehicleId, user, userDetails);
+    }
+
+    private ModelAndView processVehicleProfile(ModelAndView model, String type, Long vehicleId, User user, UserDetails userDetails) {
         boolean isFavorite = false;
         boolean isOwner = isOwner(vehicleId, user);
 
-        if (type.equals("car")) {
-            Car car = carService.findById(vehicleId);
-            if (car != null) {
-                CarProfileView carProfileView = this.carService.createCarProfileView(car);
-                model.addObject("vehicle", carProfileView);
+        switch (type) {
+            case "car":
+                Car car = carService.findById(vehicleId);
+                if (car == null) return setNotFound(model);
+                model.addObject("vehicle", carService.createCarProfileView(car));
                 model.addObject("vehicleType", "car");
-                isFavorite = user.getFavoriteCars().stream()
-                        .anyMatch(favorite -> favorite.getCar().equals(car));
-            }
-        }
+                isFavorite = user.getFavoriteCars().stream().anyMatch(fav -> fav.getCar().equals(car));
+                break;
 
-        if (type.equals("motorcycle")) {
-            Motorcycle motorcycle = motorcycleService.findById(vehicleId);
-            if (motorcycle != null) {
-                MotorcycleProfileView motorcycleProfileView = this.motorcycleService.createMotorcycleProfileView(motorcycle);
-                model.addObject("vehicle", motorcycleProfileView);
+            case "motorcycle":
+                Motorcycle motorcycle = motorcycleService.findById(vehicleId);
+                if (motorcycle == null) return setNotFound(model);
+                model.addObject("vehicle", motorcycleService.createMotorcycleProfileView(motorcycle));
                 model.addObject("vehicleType", "motorcycle");
-                isFavorite = user.getFavoriteMotorcycles().stream()
-                        .anyMatch(favorite -> favorite.getMotorcycle().equals(motorcycle));
-            }
+                isFavorite = user.getFavoriteMotorcycles().stream().anyMatch(fav -> fav.getMotorcycle().equals(motorcycle));
+                break;
+
+            default:
+                return setBadRequest(model);
         }
 
         addObjects(model, userDetails, isFavorite, isOwner);
         model.setViewName("vehicle-profile");
+        return model;
+    }
+    private ModelAndView setNotFound(ModelAndView model) {
+        model.setViewName("error");
+        model.setStatus(HttpStatus.NOT_FOUND);
+        return model;
+    }
+
+    private ModelAndView setBadRequest(ModelAndView model) {
+        model.setViewName("error");
+        model.setStatus(HttpStatus.BAD_REQUEST);
         return model;
     }
 
