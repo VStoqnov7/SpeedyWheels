@@ -21,9 +21,9 @@ email:
 
 # Cloudinary
 cloudinary:
-  name: ${CLOUDINARY_NAME:db1rc9fon}
-  api-key: ${CLOUDINARY_API_KEY:243925638474447}
-  api-secret: ${CLOUDINARY_API_SECRET:tUEAVL6gWzGlllgMDLfHzDZFoH0}
+  name: ${CLOUDINARY_NAME:test-cloud}
+  api-key: ${CLOUDINARY_API_KEY:test-api-key}
+  api-secret: ${CLOUDINARY_API_SECRET:test-secret}
 
 # Administrator
 admin:
