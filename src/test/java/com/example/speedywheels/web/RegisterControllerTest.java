@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.file.Files;
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class RegisterControllerTest {
 
     @Autowired
@@ -77,6 +80,7 @@ class RegisterControllerTest {
     }
 
     @Test
+    @DirtiesContext
     void testRegistrationWithWrongUser() throws Exception {
         Assertions.assertEquals(0, userRepository.count());
         MockMultipartFile invalidPicture = new MockMultipartFile(
