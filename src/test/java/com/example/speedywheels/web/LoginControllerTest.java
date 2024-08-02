@@ -1,6 +1,5 @@
 package com.example.speedywheels.web;
 
-import com.example.speedywheels.model.entity.Contact;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.repository.UserRepository;
 import com.example.speedywheels.repository.UserRoleRepository;
@@ -11,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDateTime;
-import java.util.stream.Collectors;
-
+import static com.example.speedywheels.TestDataUtils.createUser;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -23,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class LoginControllerTest {
 
     @Autowired
@@ -42,7 +41,7 @@ class LoginControllerTest {
     @BeforeEach
     void setUp() {
         userRepository.deleteAll();
-        user = createUser();
+        user = createUser(passwordEncoder,userRoleRepository);
         userRepository.save(user);
     }
 
@@ -77,22 +76,5 @@ class LoginControllerTest {
     @AfterEach
     void cleanUp() {
         userRepository.deleteAll();
-    }
-
-    private User createUser() {
-        User user = new User()
-                .setUsername("testUser")
-                .setPassword(passwordEncoder.encode("test"))
-                .setFirstName("test")
-                .setLastName("User")
-                .setAge(22)
-                .setProfilePictureUrl("https://bootdey.com/img/Content/avatar/avatar6.png")
-                .setBanned(false)
-                .setRegisteredOn(LocalDateTime.now())
-                .setModified(LocalDateTime.now())
-                .setActive(false)
-                .setRoles(userRoleRepository.findAll().stream().collect(Collectors.toSet()))
-                .setContact(new Contact().setEmail("test@example.com"));
-        return user;
     }
 }
