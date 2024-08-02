@@ -24,28 +24,34 @@ public class UserProfileDTO {
     private String socialMediasFacebook;
 
 
-    public void setSocialMediasGithub(String socialMediasGithub) {
+    public UserProfileDTO  setSocialMediasGithub(String socialMediasGithub) {
         this.socialMediasGithub = isEmpty(socialMediasGithub) ? "N/A" : socialMediasGithub;
+        return this;
     }
 
-    public void setSocialMediasTwitter(String socialMediasTwitter) {
+    public UserProfileDTO  setSocialMediasTwitter(String socialMediasTwitter) {
         this.socialMediasTwitter = isEmpty(socialMediasTwitter) ? "N/A" : socialMediasTwitter;
+        return this;
     }
 
-    public void setSocialMediasInstagram(String socialMediasInstagram) {
+    public UserProfileDTO  setSocialMediasInstagram(String socialMediasInstagram) {
         this.socialMediasInstagram = isEmpty(socialMediasInstagram) ? "N/A" : socialMediasInstagram;
+        return this;
     }
 
-    public void setSocialMediasFacebook(String socialMediasFacebook) {
+    public UserProfileDTO  setSocialMediasFacebook(String socialMediasFacebook) {
         this.socialMediasFacebook = isEmpty(socialMediasFacebook) ? "N/A" : socialMediasFacebook;
+        return this;
     }
 
-    public void setContactPhone(String contactPhone) {
+    public UserProfileDTO  setContactPhone(String contactPhone) {
         this.contactPhone = isEmpty(contactPhone) ? "N/A" : contactPhone;
+        return this;
     }
 
-    public void setCity(String city) {
+    public UserProfileDTO  setCity(String city) {
         this.city = isEmpty(city) ? "N/A" : city;
+        return this;
     }
 
     private boolean isEmpty(String value) {
