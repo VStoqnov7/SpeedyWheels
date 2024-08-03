@@ -2,8 +2,10 @@ package com.example.speedywheels.web;
 
 import com.example.speedywheels.model.dtos.ContactDTO;
 import com.example.speedywheels.service.interfaces.EmailService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,18 +37,20 @@ public class ContactController {
     }
 
     @PostMapping("/send-message")
-    public ModelAndView sendMessage(@ModelAttribute("contactDTO") ContactDTO contactDTO, ModelAndView model, RedirectAttributes redirectAttributes) {
+    public ModelAndView sendMessage(@Valid ContactDTO contactDTO, BindingResult result, ModelAndView model, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("error", true);
+            model.setViewName("redirect:/contact-us");
+            return model;
+        }
+
         String emailContent = "Name: " + contactDTO.getFullName() + "\n" +
                 "Email: " + contactDTO.getEmail() + "\n" +
                 "Subject: " + contactDTO.getSubject() + "\n" +
                 "Message: " + contactDTO.getMessage();
 
-        try {
-            emailService.sendEmailFromUser(contactDTO.getSubject(), emailContent);
-            redirectAttributes.addFlashAttribute("success", true);
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", true);
-        }
+        emailService.sendEmailFromUser(contactDTO.getSubject(), emailContent);
+        redirectAttributes.addFlashAttribute("success", true);
 
         model.setViewName("redirect:/contact-us");
         return model;

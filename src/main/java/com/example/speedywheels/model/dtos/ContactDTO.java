@@ -1,5 +1,6 @@
 package com.example.speedywheels.model.dtos;
 
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -8,9 +9,14 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 public class ContactDTO {
+    @NotBlank(message = "{contact.fullNameError}")
     private String fullName;
+    @NotBlank(message = "{contact.emailError1}")
+    @Email(message = "{contact.emailError2}")
     private String email;
+    @NotBlank(message = "{contact.subjectError}")
     private String subject;
+    @NotBlank(message = "{contact.messageError}")
     private String message;
 
     public ContactDTO() {}
