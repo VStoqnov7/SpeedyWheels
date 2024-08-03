@@ -2,16 +2,16 @@
 spring:
   # Email Sending
   mail:
-    host: smtp.test.com
-    port: 587
-    username: ${MAIL_USER:speedywheels@test.com}
-    password: ${MAIL_PASSWORD:2222}
+    host: localhost
+    port: 1025
+    username: test@example.com
+    password: test
     properties:
       mail:
         smtp:
-          auth: true
+          auth: false
           starttls:
-            enable: true
+            enable: false
 
 # Email Recipient
 email:
