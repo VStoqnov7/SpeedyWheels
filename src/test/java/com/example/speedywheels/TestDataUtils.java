@@ -1,8 +1,6 @@
 package com.example.speedywheels;
 
-import com.example.speedywheels.model.dtos.CarAddDTO;
-import com.example.speedywheels.model.dtos.MotorcycleAddDTO;
-import com.example.speedywheels.model.dtos.UserProfileDTO;
+import com.example.speedywheels.model.dtos.*;
 import com.example.speedywheels.model.entity.Contact;
 import com.example.speedywheels.model.entity.User;
 import com.example.speedywheels.model.enums.*;
@@ -211,6 +209,28 @@ public class TestDataUtils {
                 "image/jpeg",
                 imageBytes);
         return picture1;
+    }
+
+    public static CommentAddDTO createCommentAddDTOForCar() {
+        return new CommentAddDTO()
+                .setUser("testUser")
+                .setCommentedAt(LocalDateTime.now())
+                .setComment("Great car!");
+    }
+
+    public static CommentAddDTO createCommentAddDTOForMotorcycle() {
+        return new CommentAddDTO()
+                .setUser("testUser")
+                .setCommentedAt(LocalDateTime.now())
+                .setComment("Great motorcycle!");
+    }
+
+    public static ContactDTO createContactDTO() {
+        return new ContactDTO()
+                .setFullName("Ventsislav Stoyanov")
+                .setEmail("ventsislav.stoyanov@example.com")
+                .setSubject("Test Subject")
+                .setMessage("Test message");
     }
 
 }
