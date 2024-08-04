@@ -143,8 +143,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserControlRoomView> findAllUsersExcludingVenci777() {
-        return userRepository.findAllUsersExcludingUsername("venci777")
+    public List<UserControlRoomView> findAllUsersAndAdminsExceptConfiguredAdmin() {
+        return userRepository.findAllUsersExcludingUsername(adminConfig.getUsername())
                 .stream()
                 .map(user -> {
                     UserControlRoomView view = modelMapper.map(user, UserControlRoomView.class);

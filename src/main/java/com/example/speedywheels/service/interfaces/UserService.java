@@ -31,7 +31,7 @@ public interface UserService {
 
     void removeAdminRole(Long userId);
 
-    List<UserControlRoomView> findAllUsersExcludingVenci777();
+    List<UserControlRoomView> findAllUsersAndAdminsExceptConfiguredAdmin();
 
     void blockUser(Long userId);
 

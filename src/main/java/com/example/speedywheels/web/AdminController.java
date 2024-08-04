@@ -21,7 +21,7 @@ public class AdminController {
 
     @GetMapping
     public ModelAndView showControlRoom(ModelAndView model) {
-        List<UserControlRoomView> users = this.userService.findAllUsersExcludingVenci777();
+        List<UserControlRoomView> users = this.userService.findAllUsersAndAdminsExceptConfiguredAdmin();
         model.addObject("users", users);
         model.setViewName("control-room");
         return model;
