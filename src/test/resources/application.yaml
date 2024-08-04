@@ -13,6 +13,10 @@ spring:
           starttls:
             enable: false
 
+  sql:
+    init:
+      mode: never
+
 # Email Recipient
 email:
   recipient:
