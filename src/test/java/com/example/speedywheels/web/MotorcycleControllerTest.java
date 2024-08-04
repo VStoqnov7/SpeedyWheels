@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -106,6 +107,7 @@ class MotorcycleControllerTest {
 
     @Test
     @Transactional
+    @DirtiesContext
     @WithMockUser(username = "testUser", roles = {"USER"})
     public void testProcessAddMotorcycleFormWithInvalidData() throws Exception {
         Assertions.assertEquals(0, motorcycleRepository.count());

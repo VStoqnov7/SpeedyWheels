@@ -28,8 +28,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import static com.example.speedywheels.TestDataUtils.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

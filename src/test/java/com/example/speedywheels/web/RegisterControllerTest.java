@@ -46,7 +46,6 @@ class RegisterControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("create-account"))
                 .andExpect(model().attributeExists("userRegisterDTO"));
-        ;
     }
 
     @Test
