@@ -39,7 +39,7 @@
                         <tr class="align-middle" th:each="user : ${users}">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="/images/test.jpeg"
+                                    <img th:src="${user.getProfilePictureUrl()}"
                                          class="mr-1 avatar sm rounded-pill me-3 flex-shrink-0" alt="User">
                                     <div>
                                         <div class="h6 mb-0 lh-1" th:text="${user.username}">...</div>
