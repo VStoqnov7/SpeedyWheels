@@ -55,9 +55,7 @@ public class CommentController {
         Vehicle vehicle = type.equals("car") ? carService.findById(vehicleId) :
                 (type.equals("motorcycle") ? motorcycleService.findById(vehicleId) : null);
 
-        Comment comment = this.commentService.createComment(vehicle, userDetails.getUsername(), commentDto);
-
-        vehicle.getComments().add(comment);
+        this.commentService.createComment(vehicle, userDetails.getUsername(), commentDto);
 
         if (type.equals("car")) {
             carService.saveVehicle(vehicle);

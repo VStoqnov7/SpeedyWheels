@@ -40,7 +40,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment createComment(Vehicle vehicle, String username, CommentAddDTO commentDto) {
         Comment comment = modelMapper.map(commentDto, Comment.class);
-
+        vehicle.getComments().add(comment);
 
         User user = this.userService.findByUsername(username).get();
         if (user == null) {

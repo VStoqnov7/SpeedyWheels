@@ -70,7 +70,13 @@ public class UserServiceImpl implements UserService {
                     .setProfilePictureUrl(adminConfig.getProfilePicture())
                     .setCity(adminConfig.getCity())
                     .setRegisteredOn(LocalDateTime.now())
-                    .setRoles(roles);
+                    .setRoles(roles)
+                    .setSocialMedias(new SocialMedia()
+                            .setTwitter("https://twitter.com/adminUser")
+                            .setGithub("https://github.com/adminUser")
+                            .setInstagram("https://instagram.com/adminUser")
+                            .setFacebook("https://facebook.com/adminUser"));
+            user.getSocialMedias().setUser(user);
             this.userRepository.save(user);
         }
     }

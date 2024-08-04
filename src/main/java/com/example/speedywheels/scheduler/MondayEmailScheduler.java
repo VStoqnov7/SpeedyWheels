@@ -32,7 +32,7 @@ public class MondayEmailScheduler {
                 });
     }
 
-    private String createEmailBody(String name) {
+    public String createEmailBody(String name) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Hello ").append(name).append(",\n\n")
