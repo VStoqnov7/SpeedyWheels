@@ -4,6 +4,7 @@ import com.example.speedywheels.validation.confirmPassword.ConfirmPasswordForm;
 import com.example.speedywheels.validation.email.UniqueEmail;
 import com.example.speedywheels.validation.profilePictureValidator.ValidPicture;
 import com.example.speedywheels.validation.uniqueUsername.UniqueUsername;
+import com.example.speedywheels.validation.validPictureSize.ValidPictureSize;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,5 +42,6 @@ public class UserRegisterDTO {
     private int age;
 
     @ValidPicture
+    @ValidPictureSize
     private MultipartFile picture;
 }

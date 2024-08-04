@@ -1,6 +1,7 @@
 package com.example.speedywheels.model.dtos;
 
 import com.example.speedywheels.model.enums.*;
+import com.example.speedywheels.validation.validPhotosSize.ValidPhotosSize;
 import com.example.speedywheels.validation.vehiclePicturesValidator.ValidPhotos;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -56,6 +57,7 @@ public class CarAddDTO {
     private BigDecimal price;
 
     @ValidPhotos
+    @ValidPhotosSize
     private List<MultipartFile> photosUrls;
 
     @NotNull(message = "{car.add.categoryError}")

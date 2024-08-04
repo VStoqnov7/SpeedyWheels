@@ -1,6 +1,7 @@
 package com.example.speedywheels.model.dtos;
 
 import com.example.speedywheels.model.enums.*;
+import com.example.speedywheels.validation.validPhotosSize.ValidPhotosSize;
 import com.example.speedywheels.validation.vehiclePicturesValidator.ValidPhotos;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -58,6 +59,7 @@ public class MotorcycleAddDTO {
     private BigDecimal price;
 
     @ValidPhotos
+    @ValidPhotosSize
     private List<MultipartFile> photosUrls;
 
     @NotNull(message = "Motorcycle category is required!")
