@@ -2,15 +2,15 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:speedywheels}?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
-    username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:1122}
+    url: jdbc:mysql://localhost:${MYSQL_PORT}/speedywheels?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
 
   sql:
     init:
       mode: never
 
-  # Multipart settings
+ # Multipart settings
   servlet:
     multipart:
       max-file-size: 10MB
@@ -36,8 +36,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USER}
-    password: ${MAIL_PASSWORD}
+    username: ${MAIL_USER:speedywheelsapp@gmail.com}
+    password: ${MAIL_PASSWORD:ramo oxgd znyw vvrh}
     properties:
       mail:
         smtp:
@@ -70,8 +70,8 @@ cloudinary:
 
 # Administrator
 admin:
-  username: ${ADMIN_USERNAME:venci777}
-  password: ${ADMIN_PASSWORD:sssss}
+  username: ${ADMIN_USERNAME}
+  password: ${ADMIN_PASSWORD}
   first-name: ${ADMIN_FIRST_NAME:Ventsialav}
   last-name: ${ADMIN_LAST_NAME:Stoyanov}
   email: ${ADMIN_EMAIL:admin@example.com}
