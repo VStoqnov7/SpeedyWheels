@@ -62,23 +62,36 @@ body {
     background-color: #e7ad52;
 }
 
+.text {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
-@media screen and (max-width: 900px) {
+.text p {
+    margin: 0 0 10px;
+    word-wrap: break-word;
+}
 
-    *{
-        font-size: 0.9rem;
+
+@media screen and (max-width: 1000px) {
+
+    .container{
+        max-width: 900px;
+    }
+
+    .contact-us *{
+        font-size: 1.4rem;
     }
 
     .contact-us {
-        padding-top: 9rem;
+        padding-top: 32rem;
     }
 
 }
 
 @media screen and (max-width: 780px) {
-    *{
-        font-size: 0.85rem;
-    }
 
     .row.no-gutters.mb-4 {
         flex-direction: column;

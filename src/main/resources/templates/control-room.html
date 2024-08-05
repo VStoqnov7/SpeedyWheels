@@ -47,7 +47,7 @@
                                 </div>
                             </td>
                             <td class="mt-4" th:text="${user.contactEmail}">....</td>
-                            <td><span th:text="${user.vehicleCounts}">...</span></td>
+                            <td class="vehicle-count"><span th:text="${user.vehicleCounts}">...</span></td>
                             <td th:text="${user.registeredOn}">...</td>
                             <td class="text-end">
                                 <div th:if="${user.hasRole('ADMIN')}">

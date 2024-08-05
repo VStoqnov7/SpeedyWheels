@@ -67,7 +67,7 @@ body {
     margin: 1.5rem 2rem;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1092px) {
     .media{
         flex-direction: row !important;
     }
@@ -81,45 +81,40 @@ body {
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
+    .container{
+        max-width: 850px;
+    }
+
     .line-with-text{
-        padding-top: 9rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-
-    .list-group-item{
-        padding: 0 !important;
+        padding-top: 15rem;
     }
 
-    .d-flex{
-        flex-direction: column;
+    h5{
+        font-size: 2rem;
     }
 
-    .media img{
-        height: 13rem;
+    .h6, h6{
+        font-size: 1.3rem;
     }
 
-    .buttons{
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
+    .btn i{
+        font-size: 1.5rem;
     }
-}
 
-@media screen and (max-width: 700px) {
-    *{
-        font-size: 0.7rem;
+    i span{
+        font-size: 2rem;
+    }
+
+    span{
+        font-size: 1.2rem;
     }
 
     .media img{
-        height: 11rem;
+        height: 14rem;
     }
-}
 
-@media screen and (max-width: 600px) {
-    .media-body{
-        margin-top: 0;
+    .pagination{
+        font-size: 1.7rem;
     }
 }

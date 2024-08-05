@@ -56,37 +56,17 @@ i {
 }
 
 @media screen and (max-width: 1000px) {
-    .lost {
-        font-size: 1.4rem;
+
+    .main-container{
+        padding-top: 15rem;
+    }
+
+    .lost *{
+        font-size: 3rem;
     }
     .go-home {
-        padding: 8px 16px;
+        padding: 1rem 2rem;
+        font-size: 2.3rem;
     }
 }
 
-@media screen and (max-width: 900px) {
-    .lost {
-        font-size: 1.1rem;
-    }
-    .go-home {
-        padding: 6px 14px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .lost {
-        font-size: 0.9rem;
-    }
-    .go-home {
-        padding: 5px 12px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .lost {
-        font-size: 0.85rem;
-    }
-    .go-home {
-        padding: 4px 10px;
-    }
-}

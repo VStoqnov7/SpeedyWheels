@@ -137,11 +137,11 @@
     </div>
 
     <div>
-        <div class="container mt-4 mb-5  comments">
+        <div class="container mt-4 mb-5 comments">
             <div class="row d-flex justify-content-center ">
                 <div class="w-100">
                     <div class="d-flex justify-content-center align-items-center mb-4 ">
-                        <h4 class="text-body mb-0 text-white" th:text="#{vehicle.profile.comments.title}">Comments</h4>
+                        <h4 class="text-body mb-0 text-white form-title" th:text="#{vehicle.profile.comments.title}">Comments</h4>
                     </div>
                     <form class="form-add-comment"
                           th:action="'/comments/add-comment/' + ${vehicleType} + '/' + ${vehicle.id}" method="POST">
@@ -154,15 +154,15 @@
 
                     <div class="card mb-3" id="card-section">
                         <div class="card-body">
-                            <div class="d-flex flex-start">
-                                <img class="rounded-circle shadow-1-strong me-3 mr-3"
+                            <div class="d-flex flex-start comment-content">
+                                <img class="rounded-circle shadow-1-strong me-3 mr-3 user-image"
                                       alt="avatar"
                                      width="40" height="40"/>
-                                <div class="w-100">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <h6 class="text-success fw-bold mb-0">
+                                <div class="w-100 comment-content">
+                                    <div class="d-flex align-items-center">
+                                        <h6 class="text-success fw-bold mb-0 user-username">
                                         </h6>
-                                        <span class="text-body ms-2 text-white ml-1">....</span>
+                                        <span class="text-body ms-2 text-white ml-1 comment-text">....</span>
                                     </div>
                                 </div>
                             </div>
@@ -192,12 +192,12 @@
             .then(comments => {
                 const commentsHTML = comments.map(comment => `
                         <div class="card-body">
-                            <div class="d-flex flex-start">
-                                <img class="rounded-circle shadow-1-strong me-3 mr-2" src="${comment.userProfilePictureUrl}" alt="avatar" width="40" height="40"/>
-                                <div class="w-100">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <h6 class="text-success fw-bold mb-0">${comment.userUsername}:</h6>
-                                        <span class="text-body ms-2 text-white">${comment.comment}</span>
+                            <div class="d-flex flex-start comment-content">
+                                <img class="rounded-circle shadow-1-strong me-3 mr-2 user-image" src="${comment.userProfilePictureUrl}" alt="avatar" width="40" height="40"/>
+                                <div class="w-100 comment-content">
+                                    <div class="d-flex align-items-center ">
+                                        <h6 class="text-success fw-bold mb-0 user-username">${comment.userUsername}:</h6>
+                                        <span class="text-body ms-2 text-white comment-text">${comment.comment}</span>
                                     </div>
                                 </div>
                             </div>

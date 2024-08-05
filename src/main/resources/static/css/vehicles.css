@@ -124,37 +124,46 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
-
     .container{
         max-width: 60rem;
     }
-}
 
-@media screen and (max-width: 900px) {
     .line-with-text{
-        margin-top: 9rem;
+        padding-top: 14rem;
     }
-}
-
-@media screen and (max-width: 768px) {
-    .container{
-        max-width: 50rem;
+    .text-line{
+        font-size: 2.5rem;
     }
 
-    .big-image{
-        width: 50%;
+    h5{
+        font-size: 2rem;
     }
 
-    .small-images{
-        width: 50%;
+    .h6, h6{
+        font-size: 1.3rem;
     }
 
-    .col-md-5{
-        width: 50%;
+    span{
+        font-size: 1.7rem;
     }
 
-    .pl-0{
-        display: inline-block;
-        width: 40%;
+    .big-image a img{
+        height: 20rem;
+    }
+
+    .small-images a img{
+        height: 6rem;
+    }
+
+    .button-vehicle a{
+        font-size: 1.5rem;
+    }
+
+    .text-center a{
+        font-size: 2rem;
+    }
+
+    .pagination{
+        font-size: 1.7rem;
     }
 }

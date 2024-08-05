@@ -154,21 +154,17 @@ body,
 
 
 @media screen and (max-width: 1000px) {
-    *{
-        font-size: 0.8rem;
+
+    .form{
+        max-width: 40rem;
+        margin: 14rem auto;
     }
-}
 
-@media screen and (max-width: 700px) {
-    *{
-        font-size: 0.7rem;
+    .form input{
+        font-size: 2rem;
     }
-}
 
-@media screen and (max-width: 600px) {
-
-    .login-page {
-        margin-top: 9rem;
-        margin-bottom: 3rem;
+    .form *{
+        font-size: 2rem;
     }
 }

@@ -286,162 +286,57 @@ body {
 }
 
 
-@media screen and (max-width: 900px) {
-
-    .premium-car{
-        margin-top: 9rem;
-    }
-
-    .choice-container{
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-left: 2rem;
-        margin-right: 2rem;
-   }
-
-    .choice img{
-        margin: 0 auto;
-    }
-
-    .vehicle-container{
-        width: 28rem;
-        margin: 0 auto;
-    }
-
-    .details p{
-        font-size: 0.8rem;
-    }
-
-    .button-best-car{
-        font-size: 0.7rem;
-        width: 10rem;
-    }
-
-    .latest-car{
-        max-width: 30rem;
-        padding: 1.3rem;
-        margin: 2rem auto;
-    }
-
-    .section-title{
-        font-size: 1.5rem;
-    }
-
-    .card{
-        width: 16rem;
-    }
-
-    .no-vehicles{
-        font-size: 1rem;
-    }
-
-    .no-vehicles h2 {
-        font-size: 1.3rem;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .horizontal-line{
-        margin-bottom: 1rem;
-    }
-
-    .card{
-        width: 13rem;
-    }
-
-    .card-title{
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-    }
-
-    .card-body{
-        padding: 0.8rem;
-        font-size: 0.8rem;
-    }
-
-    .no-vehicles{
-        font-size: 0.9rem;
-    }
-
-    .no-vehicles h2 {
-        font-size: 1.2rem;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .vehicle-container{
-        width: 15rem;
-        margin: 0 auto;
-    }
-
-    .motorcycle img{
-        height: 16rem;
+@media screen and (max-width: 1000px) {
+    .premium-car *{
+        font-size: 2.3rem;
     }
 
     .text-expensive-vehicles p{
-        font-size: 1.5rem;
-        margin-right: 3rem;
+        font-size: 2.3rem;
+    }
+
+    .choice-container *{
+        font-size: 2.3rem;
+    }
+
+    .choice *{
+        font-size: 2.3rem;
     }
 
     .vehicle img{
-        height: 13rem;
+        height: 22rem;
     }
 
-    .details p{
-        font-size: 0.5rem;
+    .motorcycle img{
+        height: 42rem;
     }
 
-    .horizontal-line{
-        margin-bottom: 1rem;
+    .details{
+        font-size: 1.3rem;
     }
 
-    .latest-car{
-        max-width: 24rem;
-        padding: 1rem;
-        margin: 1.5rem auto;
+    .button-find-best-car{
+        font-size: 1.5rem;
     }
 
-    .car-info{
-        margin-left: 1rem;
+    .latest-car div *{
+        font-size: 2rem;
     }
 
-    .items label{
-        font-size: 0.7rem;
+    .container-fluid *{
+        font-size: 2rem;
     }
 
-    .btn{
-        padding: 0.3rem 0.7rem;
-        font-size: 0.7rem;
+    .media-container {
+        margin-bottom: 7rem !important;
     }
 
-    .latest-car h2{
-        font-size: 1rem;
-    }
-
-    .car-info h3{
-        font-size: 1rem;
+    .section-title{
+        font-size: 2.3rem;
     }
 
     .card{
-        width: 11rem;
+        width: 21rem;
     }
-
-    .card-title{
-        margin-bottom: 0.5rem;
-        font-size: 0.7rem;
-    }
-
-    .card-body{
-        padding: 0.6rem;
-        font-size: 0.7rem;
-    }
-
-    .no-vehicles{
-        font-size: 0.8rem;
-    }
-
-    .no-vehicles h2 {
-        font-size: 1rem;
-    }
-
 }
+

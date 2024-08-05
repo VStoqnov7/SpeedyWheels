@@ -55,6 +55,10 @@ table th {
     height: 4rem;
 }
 
+.vehicle-count{
+    text-align: center;
+}
+
 
 @media screen and (max-width: 1410px) {
 
@@ -64,7 +68,7 @@ table th {
     }
 
     .card{
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .h6{
@@ -106,63 +110,16 @@ table th {
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
     .users{
         margin: 0;
         width: 100%;
-        padding: 8.5rem 1rem 3rem 1rem;
+        padding: 15rem 1rem 3rem 1rem;
     }
 
-    .card{
-        font-size: 0.8rem;
+    .users *{
+        font-size: 1.4rem;
     }
 
-    .h6{
-        font-size: 0.8rem;
-    }
-
-    .table>:not(caption)>*>* {
-        padding: 0.10rem 0.1rem;
-    }
-
-    .btn-sm{
-        padding: 1px 1px;
-        font-size: 0.8rem;
-    }
-}
-
-@media screen and (max-width: 730px) {
-    .users{
-        padding: 8.5rem 0.5rem 3rem 0.5rem;
-    }
-
-    .card{
-        font-size: 0.6rem;
-    }
-
-    h5{
-        font-size: 0.9rem;
-    }
-
-    .h6{
-        font-size: 0.6rem;
-    }
-
-    .table>:not(caption)>*>* {
-        padding: 0.10rem 0.1rem;
-    }
-
-    .btn-sm{
-        padding: 1px 1px;
-        font-size: 0.6rem;
-    }
-
-    .col-12{
-        padding: 0;
-    }
-
-    .row{
-        margin: 0;
-    }
 }
 
