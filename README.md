@@ -41,6 +41,14 @@ admin.password: ${ADMIN_PASSWORD}
 - ![SpringDataJPA](https://img.shields.io/badge/Spring-DataJPA-%236BB13D)
 - ![SpringSecurity](https://img.shields.io/badge/Spring-Security-%23D43534)
 
+# Testing
+
+- ![JUnit](https://img.shields.io/badge/JUnit-25A162?style=flat&logo=junit&logoColor=white)
+- ![Mockito](https://img.shields.io/badge/Mockito-6D5CFF?style=flat&logo=mockito&logoColor=white)
+- ![GreenMail](https://img.shields.io/badge/GreenMail-4CBBF0?style=flat&logo=mail&logoColor=white&color=4CAF50)
+- ![HSQLDB](https://img.shields.io/badge/HSQLDB-003D3D?style=flat&logo=database&logoColor=white)
+- ![Integration Tests](https://img.shields.io/badge/Integration_Tests-4CBBF0?style=flat&logo=testing&logoColor=white)
+
 # Internalization/i18n
 
 1. **`Bulgarian`**
