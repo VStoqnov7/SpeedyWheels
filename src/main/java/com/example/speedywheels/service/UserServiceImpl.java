@@ -139,6 +139,7 @@ public class UserServiceImpl implements UserService {
             if (userProfileDTO.getSocialMediasFacebook() != null) socialMedia.setFacebook(userProfileDTO.getSocialMediasFacebook());
         }
 
+        user.setModified(LocalDateTime.now());
         this.userRepository.save(user);
     }
 
