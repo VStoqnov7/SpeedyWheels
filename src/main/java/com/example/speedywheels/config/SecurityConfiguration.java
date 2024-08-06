@@ -1,5 +1,7 @@
 package com.example.speedywheels.config;
 
+import com.example.speedywheels.listener.CustomAuthenticationSuccessHandler;
+import com.example.speedywheels.listener.CustomLogoutSuccessHandler;
 import com.example.speedywheels.model.enums.Role;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +11,14 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
+
+    private final CustomAuthenticationSuccessHandler authenticationSuccessHandler;
+    private final CustomLogoutSuccessHandler logoutSuccessHandler;
+
+    public SecurityConfiguration(CustomAuthenticationSuccessHandler authenticationSuccessHandler, CustomLogoutSuccessHandler logoutSuccessHandler) {
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.logoutSuccessHandler = logoutSuccessHandler;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -25,13 +35,14 @@ public class SecurityConfiguration {
                             .loginPage("/user/login")
                             .usernameParameter("username")
                             .passwordParameter("password")
-                            .defaultSuccessUrl("/home")
+                            .successHandler(authenticationSuccessHandler)
                             .failureForwardUrl("/user/login-error");
                 }
         ).logout(
                 logout -> {
                     logout
                             .logoutUrl("/user/logout")
+                            .logoutSuccessHandler(logoutSuccessHandler)
                             .logoutSuccessUrl("/")
                             .invalidateHttpSession(true)
                             .deleteCookies("JSESSIONID");
