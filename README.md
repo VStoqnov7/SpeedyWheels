@@ -20,7 +20,7 @@ _To set up and run SpeedyWheels, you need to:_
 Set up environment variables `${MYSQL_HOST}, ${MYSQL_PORT}, ${MYSQL_USER}, ${MYSQL_PASSWORD}, ${EMAIL_RECIPIENT}, ${ADMIN_USERNAME}, ${ADMIN_PASSWORD}`
 
 ```yaml
-spring.datasource.url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/speedywheels?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=tru
+spring.datasource.url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/speedywheels?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
 spring.datasource.username: ${MYSQL_USER}
 spring.datasource.password: ${MYSQL_PASSWORD}
 email.recipient.address: ${EMAIL_RECIPIENT}
@@ -53,6 +53,10 @@ admin.password: ${ADMIN_PASSWORD}
 
 1. **`Bulgarian`**
 2. **`English`**
+
+# Mapping
+
+This project utilizes **`ModelMapper`** for mapping between DTOs (Data Transfer Objects) and entity classes. This library simplifies the process of transforming data from one type to another, effectively reducing boilerplate code.
 
 # About The Project
 
