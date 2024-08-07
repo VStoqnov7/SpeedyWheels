@@ -63,7 +63,6 @@ table th {
 @media screen and (max-width: 1410px) {
 
     .users{
-        margin: 0;
         width: 100%;
     }
 
@@ -88,7 +87,6 @@ table th {
 
 @media screen and (max-width: 1140px) {
     .users{
-        margin: 0;
         width: 100%;
     }
 
@@ -112,14 +110,13 @@ table th {
 
 @media screen and (max-width: 1000px) {
     .users{
-        margin: 0;
         width: 100%;
         padding: 15rem 1rem 3rem 1rem;
     }
 
     .users *{
         font-size: 1.4rem;
+        margin-right: 0.7rem;
     }
-
 }
 
